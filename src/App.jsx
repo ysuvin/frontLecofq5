@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './View/Home';
-import Pag2 from './View/Pag2';
+import Landing from './View/Grupo1/Landing';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 function App() {
@@ -10,8 +10,15 @@ function App() {
       			<Route exact path="/Home" component={Home}/>
       			<Route exact path="/">
         			<Redirect to ="/Home"/>
+        		</Route>     
+
+				{/* Routing Grupo 1	*/}
+				<Route exact path="/Grupo1/Landing" component={Landing}/>	
+				<Route exact path="/Grupo1">
+        			<Redirect to ="/Grupo1/Landing"/>
         		</Route>
-        		<Route exact path="/Pag2" component={Pag2}/>     			
+				{/* Fin Routing Grupo 1*/}	
+
     		</Switch>
     		
   		</div>
