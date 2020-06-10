@@ -3,7 +3,8 @@
 Se espera que se utilice este repositorio como la base de todos los módulos que componen el sistema que se debe desarrollar para el proyecto.
 
 ### Detalles importantes:
-El proyecto tiene implementada una estructura MVC (Model, View, Component):
+El proyecto tiene implementada una estructura MVC (Model, View, Component) mediante la utilización de React-Router:
+
 1. Model: En esta carpeta (src/Model/) tienen que ir todos los recursos no programáticos de la aplicación (imagenes, datos específicos, etc) que se utilicen.
 2. View: En esta carpeta (src/View/) van todas las vistas del sistema, en el código hay ejemplos de cómo utilizarlas, se utiliza el redireccionamiento mediante history.
 3. Component: (src/Component/)Cualquier componente individual que utilice el módulo en el que estén trabajando debiese
@@ -18,10 +19,10 @@ Corran los siguientes 3 comandos en la carpeta que más les convenga:
 
 `git clone https://github.com/svillegasduni/proyectogpi.git`
 
+`cd proyectogpi`
+
 `npm install`
 
 `npm start`
 
 Y con eso ya debiesen tener todo funcional.
-
-Eso.

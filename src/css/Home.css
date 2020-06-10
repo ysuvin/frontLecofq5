@@ -13,9 +13,21 @@
   }
 }
 
+.grupo-navbar{
+  background-color: #000000;
+  color: rgb(0, 0, 0);
+  display: grid;
+  height: 4vh;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 8vw;
+  padding: 1vh 8vw;
+  top: 0;
+  box-shadow: 0px 10px 30px;
+}
+
 .Home-header {
   background-color: #374255;
-  min-height: 100vh;
+  min-height: 94vh;
   display: flex;
   flex-direction: column;
   align-items: center;
