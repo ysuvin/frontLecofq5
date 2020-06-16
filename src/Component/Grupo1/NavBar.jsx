@@ -36,7 +36,7 @@ export default function NavBar() {
             <SSADrawer/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            Sistema de Seguimiento de Actividades
           </Typography>
           <Button onClick={redirectLogin} color="inherit">Login</Button>
         </Toolbar>
