@@ -3,13 +3,12 @@
     font-size: calc(10px + 2vmin);
     color: rgb(0, 0, 0);
     width:100vw;
-    height:100vh;
-    
+    min-height:100vh;
   }
 
   .body {
     font-size: calc(10px + 2vmin);
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding: 10vh 8vw;
     display: flex;
     flex-direction: column;
@@ -17,6 +16,15 @@
     justify-content: center;
   }
 
+  .img-box{
+      min-height: 200px;
+      min-width: 230px;
+      padding: 13px;
+      float: left;
+      background-size: cover;
+      background-position: center center;
+  }
+
   .paper{
-    box-shadow: 0px 0px 10px;
+    box-shadow: 0px 100px 100px;
   }

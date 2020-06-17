@@ -54,20 +54,23 @@ export default function SSADrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Kinesiologo', 'Paciente'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <AssignmentIcon /> : <AccessibilityNewIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem onClick={redirectHome} button key={"Home"}>
+          <ListItemIcon> <HomeIcon/> </ListItemIcon>
+              <ListItemText primary={"Home"} />
+        </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem onClick={redirectHome} button key={"Home"}>
-        <ListItemIcon> <HomeIcon/> </ListItemIcon>
-            <ListItemText primary={"Home"} />
+        <ListItem button key='Kinesiologo'>
+              <ListItemIcon><AssignmentIcon /></ListItemIcon>
+              <ListItemText primary={'Kinesiologo'} />
+            </ListItem>
+        <ListItem button key='Paciente'>
+          <ListItemIcon><AccessibilityNewIcon /></ListItemIcon>
+          <ListItemText primary={'Paciente'} />
           </ListItem>
       </List>
+      
     </div>
   );
 
