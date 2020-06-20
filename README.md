@@ -1,4 +1,10 @@
 ## Repositorio principal de la React Web App para GPI
+
+### Links netlify asociados al proyecto:
+
+    Branch Master:  https://proyectogpi.netlify.app/
+    Branch Grupo 1: https://g1proyectogpi.netlify.app/
+
 ### Líderes crear sus propios Fork para compartir con sus grupos y Branches para consolidar su progreso
 Se espera que se utilice este repositorio como la base de todos los módulos que componen el sistema que se debe desarrollar para el proyecto.
 

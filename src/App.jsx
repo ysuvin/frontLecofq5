@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './View/Home';
 import Landing from './View/Grupo1/Landing';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import Login from './View/Grupo1/Login';
 
 function App() {
 	return(
@@ -17,6 +18,7 @@ function App() {
 				<Route exact path="/Grupo1">
         			<Redirect to ="/Grupo1/Landing"/>
         		</Route>
+				<Route exact path="/Grupo1/Login" component={Login}/>
 				{/* Fin Routing Grupo 1*/}	
 
     		</Switch>
