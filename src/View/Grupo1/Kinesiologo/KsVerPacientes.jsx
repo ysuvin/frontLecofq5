@@ -1,19 +1,25 @@
 import React from 'react';
-import '../../css/Grupo1/Landing.css';
-import NavBar from '../../Component/Grupo1/NavBar';
+import '../../../css/Grupo1/G1Landing.css';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Pacientes from '../../Model/Grupo1/Pacientes';
+import Pacientes from '../../../Model/Grupo1/Pacientes';
+import Button from '@material-ui/core/Button';
+import history from '../../../history.jsx';
 
-function Landing() {
+function KsVerPacientes() {
+  
 
     const [paciente, setValue] = React.useState(Pacientes[0]);
 
+    const redirectKsAsEj = () =>
+    {
+      {history.push('/Grupo1/KsAsEjercicios')}
+    }
+
   return (
     <div className="wrapper">
-      <NavBar className="paper"/>
       <div className="body">
       <Autocomplete
         value={paciente}
@@ -35,8 +41,8 @@ function Landing() {
               alignItems="center">
           <Grid item xs={12}>
             {/* Handling de imagen, si no se asigna un paciente se muestra una imagen no definida */}
-            <Paper className="img-box" style={ (!!paciente.imgName) ? {backgroundImage: "url("+require('../../Model/Grupo1/Assets/FotosPacientes/'+paciente.imgName)+")"}
-            : {backgroundImage: "url("+require('../../Model/Grupo1/Assets/FotosPacientes/anon.jpg')}}
+            <Paper className="img-box" style={ (!!paciente.imgName) ? {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/'+paciente.imgName)+")"}
+            : {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/anon.jpg')}}
             >
             
             </Paper>
@@ -49,10 +55,16 @@ function Landing() {
             <p>Estatura: {` ${paciente !== null ? `${paciente.estatura}` : ''}`}</p>
             </Paper>
           </Grid>
+          <Grid item xs={12}>
+            {paciente !== null
+              ? <Button onClick={redirectKsAsEj} variant="contained" color = "primary">Asignar Ejercicios</Button> 
+              : ''} 
+          </Grid>
         </Grid>
+        
       </div>
     </div>
   );
 }
 
-export default Landing;
+export default KsVerPacientes;

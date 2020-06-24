@@ -13,6 +13,7 @@ const redirectLogin = () =>
     history.push('/Grupo1/Login');
   }
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

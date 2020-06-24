@@ -27,6 +27,11 @@ const redirectHome = () =>
   history.push('/Home');
 }
 
+const redirectKinesiologo = () => 
+  {
+    history.push('/Grupo1/');
+  }
+
 export default function SSADrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -61,7 +66,7 @@ export default function SSADrawer() {
       </List>
       <Divider />
       <List>
-        <ListItem button key='Kinesiologo'>
+        <ListItem onClick={redirectKinesiologo} button key='Kinesiologo'>
               <ListItemIcon><AssignmentIcon /></ListItemIcon>
               <ListItemText primary={'Kinesiologo'} />
             </ListItem>
