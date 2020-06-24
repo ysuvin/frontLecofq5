@@ -13,9 +13,9 @@ function KsVerPacientes() {
 
     const [paciente, setValue] = React.useState(Pacientes[0]);
 
-    const redirectKsAsEj = () =>
+    const redirectKsAsFecha = () =>
     {
-      {history.push('/Grupo1/KsAsEjercicios')}
+      {history.push('/Grupo1/KsAsFecha')}
     }
 
   return (
@@ -57,7 +57,7 @@ function KsVerPacientes() {
           </Grid>
           <Grid item xs={12}>
             {paciente !== null
-              ? <Button onClick={redirectKsAsEj} variant="contained" color = "primary">Asignar Ejercicios</Button> 
+              ? <Button onClick={redirectKsAsFecha} variant="contained" color = "primary">Asignar Ejercicios</Button> 
               : ''} 
           </Grid>
         </Grid>

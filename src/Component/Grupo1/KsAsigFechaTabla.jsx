@@ -17,6 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import history from '../../history.jsx';
 
 
 
@@ -40,7 +41,12 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-export default function KsAsigTabla() {
+export default function KsAsigFechaTabla() {
+
+  const redirectKsAsEj = () =>
+  {
+    history.push('/Grupo1/KsAsFecha/KsAsEjercicios');
+  }
 
   
   const [state, setState] = React.useState({
@@ -55,7 +61,7 @@ export default function KsAsigTabla() {
 
   return (
     <MaterialTable
-      title="Editable Example"
+      title="Asignar fechas"
       icons={tableIcons}
       columns={state.columns}
       data={state.data}
@@ -64,14 +70,14 @@ export default function KsAsigTabla() {
           icon: () => <AddBox/>,
           tooltip: 'Añadir ejercicios',
           onClick: (event, rowData) => {
-            // Do save operation
+            redirectKsAsEj()
           }
         }
       ]}
       localization={{
         body: {
           emptyDataSourceMessage: 'No hay datos',
-          addTooltip: 'Hinzufügen',
+          addTooltip: 'Añadir',
           deleteTooltip: 'Löschen',
           editTooltip: 'Bearbeiten',
           filterRow: {
