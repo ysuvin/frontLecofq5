@@ -52,6 +52,53 @@ export default function KsAsigEjTabla() {
       icons={tableIcons}
       columns={state.columns}
       data={state.data}
+      localization={{
+        body: {
+          emptyDataSourceMessage: 'No hay datos',
+          addTooltip: 'Añadir ejercicios',
+          deleteTooltip: 'Borrar',
+          editTooltip: 'Editar',
+          filterRow: {
+            filterTooltip: 'Filtrar'
+          },
+          editRow: {
+            deleteText: '¿Seguro que quieres eliminar esta ejercicio de ejericios?',
+            cancelTooltip: 'No',
+            saveTooltip: 'Sí'
+          }
+        },
+        grouping: {
+          placeholder: 'Spalten ziehen ...',
+          groupedBy: 'Gruppiert nach:'
+        },
+        header: {
+          actions: 'Acciones'
+        },
+        pagination: {
+          labelDisplayedRows: '{from}-{to} de {count}',
+          labelRowsSelect: 'Ejercicios',
+          labelRowsPerPage: 'Ejercicios por página:',
+          firstAriaLabel: 'Primera página',
+          firstTooltip: 'Primera página',
+          previousAriaLabel: 'Página anterior',
+          previousTooltip: 'Página anterior',
+          nextAriaLabel: 'Siguente página',
+          nextTooltip: 'Siguente página',
+          lastAriaLabel: 'Última página',
+          lastTooltip: 'Última página'
+        },
+        toolbar: {
+          addRemoveColumns: 'Agregar o eliminar columnas',
+          nRowsSelected: '{0} línea (s) seleccionada (s)',
+          showColumnsTitle: 'Mostrar columnas',
+          showColumnsAriaLabel: 'Mostrar columnas',
+          exportTitle: 'Exportar',
+          exportAriaLabel: 'Exportar',
+          exportName: 'Exportar a CSV',
+          searchTooltip: 'Buscar',
+          searchPlaceholder: 'Buscar'
+        }
+      }}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {
