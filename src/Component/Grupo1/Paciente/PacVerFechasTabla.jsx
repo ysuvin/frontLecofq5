@@ -70,7 +70,7 @@ export default function PacVerFechasTabla() {
       localization={{
         body: {
           emptyDataSourceMessage: 'No hay datos',
-          addTooltip: 'Añadir ejercicios',
+          addTooltip: 'Añadir rutinas',
           deleteTooltip: 'Borrar',
           editTooltip: 'Editar',
           filterRow: {
@@ -83,16 +83,16 @@ export default function PacVerFechasTabla() {
           }
         },
         grouping: {
-          placeholder: 'Spalten ziehen ...',
-          groupedBy: 'Gruppiert nach:'
+          placeholder: 'Arrastrar columnas...',
+          groupedBy: 'Agrupar por:'
         },
         header: {
           actions: 'Acciones'
         },
         pagination: {
           labelDisplayedRows: '{from}-{to} de {count}',
-          labelRowsSelect: 'Ejercicios',
-          labelRowsPerPage: 'Ejercicios por página:',
+          labelRowsSelect: 'Rutinas',
+          labelRowsPerPage: 'Rutinas por página:',
           firstAriaLabel: 'Primera página',
           firstTooltip: 'Primera página',
           previousAriaLabel: 'Página anterior',

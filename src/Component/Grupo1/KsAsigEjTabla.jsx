@@ -68,8 +68,8 @@ export default function KsAsigEjTabla() {
           }
         },
         grouping: {
-          placeholder: 'Spalten ziehen ...',
-          groupedBy: 'Gruppiert nach:'
+          placeholder: 'Arrastrar columnas...',
+          groupedBy: 'Agrupar por:'
         },
         header: {
           actions: 'Acciones'

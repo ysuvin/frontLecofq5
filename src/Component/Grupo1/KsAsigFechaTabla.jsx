@@ -83,8 +83,8 @@ export default function KsAsigFechaTabla() {
           }
         },
         grouping: {
-          placeholder: 'Spalten ziehen ...',
-          groupedBy: 'Gruppiert nach:'
+          placeholder: 'Arrastrar columnas...',
+          groupedBy: 'Agrupar por:'
         },
         header: {
           actions: 'Acciones'
