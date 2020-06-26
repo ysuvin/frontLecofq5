@@ -15,7 +15,7 @@ function KsVerPacientes() {
 
     const redirectKsAsFecha = () =>
     {
-      {history.push('/Grupo1/KsAsFecha')}
+      history.push('/Grupo1/KsAsFecha')
     }
 
   return (

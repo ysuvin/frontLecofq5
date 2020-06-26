@@ -31,6 +31,10 @@ const redirectKinesiologo = () =>
   {
     history.push('/Grupo1/');
   }
+const redirectPaciente = () => 
+{
+    history.push('/Grupo1/PacVerFechas');
+}
 
 export default function SSADrawer() {
   const classes = useStyles();
@@ -70,7 +74,7 @@ export default function SSADrawer() {
               <ListItemIcon><AssignmentIcon /></ListItemIcon>
               <ListItemText primary={'Kinesiologo'} />
             </ListItem>
-        <ListItem button key='Paciente'>
+        <ListItem onClick={redirectPaciente} button key='Paciente'>
           <ListItemIcon><AccessibilityNewIcon /></ListItemIcon>
           <ListItemText primary={'Paciente'} />
           </ListItem>

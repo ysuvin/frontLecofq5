@@ -17,8 +17,8 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import history from '../../history.jsx';
-import Fechas from '../../Model/Grupo1/Fechas';
+import Fechas from '../../../Model/Grupo1/Fechas';
+import history from '../../../history.jsx';
 
 
 
@@ -42,28 +42,28 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-export default function KsAsigFechaTabla() {
+export default function PacVerFechasTabla() {
 
-  const redirectKsAsEj = () =>
+  const redirectPacVerEjercicios = () =>
   {
-    history.push('/Grupo1/KsAsFecha/KsAsEjercicios');
+    history.push('/Grupo1/PacVerFechas/PacVerEjercicios');
   }
 
   
-  const [state, setState] = React.useState(Fechas);
+  const state = Fechas;
 
   return (
     <MaterialTable
-      title="Asignar fechas"
+      title="Ver horarios"
       icons={tableIcons}
       columns={state.columns}
       data={state.data}
       actions={[
         {
           icon: () => <AddBox/>,
-          tooltip: 'Añadir ejercicios',
+          tooltip: 'Ver ejercicios asignados',
           onClick: (event, rowData) => {
-            redirectKsAsEj()
+            redirectPacVerEjercicios()
           }
         }
       ]}
@@ -71,10 +71,10 @@ export default function KsAsigFechaTabla() {
         body: {
           emptyDataSourceMessage: 'No hay datos',
           addTooltip: 'Añadir',
-          deleteTooltip: 'Borrar',
-          editTooltip: 'Editar',
+          deleteTooltip: 'Löschen',
+          editTooltip: 'Bearbeiten',
           filterRow: {
-            filterTooltip: 'Filtrar'
+            filterTooltip: 'Filter'
           },
           editRow: {
             deleteText: 'Diese Zeile wirklich löschen?',
@@ -114,43 +114,7 @@ export default function KsAsigFechaTabla() {
           searchPlaceholder: 'Suche'
         }
       }}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
+
     />
   );
 }
