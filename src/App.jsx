@@ -1,8 +1,7 @@
 import React from 'react';
 import Home from './View/Home';
-import Landing from './View/Grupo1/Landing';
+import G1Landing from './View/Grupo1/G1Landing';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Login from './View/Grupo1/Login';
 
 function App() {
 	return(
@@ -14,11 +13,8 @@ function App() {
         		</Route>     
 
 				{/* Routing Grupo 1	*/}
-				<Route exact path="/Grupo1/Landing" component={Landing}/>	
-				<Route exact path="/Grupo1">
-        			<Redirect to ="/Grupo1/Landing"/>
-        		</Route>
-				<Route exact path="/Grupo1/Login" component={Login}/>
+				<Route exact path="/Grupo1/" component={G1Landing}/>
+				<Route exact path="/Grupo1/*" component={G1Landing}/>	
 				{/* Fin Routing Grupo 1*/}	
 
     		</Switch>
