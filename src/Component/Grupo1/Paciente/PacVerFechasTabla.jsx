@@ -18,6 +18,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import Fechas from '../../../Model/Grupo1/Fechas';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
 import history from '../../../history.jsx';
 
 
@@ -60,7 +62,7 @@ export default function PacVerFechasTabla() {
       data={state.data}
       actions={[
         {
-          icon: () => <ViewColumn/>,
+          icon: () => <NavigateNextIcon/>,
           tooltip: 'Ver ejercicios asignados',
           onClick: (event, rowData) => {
             redirectPacVerEjercicios()
@@ -113,6 +115,9 @@ export default function PacVerFechasTabla() {
           searchTooltip: 'Buscar',
           searchPlaceholder: 'Buscar'
         }
+      }}
+      options={{
+        actionsColumnIndex: -1
       }}
 
     />
