@@ -39,7 +39,7 @@ export default function NavBar() {
           <Typography variant="h6" className={classes.title}>
             Ficha Clinica
           </Typography>
-          <Button onClick={redirectLogin} color="inherit">Login</Button>
+          
         </Toolbar>
       </AppBar>
     </div>
