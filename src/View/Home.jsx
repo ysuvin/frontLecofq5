@@ -21,7 +21,7 @@ function Home() {
   }
   const redirectGrupo4 = () =>
   {
-    {/*history.push('/Grupo4')*/}
+    {history.push('/Grupo4')}
   }
   const redirectGrupo5 = () =>
   {
