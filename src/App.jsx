@@ -3,6 +3,7 @@ import Home from './View/Home';
 import G1Landing from './View/Grupo1/G1Landing';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import AdminHoras from './View/Grupo4/AdminHoras';
+import Grid from './Model/Grupo4/InscripcionHoras/Grids'
 
 function App() {
 	return (
@@ -23,6 +24,8 @@ function App() {
 				<Route exact path="/Grupo4">
 					<Redirect to="/Grupo4/adminHoras" />
 				</Route>
+
+				<Route exact path="/Grupo4/inscripcionHoras" component={Grid} />
 				{/* Fin Routing Grupo 4*/}
 
 			</Switch>
