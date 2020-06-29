@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import history from '../../history';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const useStyles = makeStyles({
   list: {
@@ -20,13 +21,24 @@ const useStyles = makeStyles({
   },
 });
 
-const redirectHome = () => 
-{
+const redirectHome = () => {
   history.push('/Home');
 }
-
-
-
+const redirectPlantillapaciente = () => {
+  history.push('/Grupo5/Plantillapaciente');
+}
+const redirectPlantillaMedico = () => {
+  history.push('/Grupo5/PlantillaMedico');
+}
+const redirectPlantillaKinesiologo = () => {
+  history.push('/Grupo5/PlantillaKinesiologo');
+}
+const redirectPlantillaNutricionista = () => {
+  history.push('/Grupo5/PlantillaNutricionista');
+}
+const redirectPlantillaPsicologo = () => {
+  history.push('/Grupo5/PlantillaPsicologo');
+}
 
 export default function SSADrawer() {
   const classes = useStyles();
@@ -56,13 +68,31 @@ export default function SSADrawer() {
     >
       <List>
         <ListItem onClick={redirectHome} button key={"Home"}>
-          <ListItemIcon> <HomeIcon/> </ListItemIcon>
-              <ListItemText primary={"Home"} />
+          <ListItemIcon> <HomeIcon /> </ListItemIcon>
+          <ListItemText primary={"Home"} />
         </ListItem>
       </List>
       <Divider />
-
-      
+      <ListItem onClick={redirectPlantillapaciente} button key='Plantilla'>
+        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+        <ListItemText primary={'PlantillaPaciente'} />
+      </ListItem>
+      <ListItem onClick={redirectPlantillaMedico} button key='Plantilla'>
+        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+        <ListItemText primary={'PlantillaMedico'} />
+      </ListItem>
+      <ListItem onClick={redirectPlantillaKinesiologo} button key='Plantilla'>
+        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+        <ListItemText primary={'PlantillaKinesiologo'} />
+      </ListItem>
+      <ListItem onClick={redirectPlantillaPsicologo} button key='Plantilla'>
+        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+        <ListItemText primary={'PlantillaPsicologo'} />
+      </ListItem>
+      <ListItem onClick={redirectPlantillaNutricionista} button key='Plantilla'>
+        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+        <ListItemText primary={'PlantillaNutricionista'} />
+      </ListItem>
     </div>
   );
 
