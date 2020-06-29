@@ -6,7 +6,7 @@ import PacienteF from '../../../Component/Grupo5/PacienteF';
 function Paciente(){
 
 return(
-      <div className="wrapper">
+      <div  >
         <PacienteF/>
       </div>
 

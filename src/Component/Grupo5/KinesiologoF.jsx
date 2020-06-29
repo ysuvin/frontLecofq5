@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function PacienteF() {
+export default function KinesiologoF() {
     const classes = useStyles();
     return (
         <React.Fragment>

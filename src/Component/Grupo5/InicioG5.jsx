@@ -7,9 +7,9 @@ export default function InicioG5(){
 
     
 const redirectGrupo5 = () => {
-    { history.push('/Grupo5/Plantillapaciente/') }
+    { history.push('/Grupo5/') }
 }
 return(
-<Button onClick={redirectGrupo5} variant="contained" color = "primary">Grupo5</Button>
+<Button onClick={redirectGrupo5} variant="contained" color = "primary">Atras</Button>
 );
 }
