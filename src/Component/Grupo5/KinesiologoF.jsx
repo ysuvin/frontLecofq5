@@ -14,6 +14,14 @@ const useStyles = makeStyles((theme) => ({
         width: 200,
     },
 }));
+const useStyless = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
 
 
 export default function KinesiologoF() {
@@ -24,30 +32,34 @@ export default function KinesiologoF() {
                 Metodo de llenado
       </Typography>
             <Grid container spacing={3}>
-                <Grid item xs={12} md={6}>
-                    <TextField required id="cardName" label="Nombre de la persona" fullWidth autoComplete="cc-name" />
+            <Grid item xs={12} md={6}>
+                    <TextField required id="KinName" label="Nombre del Kinesiologo" fullWidth autoComplete="kin-name" />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
                         required
-                        id="Numero de paciente"
-                        label="N°Paciente"
+                        id="paciName"
+                        label="Nombre del Paciente"
                         fullWidth
-                        autoComplete="cc-number"
+                        autoComplete="paci-number"
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextField required id="expDate" label="Hora de consulta" fullWidth autoComplete="cc-exp" />
+                    <TextField required id="rutPaci" label="Rut del Paciente" fullWidth autoComplete="rut-paci" />
                 </Grid>
+                <Grid item xs={12} md={6}></Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        required
-                        id="cvv"
-                        label="Nombre del Medico"
+                        id="recMed"
+                        label="Recomendaciones"
                         fullWidth
-                        autoComplete="cc-csc"
+                        multiline
+                        rows={10}
+                        defaultValue=""
                     />
                 </Grid>
+
+
                 <Grid item xs={12}>
                     <form className={classes.container} noValidate>
                         <TextField
