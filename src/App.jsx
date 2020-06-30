@@ -4,8 +4,7 @@ import G1Landing from './View/Grupo1/G1Landing';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ContainerHorasPaciente from './View/Grupo4/ContainerHorasPaciente';
 import ContainerSecretario from './View/Grupo4/ContainerSecretario';
-import Grid from './Model/Grupo4/InscripcionHoras/Grids'
-
+import ContainerSelect from './View/Grupo4/ContainerSelect';
 function App() {
 	return (
 		<div>
@@ -21,14 +20,10 @@ function App() {
 				{/* Fin Routing Grupo 1*/}
 
 				{/* Routing Grupo 4 */}
+				<Route exact path="/Grupo4" component={ContainerSelect}/>
 				<Route exact path="/Grupo4/paciente/horas" component={ContainerHorasPaciente} />
-				<Route exact path="/Grupo4">
-					<Redirect to="/Grupo4/paciente/horas" />
-				</Route>
-
 				<Route exact path="/Grupo4/secretario/administrar/horas-medicas" component={ContainerSecretario} />
 
-				<Route exact path="/Grupo4/inscripcionHoras" component={Grid} />
 				{/* Fin Routing Grupo 4*/}
 
 			</Switch>

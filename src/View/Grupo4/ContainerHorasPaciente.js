@@ -16,7 +16,6 @@ const ContainerHorasPaciente = () => {
             </div>
             <Grid />
 
-            
         </Fragment>
         
     )
