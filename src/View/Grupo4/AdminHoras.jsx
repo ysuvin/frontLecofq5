@@ -15,6 +15,8 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import Container from '@material-ui/core/Container';
+
 
 import HorasMedicas from '../../Model/Grupo4/HorasMedicas';
 
@@ -64,12 +66,17 @@ export default function AdminHoras() {
     });
 
     let TableStyle = {
-        maxWidth: "90%",
-        position: 'absolute', left: '5%', right: '5%', top: "5%",
+        maxWidth: "100%",
+        width:'112rem',
+        marginTop: '5%'
     };
 
     return (
-        <MaterialTable
+        <Container  >
+
+       
+
+        <MaterialTable 
             localization={{
                 toolbar: { searchPlaceholder: 'Buscar', searchTooltip: "Buscar" },
                 body: {
@@ -142,5 +149,8 @@ export default function AdminHoras() {
                     }),
             }}
         />
+
+
+    </Container>
     );
 }
