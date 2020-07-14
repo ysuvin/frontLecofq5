@@ -63,10 +63,12 @@ export default function PacienteF() {
             <Typography variant="h6" gutterBottom>
                 Ficha Paciente
       </Typography>
+      
       <Grid container
   direction="column"
  
   alignItems="center">
+
             <form className={classes.container} noValidate>
                     <TextField
                         id="datetime-local"
