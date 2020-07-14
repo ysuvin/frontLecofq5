@@ -8,6 +8,7 @@ import { dateToDateString} from '../../../Component/Grupo4/InscripcionHoras/modu
 export default function Scheduling(props){
 
     const [selectedDate, setSelectedDate] = useState(null);
+    const [activeHour, setActiveHour] = useState(null);
 
 
     console.log(props.selectedSpecialty);
@@ -15,7 +16,7 @@ export default function Scheduling(props){
 
     return (
         <div>
-            <DateLabel setDate={setSelectedDate} date={selectedDate}/>
+            <DateLabel setDate={setSelectedDate} date={selectedDate} setHour={setActiveHour} hour={activeHour}/>
 
             <Grid container spacing={3} justify='space-evenly'>
 
@@ -30,16 +31,26 @@ export default function Scheduling(props){
                 </Grid>
                 :
 
-                selectedDate ?
-                    nose.filter(hora => (hora.date.getHours() == selectedDate.getHours() && dateToDateString(hora.date) === dateToDateString(selectedDate) &&  hora.speciality === props.selectedSpecialty)).map(tamp => (
-                        <Grid item key={tamp.id}>
+                selectedDate || activeHour?
+                    // nose.filter(hora => (hora.date.getHours() == selectedDate.getHours() && dateToDateString(hora.date) === dateToDateString(selectedDate) &&  hora.speciality === props.selectedSpecialty)).map(tamp => (
+                    //     <Grid item key={tamp.id}>
+                    //         <TimeLine 
+                    //             key={tamp.id} 
+                    //             hour={tamp}
+                    //             setSelectedHour={props.changeHour} 
+                    //             selectedHour={props.selectedHour}
+                    //         />
+                    //     </Grid>
+                    // ))
+                    nose.filter(hora => (selectedDate === null || dateToDateString(hora.date) === dateToDateString(selectedDate)) && hora.speciality === props.selectedSpecialty).filter(hora2 => activeHour === null || activeHour.getHours() === hora2.date.getHours() ).map( data => (
+                        <Grid item key={data.id}>
                             <TimeLine 
-                                key={tamp.id} 
-                                hour={tamp}
+                                key={data.id} 
+                                hour={data}
                                 setSelectedHour={props.changeHour} 
                                 selectedHour={props.selectedHour}
                             />
-                        </Grid>
+                        </Grid>                    
                     ))
                 :
                     nose.filter(hora => hora.speciality === props.selectedSpecialty).map(tamp => (

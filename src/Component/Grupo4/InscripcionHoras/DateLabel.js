@@ -13,6 +13,7 @@ export default function MaterialUIPickers(props) {
   // const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = (date) => props.setDate(date);
+  const handleHourChange = (hour) => props.setHour(hour);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -35,8 +36,8 @@ export default function MaterialUIPickers(props) {
           margin="normal"
           id="time-picker"
           label="Hora preferida"
-          value={props.date}
-          onChange={handleDateChange}
+          value={props.hour}
+          onChange={handleHourChange}
           KeyboardButtonProps={{
             'aria-label': 'change time',
           }}

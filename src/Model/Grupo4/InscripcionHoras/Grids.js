@@ -5,6 +5,8 @@ import Filters from '../../../View/Grupo4/InscripcionHoras/Fiters';
 import Scheduling from '../../../View/Grupo4/InscripcionHoras/Scheduling';
 import { LocalStorageObjects } from '../../../Component/Grupo4/InscripcionHoras/static_data/localstorage';
 import Identify from '../../../View/Grupo4/InscripcionHoras/Identify';
+import {useParams, useLocation} from 'react-router';
+import IndentifyAdmin from '../../../View/Grupo4/InscripcionHoras/IdentifyAdmin';
 
 
 export default function FullWidthGrid() {
@@ -13,12 +15,20 @@ export default function FullWidthGrid() {
   const [area, setArea] = useState(localStorage.getItem('area') ? LocalStorageObjects.getObject('area') : null);
   const [specialty, setSpecialty] = useState(localStorage.getItem('specialty') ? LocalStorageObjects.getObject('specialty') : null);
 
+  const location = useLocation();
+  // console.log(location);
+
 
   
   switch (activeStep) {
         case 1:
 
-            return <Steps children={<Identify/>} setActiveStep={setActiveStep}/>
+            return (
+            <Steps 
+              children={location.pathname.includes('paciente') ? <Identify/> : <IndentifyAdmin/>} 
+              setActiveStep={setActiveStep}
+            />
+            );
 
         case 2:
             return (

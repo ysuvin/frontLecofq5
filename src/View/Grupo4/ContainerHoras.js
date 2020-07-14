@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '../../Model/Grupo4/InscripcionHoras/Grids'
 import Container from '@material-ui/core/Container';
 
-const ContainerHorasPaciente = () => {
+const ContainerHoras = () => {
 
 
     return(
@@ -21,4 +21,4 @@ const ContainerHorasPaciente = () => {
     )
 }
 
-export default ContainerHorasPaciente;
+export default ContainerHoras;
