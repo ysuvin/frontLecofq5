@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
 export default function ComplexGrid(props) {
   const classes = useStyles();
 
+  console.log(props.hour.date)
+
   const onSelectHour = () => {
     props.setSelectedHour(props.hour);
 

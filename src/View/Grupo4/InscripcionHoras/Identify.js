@@ -6,8 +6,8 @@ import Label from '../../../Component/Grupo4/InscripcionHoras/Label';
 export default function Indentify(){
 
     return (
-        <Grid container >
-            <Grid item xs={6}>
+        <Grid container justify='space-evenly'>
+            <Grid item>
                 <Label 
                     placeholder={'Nombre del Paciente'}
                     defaultValue={'DEIBY NICOLAS CABRERA ESPARZA'}
@@ -15,7 +15,7 @@ export default function Indentify(){
             </Grid>
 
             
-            <Grid item xs={6}>
+            <Grid item>
                 <Label 
                     placeholder={'Rut'}
                     defaultValue={'19.330.008-1'}
