@@ -17,6 +17,8 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import Container from '@material-ui/core/Container';
 
+import { useHistory } from 'react-router';
+
 
 import HorasMedicas from '../../Model/Grupo4/HorasMedicas';
 
@@ -41,6 +43,7 @@ const tableIcons = {
 };
 
 export default function AdminHoras() {
+    const history = useHistory();
     const [state, setState] = React.useState({
         columns: [
             { title: 'RUN', field: 'run' },
@@ -67,90 +70,85 @@ export default function AdminHoras() {
 
     let TableStyle = {
         maxWidth: "100%",
-        width:'112rem',
+        width: '112rem',
         marginTop: '5%'
     };
 
     return (
-        <Container  >
-
-       
-
-        <MaterialTable 
-            localization={{
-                toolbar: { searchPlaceholder: 'Buscar', searchTooltip: "Buscar" },
-                body: {
-                    addTooltip: "Agendar Hora",
-                    deleteTooltip: "Borrar",
-                    editTooltip: "Editar",
-                    editRow: {
-                        saveTooltip: "Aceptar",
-                        cancelTooltip: "Cancelar",
-                        deleteText: "Esta seguro de que desea eliminar este registro? ",
+        <Container >
+            <MaterialTable
+            //se modifica la accion agregar horas 
+                actions={[
+                    (() => ({
+                        position: "toolbar",
+                        icon: AddBox,
+                        tooltip: "Agendar Hora",
+                        onClick: () => {
+                            history.push('/Grupo4/secretario/horas');
+                        }
+                    }))({ position: 'toolbar' })
+                ]}
+                localization={{
+                    toolbar: { searchPlaceholder: 'Buscar', searchTooltip: "Buscar" },
+                    body: {
+                        //addTooltip: "Agendar Hora",
+                        deleteTooltip: "Borrar",
+                        editTooltip: "Editar",
+                        editRow: {
+                            saveTooltip: "Aceptar",
+                            cancelTooltip: "Cancelar",
+                            deleteText: "Esta seguro de que desea eliminar este registro? ",
+                        },
                     },
-                },
-                header: { actions: "Acciones" },
-                pagination: {
-                    labelDisplayedRows: "{from}-{to} de {count}",
-                    labelRowsSelect: "Filas",
-                    firstTooltip: "Primera Pagina",
-                    previousTooltip: "Pagina Anterior",
-                    nextTooltip: "Pagina Siguiente",
-                    lastTooltip: "Ultima Pagina",
-                }
-            }} // TRADUCCION AL ESPAniol
-            style={TableStyle}
-            icons={tableIcons}
-            title="Horas Medicas"
-            columns={state.columns}
-            data={state.data}
-            options={{ actionsColumnIndex: -1, pageSizeOptions: [5, 10, 25, 50, 100] }} // Acciones a la derecha
-            editable={{
-                onRowAdd: (newData) =>
-                    new Promise((resolve) => {
-                        setTimeout(() => {
-                            resolve();
-                            setState((prevState) => {
-                                const data = [...prevState.data];
-                                data.push(newData);
-                                return { ...prevState, data };
-                            });
-                            //Funcion post de agregar datos a la base de datos
-                            alert("Registro agregado!");
-                        }, 600);
-                    }),
-                onRowUpdate: (newData, oldData) =>
-                    new Promise((resolve) => {
-                        setTimeout(() => {
-                            resolve();
-                            if (oldData) {
+                    header: { actions: "Acciones" },
+                    pagination: {
+                        labelDisplayedRows: "{from}-{to} de {count}",
+                        labelRowsSelect: "Filas",
+                        firstTooltip: "Primera Pagina",
+                        previousTooltip: "Pagina Anterior",
+                        nextTooltip: "Pagina Siguiente",
+                        lastTooltip: "Ultima Pagina",
+                    }
+                }} // TRADUCCION AL ESPAniol
+                style={TableStyle}
+                icons={tableIcons}
+                title="Horas Medicas"
+                columns={state.columns}
+                data={state.data}
+                options={{ actionsColumnIndex: -1, pageSizeOptions: [5, 10, 25, 50, 100] }} // Acciones a la derecha
+                editable={{
+                    onRowUpdate: (newData, oldData) =>
+                        new Promise((resolve) => {
+                            setTimeout(() => {
+                                resolve();
+                                if (oldData) {
+                                    setState((prevState) => {
+                                        const data = [...prevState.data];
+                                        data[data.indexOf(oldData)] = newData;
+                                        return { ...prevState, data };
+                                    });
+                                }
+                                //Funcion post para hacer update en la base de datos
+                                alert("Registro actualizado!");
+                            }, 600);
+                        }),
+                    onRowDelete: (oldData) =>
+                        new Promise((resolve) => {
+                            setTimeout(() => {
+                                resolve();
                                 setState((prevState) => {
                                     const data = [...prevState.data];
-                                    data[data.indexOf(oldData)] = newData;
+                                    data.splice(data.indexOf(oldData), 1);
                                     return { ...prevState, data };
                                 });
-                            }
-                            //Funcion post para hacer update en la base de datos
-                            alert("Registro actualizado!");
-                        }, 600);
-                    }),
-                onRowDelete: (oldData) =>
-                    new Promise((resolve) => {
-                        setTimeout(() => {
-                            resolve();
-                            setState((prevState) => {
-                                const data = [...prevState.data];
-                                data.splice(data.indexOf(oldData), 1);
-                                return { ...prevState, data };
-                            });
-                            //Funcion delete/hide para hacer en la BD
-                            alert("Registro eliminado!");
-                        }, 600);
-                    }),
-            }}
-        />
+                                //Funcion delete/hide para hacer en la BD
+                                alert("Registro eliminado!");
+                            }, 600);
+                        }),
+                }}
+            />
 
 
-    </Container>
+        </Container>
     );
 }
