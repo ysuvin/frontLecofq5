@@ -25,8 +25,8 @@ export default function PsicologoF() {
       </Typography>
             <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
-                    <TextField required id="PsiName" label="Nombre del Psicologo" fullWidth autoComplete="psi-name" />
-                </Grid>
+                <TextField required id="PsiName" label="Nombre del Psicologo" fullWidth autoComplete="psi-name" />
+            </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
                         required
