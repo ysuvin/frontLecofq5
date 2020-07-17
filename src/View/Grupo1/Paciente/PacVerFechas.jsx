@@ -8,8 +8,9 @@ function PacVerFechas() {
 
   return (
       <div className="wrapper">
-      <PacVerFechasTabla/>
-        
+        <div className="body_alt">
+          <PacVerFechasTabla/>
+        </div>
       </div>
   );
 }

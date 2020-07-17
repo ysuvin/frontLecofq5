@@ -30,8 +30,8 @@ function Home() {
   }
 
   return (
-      <div className="App">
-        <Grid container className="grupo-navbar" spacing={2}
+    <div>
+    <Grid container className="grupo-navbar" spacing={2}
         justify="center"
         alignItems="center">
           <Grid item>
@@ -50,15 +50,18 @@ function Home() {
           <Button onClick={redirectGrupo5} variant="contained" color = "primary">Grupo5</Button>
           </Grid>
         </Grid>
-        <div className="body">
+        
+      <div className="home_wrapper">
+        
+        <div className="home_body">
         
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Home
           </p>
         </div>
-      
-    </div>  
+      </div>  
+    </div>
     );
 }
 

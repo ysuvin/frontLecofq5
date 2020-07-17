@@ -21,6 +21,7 @@ function KsVerPacientes() {
   return (
     <div className="wrapper">
       <div className="body">
+      Seleccionar Paciente:
       <Autocomplete
         value={paciente}
         onChange={(event, newValue) => {
@@ -32,7 +33,7 @@ function KsVerPacientes() {
         id="help"
         options={Pacientes}
         getOptionLabel={(option) => option.nombre}
-        style={{ width: 300 }}
+        style={{ width: 300, color: '#f99f31'}}
         renderInput={(params) => <TextField {...params} label="Paciente" variant="outlined" />}
       />
         <Grid container spacing={0} 
