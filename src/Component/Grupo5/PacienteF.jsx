@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 200,
+        minWidth: 380,
       },
 }));
 
@@ -63,10 +63,8 @@ export default function PacienteF() {
             <Typography variant="h6" gutterBottom>
                 Ficha Paciente
       </Typography>
-      <Grid container
-  direction="column"
- 
-  alignItems="center">
+      
+      <Grid container >
             <form className={classes.container} noValidate>
                     <TextField
                         id="datetime-local"
@@ -74,38 +72,41 @@ export default function PacienteF() {
                         type="datetime-local"
                         defaultValue="2020-06-15T10:30"
                         className={classes.textField}
+                        
                         InputLabelProps={{
                         shrink: true,
                         }}
                     />
                     </form>
         </Grid>
-            <Grid  container
-                    direction="column"
-                    justify="space-between"
-                    alignItems="center">
+            
                 <Grid item xs={15} md={6}>
-                    <TextField required id="cardName"
+                    <TextField disabled id="cardName"
                      label="Nombre"  
-                     autoComplete="cc-name" />
+                     autoComplete="cc-name" 
+                     fullWidth/>
                 </Grid>
                 <Grid item xs={15} md={6}>
-                    <TextField
+                    <Input
+                        type = "number"
                         required
-                        id="Edad"
-                        label="Rut (Ej: 12345678-9)"
-                        
+                        id="Rut"
+                        label="Rut (Ej: 12345678)"
+                        inputProps={{max:8, }}
+                        rowsMax = "8"
+                        fullWidth
                         autoComplete="cc-number"
                     />
                 </Grid>
                 <Grid item xs={15} md={6}>
                 <form className={classes.container} noValidate>
-                    <TextField
+                    <TextField disabled
                         id="date"
                         label="Fecha de Nacimiento"
                         type="date"
                         defaultValue="none"
                         className={classes.textField}
+                        
                         InputLabelProps={{
                         shrink: true,
                         }}
@@ -113,8 +114,9 @@ export default function PacienteF() {
                     </form>
                 </Grid>
                 <Grid item xs={15} md={6}>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-controlled-open-select-label">Sexo      </InputLabel>
+                    <FormControl disabled className={classes.formControl}>
+                        
+                        <InputLabel id="demo-controlled-open-select-label">Genero      </InputLabel>
                         <Select
                         labelId="demo-controlled-opn-select-label"
                         id="demo-controlled-open-seect"
@@ -133,28 +135,30 @@ export default function PacienteF() {
                     </FormControl>
                 </Grid>
                 <Grid item xs={15} md={6}>
-                    <TextField required id="expDate" 
+                    <TextField disabled id="expDate" 
                         label="Domicilio"  
+                        fullWidth
                         autoComplete="cc-exp" />
                 </Grid>
                 
                 <Grid item xs={15} md={6}>
                     <TextField
-                        required
+                        disabled
                         id="cvv"
                         label="Comuna"
-                        
+                        fullWidth
                         autoComplete="cc-csc"
                     />
                 </Grid>
                 <Grid item xs={15} md={6}>
-                    <FormControl className={classes.formControl}>
+                    <FormControl disabled className={classes.formControl}>
                         <InputLabel id="demo-controlled-open-select-label">Estado Civil    </InputLabel>
                         <Select
                         labelId="demo-controlled-open-select-label"
                         id="demo-controlled-open-select"
                         open={open2}
                         onClose={handleClose2}
+                        
                         onOpen={handleOpen2}
                         value={values}
                         onChange={handleChange}
@@ -169,26 +173,29 @@ export default function PacienteF() {
                     </FormControl>
                 </Grid>
                 <Grid item xs={15} md={6}>
-                    <TextField required id="expDate" 
+                    <TextField disabled id="expDate" 
                         label="Telefono(+56912345678)"  
+                        fullWidth
                         autoComplete="cc-exp" />
                 </Grid>
                 <Grid item xs={15} md={6}>
                     <TextField required id="expDate" 
                         label="Previsión"  
+                        fullWidth
                         autoComplete="cc-exp" />
                 </Grid>
                 <Grid item xs={15} md={6}>
                     <TextField
                         id="filled-multiline-static"
                         label="Motivo de Consulta"
+                        fullWidth
                         multiline
                         rows={4}
                         defaultValue=""
                         variant="filled"
                 />
                 </Grid>
-            </Grid>
+            
         </React.Fragment>
     );
 }
