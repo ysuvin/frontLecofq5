@@ -26,7 +26,7 @@ function G5Landing() {
                 <Route exact path="/Grupo5/PlantillaNutricionista/" component={Nutricionista} />
                 <Route exact path="/Grupo5/PlantillaPsicologo/" component={Psicologo} />
                 <Route exact path="/Grupo5/PlantillaKinesiologo/" component={Kinesiologo} />
-                <Route exact path="/Grupo5/PlantillaMedico/" component={Medico} />
+                {/* <Route exact path="/Grupo5/PlantillaMedico/" component={Medico} /> */}
                 {/* Fin Routing Grupo 5*/}
             </Switch>
 

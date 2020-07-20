@@ -7,8 +7,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Input from '@material-ui/core/Input';
-
+import Button from '@material-ui/core/Button';
+import CheckIcon from '@material-ui/icons/Check';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -27,21 +32,53 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         minWidth: 380,
       },
+      root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    }
 }));
-
-
-
-export default function PacienteF() {
+const useStyless = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
+  const styles = (theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+  });
+  
+  export default function PacienteF() {
     const classes = useStyles();
     const [values, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const handleChange = (event) => {
-        setAge(event.target.value);
+
+    const handleClick = () => {
+        setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
         setOpen(false);
+    };
+    const handleChange = (event) => {
+        setAge(event.target.value);
     };
 
     const handleOpen = () => {
@@ -54,53 +91,29 @@ export default function PacienteF() {
     const handleOpen2 = () => {
         setOpen2(true);
     };
-    const [value, setValue] = React.useState('Controlled');
-
-
+    const [value, setValue] = React.useState('Controlled')
 
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
-                Ficha Paciente
       </Typography>
-      
-      <Grid container >
-            <form className={classes.container} noValidate>
+            <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                    <TextField required type = "number" id="rutPaci" label="Rut (Ej: 12345678-9)" fullWidth autoComplete="rut-paci" />
+                </Grid>
+                <Grid item xs={12} md={6}>
                     <TextField
-                        id="datetime-local"
-                        label="Fecha de Ingreso"
-                        type="datetime-local"
-                        defaultValue="2020-06-15T10:30"
-                        className={classes.textField}
-                        
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                    />
-                    </form>
-        </Grid>
-            
-                <Grid item xs={15} md={6}>
-                    <TextField disabled id="cardName"
-                     label="Nombre"  
-                     autoComplete="cc-name" 
-                     fullWidth/>
-                </Grid>
-                <Grid item xs={15} md={6}>
-                    <Input
-                        type = "number"
-                        required
-                        id="Rut"
-                        label="Rut (Ej: 12345678)"
-                        inputProps={{max:8, }}
-                        rowsMax = "8"
+                        disabled
+                        id="nombre"
+                        label="Nombre"
                         fullWidth
-                        autoComplete="cc-number"
+                        autoComplete="nombre"
                     />
                 </Grid>
-                <Grid item xs={15} md={6}>
+                <Grid item xs={12} md={6}>
                 <form className={classes.container} noValidate>
-                    <TextField disabled
+                    <TextField
+                        disabled
                         id="date"
                         label="Fecha de Nacimiento"
                         type="date"
@@ -113,45 +126,20 @@ export default function PacienteF() {
                     />
                     </form>
                 </Grid>
-                <Grid item xs={15} md={6}>
-                    <FormControl disabled className={classes.formControl}>
-                        
-                        <InputLabel id="demo-controlled-open-select-label">Genero      </InputLabel>
-                        <Select
-                        labelId="demo-controlled-opn-select-label"
-                        id="demo-controlled-open-seect"
-                        open={open}
-                        onClose={handleClose}
-                        onOpen={handleOpen}
-                        value={values}
-                        onChange={handleChange}
-                        >
-                        <MenuItem value="">
-                            <em>(Vacio)</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Masculino</MenuItem>
-                        <MenuItem value={20}>Femenino</MenuItem>
-                        </Select>
-                    </FormControl>
+                <Grid item xs={12} md={6}>
+                    <TextField required id="domici" label="Domicilio" fullWidth autoComplete="domici" />
                 </Grid>
-                <Grid item xs={15} md={6}>
-                    <TextField disabled id="expDate" 
-                        label="Domicilio"  
-                        fullWidth
-                        autoComplete="cc-exp" />
-                </Grid>
-                
-                <Grid item xs={15} md={6}>
+                <Grid item xs={12} md={6}>
                     <TextField
-                        disabled
-                        id="cvv"
+                        required
+                        id="com"
                         label="Comuna"
                         fullWidth
-                        autoComplete="cc-csc"
+                        autoComplete="com"
                     />
-                </Grid>
-                <Grid item xs={15} md={6}>
-                    <FormControl disabled className={classes.formControl}>
+                </Grid>               
+                <Grid item xs={12} md={6}>
+                    <FormControl className={classes.formControl}>
                         <InputLabel id="demo-controlled-open-select-label">Estado Civil    </InputLabel>
                         <Select
                         labelId="demo-controlled-open-select-label"
@@ -172,19 +160,23 @@ export default function PacienteF() {
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={15} md={6}>
-                    <TextField disabled id="expDate" 
+                <Grid item xs={12} md={6}>
+                    <TextField 
+                        required 
+                        fullWidth
+                        id="telef" 
                         label="Telefono(+56912345678)"  
-                        fullWidth
-                        autoComplete="cc-exp" />
+                        autoComplete="telef" />
                 </Grid>
-                <Grid item xs={15} md={6}>
-                    <TextField required id="expDate" 
+                <Grid item xs={12} md={6}>
+                    <TextField 
+                        required 
+                        fullWidth
+                        id="prev" 
                         label="Previsión"  
-                        fullWidth
-                        autoComplete="cc-exp" />
+                        autoComplete="prev" />
                 </Grid>
-                <Grid item xs={15} md={6}>
+                <Grid item xs={12} md={6}>
                     <TextField
                         id="filled-multiline-static"
                         label="Motivo de Consulta"
@@ -195,7 +187,31 @@ export default function PacienteF() {
                         variant="filled"
                 />
                 </Grid>
-            
+                <Grid item xs={12}>
+                    <form className={classes.container} noValidate>
+                        <TextField
+                            id="fechIngreso"
+                            label="Fecha de Ingreso"
+                            type="fech-ingreso"
+                            defaultValue="2017-05-24T10:30"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </form>
+                </Grid>  
+                <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
+                    <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={handleClick} >
+                        Finalizar
+                </Button>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            La ficha se ha creado con exito!
+                        </Alert>
+                    </Snackbar>
+                </Grid>
+            </Grid>
         </React.Fragment>
     );
 }
