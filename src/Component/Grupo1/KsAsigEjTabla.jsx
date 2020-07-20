@@ -82,6 +82,8 @@ export default function KsAsigEjTabla() {
   return (
     <div className={classes.root}>
     <List component="nav" aria-label="main mailbox folders">
+    {//MovieData.map((i) => {return [<Card id={i.id} hasRedirect={true} imgName={i.imgName}/>]})
+    }
       <ListItem button onClick={handleClickOpen}>
         <ListItemText primary="Ejercicio 1" />
           <ListItemSecondaryAction>

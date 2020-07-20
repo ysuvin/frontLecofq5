@@ -36,7 +36,7 @@ function KsVerPacientes() {
         style={{ width: 300, color: '#f99f31'}}
         renderInput={(params) => <TextField {...params} label="Paciente" variant="outlined" />}
       />
-        <Grid container spacing={0} 
+        <Grid container spacing={2} 
               direction="column"
               justify="center"
               alignItems="center">

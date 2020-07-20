@@ -7,7 +7,9 @@ function KsAsEjercicios() {
 return(
 
     <div className="wrapper">
+      <div className="body_alt">
       <KsAsigEjTabla/>
+      </div>
     </div>
                     
   );
