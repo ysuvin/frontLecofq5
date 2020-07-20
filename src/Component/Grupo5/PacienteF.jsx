@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -34,6 +35,18 @@ const useStyless = makeStyles((theme) => ({
       },
     },
   }));
+  const styles = (theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+  });
   
   export default function PacienteF() {
     const classes = useStyles();
@@ -77,7 +90,7 @@ const useStyless = makeStyles((theme) => ({
                         autoComplete="nombre"
                     />
                 </Grid>
-                <Grid item xs={15} md={6}>
+                <Grid item xs={12} md={6}>
                 <form className={classes.container} noValidate>
                     <TextField
                         disabled
@@ -165,7 +178,7 @@ const useStyless = makeStyles((theme) => ({
                             }}
                         />
                     </form>
-                </Grid>
+                </Grid>  
             </Grid>
         </React.Fragment>
     );
