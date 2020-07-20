@@ -27,9 +27,9 @@ const redirectHome = () => {
 const redirectPlantillapaciente = () => {
   history.push('/Grupo5/Plantillapaciente');
 }
-const redirectPlantillaMedico = () => {
-  history.push('/Grupo5/PlantillaMedico');
-}
+// const redirectPlantillaMedico = () => {
+//   history.push('/Grupo5/PlantillaMedico');
+// }
 const redirectPlantillaKinesiologo = () => {
   history.push('/Grupo5/PlantillaKinesiologo');
 }
@@ -77,10 +77,10 @@ export default function SSADrawer() {
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
         <ListItemText primary={'PlantillaPaciente'} />
       </ListItem>
-      <ListItem onClick={redirectPlantillaMedico} button key='Plantilla'>
+      {/* <ListItem onClick={redirectPlantillaMedico} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
         <ListItemText primary={'PlantillaMedico'} />
-      </ListItem>
+      </ListItem> */}
       <ListItem onClick={redirectPlantillaKinesiologo} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
         <ListItemText primary={'PlantillaKinesiologo'} />

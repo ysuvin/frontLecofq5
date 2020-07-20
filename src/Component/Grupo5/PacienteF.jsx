@@ -7,7 +7,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import Button from '@material-ui/core/Button';
+import CheckIcon from '@material-ui/icons/Check';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -24,8 +30,14 @@ const useStyles = makeStyles((theme) => ({
       },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 200,
+        minWidth: 380,
       },
+      root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    }
 }));
 const useStyless = makeStyles((theme) => ({
     root: {
@@ -53,12 +65,20 @@ const useStyless = makeStyles((theme) => ({
     const [values, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const handleChange = (event) => {
-        setAge(event.target.value);
+
+    const handleClick = () => {
+        setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
         setOpen(false);
+    };
+    const handleChange = (event) => {
+        setAge(event.target.value);
     };
 
     const handleOpen = () => {
@@ -99,6 +119,7 @@ const useStyless = makeStyles((theme) => ({
                         type="date"
                         defaultValue="none"
                         className={classes.textField}
+                        
                         InputLabelProps={{
                         shrink: true,
                         }}
@@ -125,6 +146,7 @@ const useStyless = makeStyles((theme) => ({
                         id="demo-controlled-open-select"
                         open={open2}
                         onClose={handleClose2}
+                        
                         onOpen={handleOpen2}
                         value={values}
                         onChange={handleChange}
@@ -179,6 +201,16 @@ const useStyless = makeStyles((theme) => ({
                         />
                     </form>
                 </Grid>  
+                <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
+                    <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={handleClick} >
+                        Finalizar
+                </Button>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            La ficha se ha creado con exito!
+                        </Alert>
+                    </Snackbar>
+                </Grid>
             </Grid>
         </React.Fragment>
     );

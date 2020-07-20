@@ -3,6 +3,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import CheckIcon from '@material-ui/icons/Check';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -13,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         width: 200,
     },
+    root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    }
 }));
 const useStyless = makeStyles((theme) => ({
     root: {
@@ -26,6 +39,19 @@ const useStyless = makeStyles((theme) => ({
 
 export default function KinesiologoF() {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -73,6 +99,16 @@ export default function KinesiologoF() {
                             }}
                         />
                     </form>
+                </Grid>
+                <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
+                    <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={handleClick} >
+                        Finalizar
+                </Button>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            La ficha se ha creado con exito!
+                        </Alert>
+                    </Snackbar>
                 </Grid>
             </Grid>
         </React.Fragment>

@@ -9,6 +9,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import CheckIcon from '@material-ui/icons/Check';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -27,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         minWidth: 200,
       },
+      root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    }
 }));
 const useStyless = makeStyles((theme) => ({
     root: {
@@ -55,13 +68,22 @@ export default function PsicologoF() {
     const [values, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
     const handleChange = (event) => {
         setAge(event.target.value);
     };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     const handleOpen = () => {
         setOpen(true);
@@ -773,6 +795,16 @@ export default function PsicologoF() {
                         }
                         label="Cambio de Residencia"
                     />
+                </Grid>
+                <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
+                    <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={handleClick} >
+                        Finalizar
+                </Button>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            La ficha se ha creado con exito!
+                        </Alert>
+                    </Snackbar>
                 </Grid>
             </Grid>
         </React.Fragment>
