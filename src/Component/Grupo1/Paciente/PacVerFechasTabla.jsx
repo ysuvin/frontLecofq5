@@ -18,6 +18,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import Fechas from '../../../Model/Grupo1/Fechas';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
 import history from '../../../history.jsx';
 
 
@@ -54,13 +56,13 @@ export default function PacVerFechasTabla() {
 
   return (
     <MaterialTable
-      title="Ver horarios"
+      title=""
       icons={tableIcons}
       columns={state.columns}
       data={state.data}
       actions={[
         {
-          icon: () => <AddBox/>,
+          icon: () => <NavigateNextIcon/>,
           tooltip: 'Ver ejercicios asignados',
           onClick: (event, rowData) => {
             redirectPacVerEjercicios()
@@ -70,49 +72,52 @@ export default function PacVerFechasTabla() {
       localization={{
         body: {
           emptyDataSourceMessage: 'No hay datos',
-          addTooltip: 'Añadir',
-          deleteTooltip: 'Löschen',
-          editTooltip: 'Bearbeiten',
+          addTooltip: 'Añadir rutinas',
+          deleteTooltip: 'Borrar',
+          editTooltip: 'Editar',
           filterRow: {
-            filterTooltip: 'Filter'
+            filterTooltip: 'Filtrar'
           },
           editRow: {
-            deleteText: 'Diese Zeile wirklich löschen?',
-            cancelTooltip: 'Abbrechen',
-            saveTooltip: 'Speichern'
+            deleteText: '¿Seguro que quieres eliminar esta ejercicio de ejericios?',
+            cancelTooltip: 'No',
+            saveTooltip: 'Sí'
           }
         },
         grouping: {
-          placeholder: 'Spalten ziehen ...',
-          groupedBy: 'Gruppiert nach:'
+          placeholder: 'Arrastrar columnas...',
+          groupedBy: 'Agrupar por:'
         },
         header: {
-          actions: 'Aktionen'
+          actions: 'Ver'
         },
         pagination: {
-          labelDisplayedRows: '{from}-{to} von {count}',
-          labelRowsSelect: 'Zeilen',
-          labelRowsPerPage: 'Zeilen pro Seite:',
-          firstAriaLabel: 'Erste Seite',
-          firstTooltip: 'Erste Seite',
-          previousAriaLabel: 'Vorherige Seite',
-          previousTooltip: 'Vorherige Seite',
-          nextAriaLabel: 'Nächste Seite',
-          nextTooltip: 'Nächste Seite',
-          lastAriaLabel: 'Letzte Seite',
-          lastTooltip: 'Letzte Seite'
+          labelDisplayedRows: '{from}-{to} de {count}',
+          labelRowsSelect: 'Rutinas',
+          labelRowsPerPage: 'Rutinas por página:',
+          firstAriaLabel: 'Primera página',
+          firstTooltip: 'Primera página',
+          previousAriaLabel: 'Página anterior',
+          previousTooltip: 'Página anterior',
+          nextAriaLabel: 'Siguente página',
+          nextTooltip: 'Siguente página',
+          lastAriaLabel: 'Última página',
+          lastTooltip: 'Última página'
         },
         toolbar: {
-          addRemoveColumns: 'Spalten hinzufügen oder löschen',
-          nRowsSelected: '{0} Zeile(n) ausgewählt',
-          showColumnsTitle: 'Zeige Spalten',
-          showColumnsAriaLabel: 'Zeige Spalten',
-          exportTitle: 'Export',
-          exportAriaLabel: 'Export',
-          exportName: 'Export als CSV',
-          searchTooltip: 'Suche',
-          searchPlaceholder: 'Suche'
+          addRemoveColumns: 'Agregar o eliminar columnas',
+          nRowsSelected: '{0} línea (s) seleccionada (s)',
+          showColumnsTitle: 'Mostrar columnas',
+          showColumnsAriaLabel: 'Mostrar columnas',
+          exportTitle: 'Exportar',
+          exportAriaLabel: 'Exportar',
+          exportName: 'Exportar a CSV',
+          searchTooltip: 'Buscar',
+          searchPlaceholder: 'Buscar'
         }
+      }}
+      options={{
+        actionsColumnIndex: -1
       }}
 
     />

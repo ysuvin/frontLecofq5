@@ -1,94 +1,219 @@
 import React from 'react';
-import MaterialTable from 'material-table';
-import { forwardRef } from 'react';
-
-import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
-import Check from '@material-ui/icons/Check';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
-import FirstPage from '@material-ui/icons/FirstPage';
-import LastPage from '@material-ui/icons/LastPage';
-import Remove from '@material-ui/icons/Remove';
-import SaveAlt from '@material-ui/icons/SaveAlt';
-import Search from '@material-ui/icons/Search';
-import ViewColumn from '@material-ui/icons/ViewColumn';
 
 import Ejercicios from '../../Model/Grupo1/Ejercicios';
 
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import EditIcon from '@material-ui/icons/Edit';
 
-const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-  };
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import ReactPlayer from 'react-player/youtube'
+import { TextField } from '@material-ui/core';
+
+
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Grid from '@material-ui/core/Grid';
+import NativeSelect from '@material-ui/core/NativeSelect';
+
+const ejercicios = Ejercicios.data;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 200,
+    
+  },
+}));
+
+  function ListItemLink(props) {
+    return <ListItem button component="a" {...props} />;
+  }
 
 export default function KsAsigEjTabla() {
-
   
-  const [state, setState] = React.useState(Ejercicios);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  const [repeticiones, setRepeticiones] = React.useState('');
+  const handleChange = (event) => {
+    setRepeticiones(event.target.value);
+  };
+  
+  // const [state, setState] = React.useState(Ejercicios);
+
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
+  const [nombre, setNombre] = React.useState("nombre");
+  const [desc, setDesc] = React.useState("desc");
+  const [vidlink, setVidlink] = React.useState("vidlink");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+    
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickEditOpen = () => {
+    setEditOpen(true);
+  };
+  const handleEditClose = () => {
+    setEditOpen(false);
+  };
 
   return (
-    <MaterialTable
-      title="Asignar Ejercicios"
-      icons={tableIcons}
-      columns={state.columns}
-      data={state.data}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
-    />
+    <div className={classes.root}>
+    <List component="nav" aria-label="main mailbox folders">
+    {ejercicios.map((i) => {return [<ListItem button onClick={()=>{ handleClickOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.vidlink) }}><ListItemText primary={i.nombre} />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="edit" onClick={()=>{ handleClickEditOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.vidlink) }}>
+                  <EditIcon />
+              </IconButton>
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+        </ListItem>]})
+    }
+      
+    </List>
+    <Button variant="contained" onClick={()=>{ handleClickEditOpen(); setNombre(""); setDesc("");setVidlink("") }}>Añadir</Button>
+
+    
+    <Dialog
+    fullScreen={fullScreen}
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="responsive-dialog-title"
+    >
+      <DialogTitle id="responsive-dialog-title">{"Detalles del ejercicio"}</DialogTitle>
+        <DialogContent>
+        <DialogContentText>
+          <p>Nombre: {nombre}</p>
+          <p>Descripción: {desc}</p>
+          <p>Video del Ejercicio: {vidlink}</p>
+          <div className='player-wrapper'>
+                <ReactPlayer 
+                    className="g1-react-player" 
+                    url= {vidlink} 
+                    key={vidlink }
+                    width='100%'
+                    height='100%'
+                    />
+            </div>
+        </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          {/* <Button autoFocus onClick={handleClose} color="primary">
+                Disagree
+              </Button> */}
+        <Button onClick={handleClose} color="primary" autoFocus>
+          Cerrar
+        </Button>
+      </DialogActions>
+    </Dialog>
+
+
+    <Dialog
+      fullScreen={fullScreen}
+      open={editOpen}
+      onClose={handleEditClose}
+      aria-labelledby="responsive-dialog-title"
+    >
+      
+        <DialogTitle id="responsive-dialog-title">{"Añadir ejercicio"}</DialogTitle>
+        <DialogContent>
+        <FormControl className={classes.formControl}>
+          <p></p>
+          <TextField 
+            id="outlined-full-width"
+            label="Nombre ejercicio" 
+            defaultValue={nombre}
+            variant="outlined"
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <p></p>
+          <InputLabel className={classes.root} id="demo-simple-select-label">Repeticiones</InputLabel>
+          <Select
+            labelId="demo-customized-select-label"
+            id="demo-customized-select"
+            value={repeticiones}
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Ninguno</em>
+            </MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={30}>30</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <p></p>
+        <TextField
+          id="outlined-textarea"
+          label="Descripción"
+          defaultValue={desc}
+          multiline
+          variant="outlined"
+        />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <p></p>
+        <TextField
+          id="outlined-textarea"
+          label="Enlace del video"
+          defaultValue={vidlink}
+          multiline
+          variant="outlined"
+        />
+        </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleEditClose} color="secondary">
+            Descartar
+          </Button>
+          <Button onClick={handleEditClose} color="primary" autoFocus>
+            Guardar
+          </Button>
+        </DialogActions>
+    </Dialog>
+  </div>
   );
 }
