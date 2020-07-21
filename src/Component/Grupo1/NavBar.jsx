@@ -31,13 +31,13 @@ export default function NavBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: '#444444', position:'fixed' }}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <SSADrawer/>
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Sistema de Seguimiento de Actividades
+          <Typography variant="h5" className={classes.title}>
+            Seguimiento de actividades en casa
           </Typography>
           <Button onClick={redirectLogin} color="inherit">Login</Button>
         </Toolbar>

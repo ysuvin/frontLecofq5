@@ -2,6 +2,8 @@ const Fechas = {
     columns: [
         { title: 'Fecha', field: 'fecha', type:'date',
         },
+        { title: 'Link de Google Meet', field: 'Link', type:'string',
+        },
       ],
       data: [
         { fecha: '2020-07-10T21:11:54'},
