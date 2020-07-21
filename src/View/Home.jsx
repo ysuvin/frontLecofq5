@@ -18,7 +18,7 @@ function Home() {
   }
   const redirectGrupo3 = () =>
   {
-    history.push('Grupo3/VistaPrincipal')
+    history.push('/Grupo3/VistaPrincipal')
   }
   const redirectGrupo4 = () =>
   {
