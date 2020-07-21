@@ -1,11 +1,10 @@
 .home_wrapper{
-
   background-color: #33a531;
     font-size: calc(10px + 2vmin);
     color: rgb(0, 0, 0);
     width:100%;
-    min-height:100%;
-    position:absolute;
+    height:100%;
+    position: fixed;
 }
 .App-logo {
   pointer-events: none;

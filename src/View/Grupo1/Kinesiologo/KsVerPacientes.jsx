@@ -65,9 +65,9 @@ function KsVerPacientes() {
               direction="column"
               justify="center"
               alignItems="center">
-          <Grid item xs={12}>
+          <Grid item xs={12} spacing={2}>
             {/* Handling de imagen, si no se asigna un paciente se muestra una imagen no definida */}
-            <Paper className="img-box" style={ (!!paciente.imgName) ? {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/'+paciente.imgName)+")"}
+            <Paper spacing={2} className="img-box" style={ (!!paciente.imgName) ? {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/'+paciente.imgName)+")"}
             : {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/anon.jpg')}}
             >
             

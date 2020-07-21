@@ -27,6 +27,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Grid from '@material-ui/core/Grid';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 const ejercicios = Ejercicios.data;
@@ -122,8 +123,9 @@ export default function KsAsigEjTabla() {
       <DialogTitle id="responsive-dialog-title">{"Ficha del paciente"}</DialogTitle>
         <DialogContent>
         <DialogContentText>
-          <p>Nombre {nombre}</p>
-          <p>desc: {desc}</p>
+          <p>Nombre: {nombre}</p>
+          <p>Descripción: {desc}</p>
+          <p></p>
         </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -136,12 +138,14 @@ export default function KsAsigEjTabla() {
       </DialogActions>
     </Dialog>
 
+
     <Dialog
-        fullScreen={fullScreen}
-        open={editOpen}
-        onClose={handleEditClose}
-        aria-labelledby="responsive-dialog-title"
-      >
+      fullScreen={fullScreen}
+      open={editOpen}
+      onClose={handleEditClose}
+      aria-labelledby="responsive-dialog-title"
+    >
+      
         <DialogTitle id="responsive-dialog-title">{"Añadir ejercicio"}</DialogTitle>
         <DialogContent>
         <FormControl className={classes.formControl}>
@@ -149,7 +153,7 @@ export default function KsAsigEjTabla() {
           <TextField 
             id="outlined-full-width"
             label="Nombre ejercicio" 
-            
+            placeholder="Escriba..."
             variant="outlined"
           />
         </FormControl>
@@ -164,10 +168,28 @@ export default function KsAsigEjTabla() {
             <MenuItem value="">
               <em>Ninguno</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={30}>30</MenuItem>
           </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <TextField
+          id="outlined-textarea"
+          label="Descripción"
+          placeholder="Escriba..."
+          multiline
+          variant="outlined"
+        />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <TextField
+          id="outlined-textarea"
+          label="Enlace del video"
+          placeholder="Escriba..."
+          multiline
+          variant="outlined"
+        />
         </FormControl>
         </DialogContent>
         <DialogActions>
@@ -178,7 +200,7 @@ export default function KsAsigEjTabla() {
             Guardar
           </Button>
         </DialogActions>
-      </Dialog>
+    </Dialog>
   </div>
   );
 }
