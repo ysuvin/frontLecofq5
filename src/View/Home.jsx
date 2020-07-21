@@ -26,7 +26,7 @@ function Home() {
   }
   const redirectGrupo5 = () =>
   {
-    {/*history.push('/Grupo5')*/}
+    {history.push('/Grupo5/Plantillapaciente')}
   }
 
   
@@ -58,7 +58,7 @@ function Home() {
           <StyledButton onClick={redirectGrupo4} variant="contained">Agendamiento de Horas Médicas</StyledButton>
           </Grid>
           <Grid item xs={12}>
-          <StyledButton onClick={redirectGrupo5} variant="contained">Grupo5</StyledButton>
+          <StyledButton onClick={redirectGrupo5} variant="contained">Ficha clinica</StyledButton>
           </Grid>
         </Grid>
           </p>
