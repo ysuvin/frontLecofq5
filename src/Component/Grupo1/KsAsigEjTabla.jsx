@@ -29,6 +29,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
+const ejercicios = Ejercicios.data;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -58,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 
 export default function KsAsigEjTabla() {
+  
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   
@@ -70,40 +73,73 @@ export default function KsAsigEjTabla() {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
+  const [nombre, setNombre] = React.useState("nombre");
+  const [desc, setDesc] = React.useState("desc");
+  const [vidlink, setVidlink] = React.useState("vidlink");
 
   const handleClickOpen = () => {
     setOpen(true);
+    
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  const handleClickEditOpen = () => {
+    setEditOpen(true);
+  };
+  const handleEditClose = () => {
+    setEditOpen(false);
+  };
+
   return (
     <div className={classes.root}>
     <List component="nav" aria-label="main mailbox folders">
-    {//MovieData.map((i) => {return [<Card id={i.id} hasRedirect={true} imgName={i.imgName}/>]})
+    {ejercicios.map((i) => {return [<ListItem button onClick={()=>{ handleClickOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.Vidlink) }}><ListItemText primary={i.nombre} />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="edit" onClick={handleClickEditOpen}>
+                  <EditIcon />
+              </IconButton>
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+        </ListItem>]})
     }
-      <ListItem button onClick={handleClickOpen}>
-        <ListItemText primary="Ejercicio 1" />
-          <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="edit" onClick={handleClickOpen}>
-                <EditIcon />
-            </IconButton>
-            <IconButton edge="end" aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem button>
-        <ListItemText primary="Ejercicio 2" />
-      </ListItem>
+      
     </List>
-    <Button variant="contained" onClick={handleClickOpen}>Añadir</Button>
+    <Button variant="contained" onClick={handleClickEditOpen}>Añadir</Button>
+
+    
+    <Dialog
+    fullScreen={fullScreen}
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="responsive-dialog-title"
+    >
+      <DialogTitle id="responsive-dialog-title">{"Ficha del paciente"}</DialogTitle>
+        <DialogContent>
+        <DialogContentText>
+          <p>Nombre {nombre}</p>
+          <p>desc: {desc}</p>
+        </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          {/* <Button autoFocus onClick={handleClose} color="primary">
+                Disagree
+              </Button> */}
+        <Button onClick={handleClose} color="primary" autoFocus>
+          Cerrar
+        </Button>
+      </DialogActions>
+    </Dialog>
+
     <Dialog
         fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
+        open={editOpen}
+        onClose={handleEditClose}
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">{"Añadir ejercicio"}</DialogTitle>
@@ -135,10 +171,10 @@ export default function KsAsigEjTabla() {
         </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="secondary">
+          <Button autoFocus onClick={handleEditClose} color="secondary">
             Descartar
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleEditClose} color="primary" autoFocus>
             Guardar
           </Button>
         </DialogActions>
