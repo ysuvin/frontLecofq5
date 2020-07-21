@@ -40,8 +40,8 @@ function KsVerPacientes() {
     };
 
   return (
-    <div className="wrapper">
-      <div className="body">
+    <div className="g1_wrapper">
+      <div className="g1_body">
       <img src={logo} className="App-logo" alt="logo" />
       Seleccionar Paciente:
       <Autocomplete

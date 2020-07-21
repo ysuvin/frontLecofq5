@@ -1,4 +1,4 @@
-.wrapper {
+.g1_wrapper {
     background-color: #33a531;
     font-size: calc(10px + 2vmin);
     color: rgb(0, 0, 0);
@@ -9,7 +9,7 @@
     
   }
 
-  .body {
+  .g1_body {
     font-size: calc(10px + 2vmin);
     background-color: rgb(255, 255, 255);
     width:90vw;
@@ -24,7 +24,7 @@
     transform: translate(-50%, 0%);
     box-shadow: 0px 0px 44px 4px rgba(0,0,0,1);
   }
-  .body_alt {
+  .g1_body_alt {
     font-size: calc(10px + 2vmin);
     background-color: rgb(255, 255, 255);
     width:90vw;

@@ -58,8 +58,8 @@ export default function HorizontalLabelPositionBelowStepper() {
 }
 
   return (
-    <div className="wrapper">
-      <div className="body_alt">
+    <div className="g1_wrapper">
+      <div className="g1_body_alt">
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
