@@ -17,7 +17,7 @@ function G3Landing() {
       <Switch>
         {/* Routing Grupo 3	*/}
         <Route exact path="/Grupo3/VistaPrincipal" component={VistaPrincipal} />
-        <Route exact path="/Grupo3/Vista2" component={Vista2} />
+        <Route exact path="/Grupo3/VistaPrincipal/Vista2" component={Vista2} />
         {/*<Route exact path="/Grupo3/Inscripción" component={Inscripción} />*/}
         <Route exact path="/Grupo3/Vista4" component={Vista4} />
         <Route exact path="/Grupo3/Administración" component={Vista5} />
