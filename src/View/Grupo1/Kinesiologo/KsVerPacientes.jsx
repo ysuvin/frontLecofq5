@@ -41,9 +41,6 @@ function KsVerPacientes() {
 
   return (
     <div className="wrapper">
-      <div className="header">
-      
-      </div>
       <div className="body">
       <img src={logo} className="App-logo" alt="logo" />
       Seleccionar Paciente:

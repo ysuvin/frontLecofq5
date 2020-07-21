@@ -56,7 +56,7 @@ export default function PacVerFechasTabla() {
 
   return (
     <MaterialTable
-      title="Ver horarios"
+      title=""
       icons={tableIcons}
       columns={state.columns}
       data={state.data}
@@ -89,7 +89,7 @@ export default function PacVerFechasTabla() {
           groupedBy: 'Agrupar por:'
         },
         header: {
-          actions: 'Acciones'
+          actions: 'Ver'
         },
         pagination: {
           labelDisplayedRows: '{from}-{to} de {count}',

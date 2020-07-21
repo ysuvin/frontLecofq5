@@ -44,7 +44,7 @@ function Home() {
             alignItems="center"
           >
           <Grid item xs={12}>
-          <Button onClick={redirectGrupo1} variant="contained" color = "primary">Grupo1</Button>
+          <Button onClick={redirectGrupo1} variant="contained" color = "primary">Sistema de Seguimiento de Actividades en Casa</Button>
           </Grid>
           <Grid item xs={12}>
           <Button onClick={redirectGrupo2} variant="contained" color = "secondary">Grupo2</Button>

@@ -88,7 +88,7 @@ export default function HorizontalLabelPositionBelowStepper() {
             </Grid>
             <div className='player-wrapper'>
                 <ReactPlayer 
-                    className="react-player" 
+                    className="g1-react-player" 
                     url= {ejercicios[activeStep].vidlink} 
                     key={ejercicios[activeStep].vidlink }
                     width='100%'
