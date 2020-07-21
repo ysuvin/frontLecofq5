@@ -36,9 +36,13 @@ function Home() {
         
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-          <Grid container spacing={1}
-        justify="center"
-        alignItems="center">
+          <Grid
+            container
+            spacing={1}
+            direction="column"
+            justify="flex-start"
+            alignItems="center"
+          >
           <Grid item xs={12}>
           <Button onClick={redirectGrupo1} variant="contained" color = "primary">Grupo1</Button>
           </Grid>
@@ -55,7 +59,6 @@ function Home() {
           <Button onClick={redirectGrupo5} variant="contained" color = "primary">Grupo5</Button>
           </Grid>
         </Grid>
-            Home
           </p>
         </div>
       </div>  
