@@ -5,11 +5,14 @@
     width:100%;
     height:100%;
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .App-logo {
   pointer-events: none;
   width: 100%;
-  max-width: 300px;
+  max-width: 30rem;
 }
 
 
@@ -24,16 +27,15 @@
 .home_body {
   font-size: calc(10px + 2vmin);
     background-color: rgb(255, 255, 255);
-    width:90vw;
-    padding: 10vh 2vw;
-    min-height:100%;
-    position:relative;
+    width:80vw;
+    /*padding: 10vh 2vw;*/
+    height:80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    left: 50%;
-    transform: translate(-50%, 0%);
+    position: relative;
+    border-radius: 2rem;
   box-shadow: 0px 0px 44px 4px rgba(0,0,0,1);
 }
 
@@ -41,3 +43,6 @@
   color: #61dafb;
 }
 
+.button {
+  background-color: #f99f31 !important;
+}

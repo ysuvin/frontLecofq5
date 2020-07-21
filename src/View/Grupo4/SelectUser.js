@@ -1,6 +1,8 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+
+import StyledButton from '../../Component/Homepage/StyledButton'
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -206,9 +208,9 @@ export default function Pricing() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                        <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={()=> history.push(tier.ruta)}>
+                        <StyledButton fullWidth variant={tier.buttonVariant} onClick={()=> history.push(tier.ruta)}>
                             {tier.buttonText}
-                        </Button>
+                        </StyledButton>
                 </CardActions>
               </Card>
             </Grid>
