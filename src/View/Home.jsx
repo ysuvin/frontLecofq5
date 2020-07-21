@@ -2,9 +2,9 @@
 import React from 'react';
 import logo from '../logo.png';
 import '../css/Home.css';
-import Button from '@material-ui/core/Button';
 import history from '../history';
 import Grid from '@material-ui/core/Grid';
+import StyledButton from '../Component/Homepage/StyledButton'
 
 function Home() {
 
@@ -22,12 +22,14 @@ function Home() {
   }
   const redirectGrupo4 = () =>
   {
-    {/*history.push('/Grupo4')*/}
+    {history.push('/Grupo4')}
   }
   const redirectGrupo5 = () =>
   {
     {/*history.push('/Grupo5')*/}
   }
+
+  
 
   return ( 
       <div className="home_wrapper">
@@ -43,20 +45,20 @@ function Home() {
             justify="flex-start"
             alignItems="center"
           >
-          <Grid item xs={12}>
-          <Button onClick={redirectGrupo1} variant="contained" color = "primary">Sistema de Seguimiento de Actividades en Casa</Button>
+          <Grid item xs={12} width="100%">
+          <StyledButton onClick={redirectGrupo1} variant="contained" >Sistema de Seguimiento de Actividades en Casa</StyledButton>
           </Grid>
           <Grid item xs={12}>
-          <Button onClick={redirectGrupo2} variant="contained" color = "secondary">Grupo2</Button>
+          <StyledButton onClick={redirectGrupo2} variant="contained">Grupo2</StyledButton>
           </Grid>
           <Grid item xs={12}>
-          <Button onClick={redirectGrupo3} variant="contained" color = "primary">Grupo3</Button>
+          <StyledButton onClick={redirectGrupo3} variant="contained">Grupo3</StyledButton>
           </Grid>
           <Grid item xs={12}>
-          <Button onClick={redirectGrupo4} variant="contained" color = "secondary">Grupo4</Button>
+          <StyledButton onClick={redirectGrupo4} variant="contained">Agendamiento de Horas Médicas</StyledButton>
           </Grid>
           <Grid item xs={12}>
-          <Button onClick={redirectGrupo5} variant="contained" color = "primary">Grupo5</Button>
+          <StyledButton onClick={redirectGrupo5} variant="contained">Grupo5</StyledButton>
           </Grid>
         </Grid>
           </p>
