@@ -78,14 +78,10 @@ export default function HorizontalLabelPositionBelowStepper() {
         ) : (
           <div>
             <div>
-            <Grid container spacing={0} 
-              direction="column"
-              justify="center"
-              alignItems="center">
-            <Grid item xs={12}>
-                {ejercicios[activeStep].desc}
-            </Grid>
-            </Grid>
+              <h4>Descripción:</h4>
+              {ejercicios[activeStep].desc}
+
+            <h4>Video del ejercicio:</h4>
             <div className='player-wrapper'>
                 <ReactPlayer 
                     className="g1-react-player" 

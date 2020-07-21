@@ -19,7 +19,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-
+import ReactPlayer from 'react-player/youtube'
 import { TextField } from '@material-ui/core';
 
 
@@ -27,6 +27,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Grid from '@material-ui/core/Grid';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 const ejercicios = Ejercicios.data;
@@ -34,8 +35,9 @@ const ejercicios = Ejercicios.data;
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+    alignItems:'center',
+    justifyContent: 'center',
   },
   modal: {
     display: 'flex',
@@ -50,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 200,
     
   },
 }));
@@ -97,9 +99,9 @@ export default function KsAsigEjTabla() {
   return (
     <div className={classes.root}>
     <List component="nav" aria-label="main mailbox folders">
-    {ejercicios.map((i) => {return [<ListItem button onClick={()=>{ handleClickOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.Vidlink) }}><ListItemText primary={i.nombre} />
+    {ejercicios.map((i) => {return [<ListItem button onClick={()=>{ handleClickOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.vidlink) }}><ListItemText primary={i.nombre} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="edit" onClick={handleClickEditOpen}>
+              <IconButton edge="end" aria-label="edit" onClick={()=>{ handleClickEditOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.vidlink) }}>
                   <EditIcon />
               </IconButton>
               <IconButton edge="end" aria-label="delete">
@@ -110,7 +112,7 @@ export default function KsAsigEjTabla() {
     }
       
     </List>
-    <Button variant="contained" onClick={handleClickEditOpen}>Añadir</Button>
+    <Button variant="contained" onClick={()=>{ handleClickEditOpen(); setNombre(""); setDesc("");setVidlink("") }}>Añadir</Button>
 
     
     <Dialog
@@ -119,11 +121,21 @@ export default function KsAsigEjTabla() {
     onClose={handleClose}
     aria-labelledby="responsive-dialog-title"
     >
-      <DialogTitle id="responsive-dialog-title">{"Ficha del paciente"}</DialogTitle>
+      <DialogTitle id="responsive-dialog-title">{"Detalles del ejercicio"}</DialogTitle>
         <DialogContent>
         <DialogContentText>
-          <p>Nombre {nombre}</p>
-          <p>desc: {desc}</p>
+          <p>Nombre: {nombre}</p>
+          <p>Descripción: {desc}</p>
+          <p>Video del Ejercicio: {vidlink}</p>
+          <div className='player-wrapper'>
+                <ReactPlayer 
+                    className="g1-react-player" 
+                    url= {vidlink} 
+                    key={vidlink }
+                    width='100%'
+                    height='100%'
+                    />
+            </div>
         </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -136,24 +148,27 @@ export default function KsAsigEjTabla() {
       </DialogActions>
     </Dialog>
 
+
     <Dialog
-        fullScreen={fullScreen}
-        open={editOpen}
-        onClose={handleEditClose}
-        aria-labelledby="responsive-dialog-title"
-      >
+      fullScreen={fullScreen}
+      open={editOpen}
+      onClose={handleEditClose}
+      aria-labelledby="responsive-dialog-title"
+    >
+      
         <DialogTitle id="responsive-dialog-title">{"Añadir ejercicio"}</DialogTitle>
         <DialogContent>
         <FormControl className={classes.formControl}>
-         
+          <p></p>
           <TextField 
             id="outlined-full-width"
             label="Nombre ejercicio" 
-            
+            defaultValue={nombre}
             variant="outlined"
           />
         </FormControl>
         <FormControl className={classes.formControl}>
+        <p></p>
           <InputLabel className={classes.root} id="demo-simple-select-label">Repeticiones</InputLabel>
           <Select
             labelId="demo-customized-select-label"
@@ -164,10 +179,30 @@ export default function KsAsigEjTabla() {
             <MenuItem value="">
               <em>Ninguno</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={30}>30</MenuItem>
           </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <p></p>
+        <TextField
+          id="outlined-textarea"
+          label="Descripción"
+          defaultValue={desc}
+          multiline
+          variant="outlined"
+        />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+        <p></p>
+        <TextField
+          id="outlined-textarea"
+          label="Enlace del video"
+          defaultValue={vidlink}
+          multiline
+          variant="outlined"
+        />
         </FormControl>
         </DialogContent>
         <DialogActions>
@@ -178,7 +213,7 @@ export default function KsAsigEjTabla() {
             Guardar
           </Button>
         </DialogActions>
-      </Dialog>
+    </Dialog>
   </div>
   );
 }
