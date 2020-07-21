@@ -139,7 +139,7 @@ export default function Album() {
                   </CardContent>
                   <CardActions>
                   <Button size="small" color="primary" style={{backgroundColor: "#f99f31"}} >
-                      <Link href = "/Grupo3/Vista2" style={{ color: '#FFF' }}>Ver taller</Link>
+                      <Link href = "/Grupo3/VistaPrincipal/Vista2" style={{ color: '#FFF' }}>Ver taller</Link>
                       </Button>
                       <Typography color="textSecondary">
                       Cupos: 10/20
@@ -180,7 +180,7 @@ export default function Album() {
                   </CardContent>
                   <CardActions>
                   <Button size="small" color="primary" style={{backgroundColor: "#f99f31"}}>
-                      <Link href = "/Grupo3/Vista2" style={{ color: '#FFF' }}>Ver taller</Link>
+                      <Link href = "/Grupo3/VistaPrincipal/Vista2" style={{ color: '#FFF' }}>Ver taller</Link>
                       </Button>
                       <Typography color="textSecondary">
                       Cupos: 20/20
