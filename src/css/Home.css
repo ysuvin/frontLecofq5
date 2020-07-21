@@ -28,6 +28,8 @@
   font-size: calc(10px + 2vmin);
     background-color: rgb(255, 255, 255);
     width:80vw;
+    max-width: 52rem;
+    min-width: 700px;
     /*padding: 10vh 2vw;*/
     height:80vh;
     display: flex;
