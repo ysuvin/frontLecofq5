@@ -361,12 +361,34 @@ export default function NutricionistaF() {
                             fullWidth
                             autoComplete="peso-ideal"
                         />
-                    </Grid>
+                    </Grid>  
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Typography variant="h6" gutterBottom>
                         Anamnesis alimentaria: Recordatorio 24 Hrs
                     </Typography>
+                </Grid>
+                <Grid container justify="space-around" spacing={1}>
+                    <Grid item xs={3} md={6}>
+                        <TextField
+                            id="tiemCom"
+                            label="Tiempos de Comida"
+                            fullWidth
+                            multiline
+                            rows={30}
+                            defaultValue=""
+                        />
+                    </Grid>
+                    <Grid item xs={6} md={6}>
+                        <TextField
+                            id="aliPorc"
+                            label="Alimentos y Porciones"
+                            fullWidth
+                            multiline
+                            rows={30}
+                            defaultValue=""
+                        />
+                    </Grid>
                 </Grid>
                 <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
                     <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={handleClick} >
