@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import ContainerHoras from './View/Grupo4/ContainerHoras';
 import ContainerSecretario from './View/Grupo4/ContainerSecretario';
 import ContainerSelect from './View/Grupo4/ContainerSelect';
+import G3Landing from "./View/Grupo3/G3Landing";
 function App() {
 	return (
 		<div>
@@ -18,7 +19,10 @@ function App() {
 				<Route exact path="/Grupo1/" component={G1Landing} />
 				<Route exact path="/Grupo1/*" component={G1Landing} />
 				{/* Fin Routing Grupo 1*/}
-
+				{/* Routing Grupo 3	*/}
+				<Route exact path="/Grupo3/" component={G3Landing} />
+				<Route exact path="/Grupo3/*" component={G3Landing} />
+				{/* Fin Routing Grupo 3*/}
 				{/* Routing Grupo 4 */}
 				<Route exact path="/Grupo4" component={ContainerSelect}/>
 				<Route exact path={["/Grupo4/paciente/horas", "/Grupo4/secretario/horas" ]} component={ContainerHoras} />
