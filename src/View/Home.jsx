@@ -26,7 +26,7 @@ function Home() {
   }
   const redirectGrupo5 = () =>
   {
-    {history.push('/Grupo5')}
+    {history.push('/Grupo5/Plantillapaciente')}
   }
 
   
