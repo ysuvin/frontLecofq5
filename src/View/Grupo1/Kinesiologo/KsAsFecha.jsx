@@ -7,8 +7,8 @@ function KsAsFecha() {
   
 
   return (
-      <div className="wrapper">
-        <div className="body_alt">
+      <div className="g1_wrapper">
+        <div className="g1_body_alt">
       <KsAsigFechaTabla/>
       </div>
         

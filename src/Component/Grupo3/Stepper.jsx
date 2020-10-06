@@ -5,13 +5,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Ejercicios from '../../../Model/Grupo1/Ejercicios';
-import Grid from '@material-ui/core/Grid';
-import ReactPlayer from 'react-player/youtube'
-import '../../../css/Grupo1/G1Landing.css';
-import history from '../../../history';
-
-const ejercicios = Ejercicios.data;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,18 +20,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    var texto = [];
-    var i = 0;
-    for (i = 0; i < ejercicios.length; i++) {
-        texto[i] = ejercicios[i].nombre ;
-      }  
-  return texto;
+  return ['Datos personales', 'Datos del tutor', 'Finizalidado'];
+}
+
+function getStepContent(stepIndex) {
+  switch (stepIndex) {
+    case 0:
+      return 'Agrega tus datos personales';
+    case 1:
+      return 'Agrega los datos de tu tutor';
+    case 2:
+      return '';
+    default:
+      return 'Unknown stepIndex';
+  }
 }
 
 export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+  const [open, setOpen] = React.useState(false);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -52,14 +54,16 @@ export default function HorizontalLabelPositionBelowStepper() {
     setActiveStep(0);
   };
 
-  const redirectFechas = () => 
-{
-    history.push('/Grupo1/PacVerFechas');
-}
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   return (
-    <div className="g1_wrapper">
-      <div className="g1_body_alt">
+    <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -70,45 +74,27 @@ export default function HorizontalLabelPositionBelowStepper() {
       <div>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>Todos los ejercicios completados!
-                <p><Button variant="contained" color="primary" onClick={redirectFechas}>
-              Regresar</Button></p></Typography>
-            <Button onClick={handleReset}>Reiniciar</Button>
+            <Typography className={classes.instructions}>¡Todos los pasos han sido completados!</Typography>
+            <Button onClick={handleClose}>Salir</Button>
           </div>
         ) : (
           <div>
-            <div>
-              <h4>Descripción:</h4>
-              {ejercicios[activeStep].desc}
-
-            <h4>Video del ejercicio:</h4>
-            <div className='player-wrapper'>
-                <ReactPlayer 
-                    className="g1-react-player" 
-                    url= {ejercicios[activeStep].vidlink} 
-                    key={ejercicios[activeStep].vidlink }
-                    width='100%'
-                    height='100%'
-                    />
-            </div>
-        </div>
-
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
             <div>
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.backButton}
               >
-                Atrás
+                Back
               </Button>
               <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
           </div>
         )}
       </div>
     </div>
-  </div>
   );
 }
