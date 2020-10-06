@@ -31,7 +31,7 @@ export default function NavBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ background: '#444444', position:'fixed' }}>
+      <AppBar position="static" style={{ background: '#444444'}}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <SSADrawer/>
