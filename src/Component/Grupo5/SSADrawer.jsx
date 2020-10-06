@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 const redirectHome = () => {
-  history.push('/Home');
+  history.push('/Grupo5/Plantillapaciente');
 }
 const redirectPlantillapaciente = () => {
   history.push('/Grupo5/Plantillapaciente');

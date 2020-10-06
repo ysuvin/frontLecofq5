@@ -58,7 +58,8 @@ export default function HorizontalLabelPositionBelowStepper() {
 }
 
   return (
-    <div className="wrapper">
+    <div className="g1_wrapper">
+      <div className="g1_body_alt">
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -77,17 +78,13 @@ export default function HorizontalLabelPositionBelowStepper() {
         ) : (
           <div>
             <div>
-            <Grid container spacing={0} 
-              direction="column"
-              justify="center"
-              alignItems="center">
-            <Grid item xs={12}>
-                {ejercicios[activeStep].desc}
-            </Grid>
-            </Grid>
+              <h4>Descripción:</h4>
+              {ejercicios[activeStep].desc}
+
+            <h4>Video del ejercicio:</h4>
             <div className='player-wrapper'>
                 <ReactPlayer 
-                    className="react-player" 
+                    className="g1-react-player" 
                     url= {ejercicios[activeStep].vidlink} 
                     key={ejercicios[activeStep].vidlink }
                     width='100%'
@@ -112,5 +109,6 @@ export default function HorizontalLabelPositionBelowStepper() {
         )}
       </div>
     </div>
+  </div>
   );
 }
