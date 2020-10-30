@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import Ejercicios from '../../Model/Grupo1/Ejercicios';
+import {GetEjercicios, PostEjercicio, UpdateEjercicio, DeleteEjercicio} from '../../Model/Grupo1/EjerciciosController';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -29,8 +29,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import NativeSelect from '@material-ui/core/NativeSelect';
-
-const ejercicios = Ejercicios.data;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,6 +61,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function KsAsigEjTabla() {
   
+  //Query que recupera los ejercicios
+  const [ejercicios, setEjercicios] = React.useState(null);
+  const [isLoading,setIsLoading] = React.useState(true);
+
+  const fetchData = async () => {
+    return await GetEjercicios();
+  }
+  const postData = async (ejercicio) => {
+    return await PostEjercicio(ejercicio);
+  }
+
+  const updateData = async (id,ejercicio) => {
+      return await UpdateEjercicio(id,ejercicio);
+  }
+
+  const deleteData = async (id) => {
+      return await DeleteEjercicio(id);
+  }
+  
+  useEffect(() => {
+    fetchData().then((query) =>{
+      setEjercicios(query);
+      console.log(query);
+      setIsLoading(false);
+    }
+    );
+  }, []);
+
+  ////
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   
@@ -78,7 +105,8 @@ export default function KsAsigEjTabla() {
   const [editOpen, setEditOpen] = React.useState(false);
   const [nombre, setNombre] = React.useState("nombre");
   const [desc, setDesc] = React.useState("desc");
-  const [vidlink, setVidlink] = React.useState("vidlink");
+  const [vidLink, setVidlink] = React.useState("vidLink");
+  const [_id, setId] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -96,23 +124,54 @@ export default function KsAsigEjTabla() {
     setEditOpen(false);
   };
 
+  //Textfield hooks
+  const [textNombre,setTextNombre] = React.useState("");
+  const [textDesc,setTextDesc] = React.useState("");
+  const [textVidLink,setTextVidLink] = React.useState("");
+
+  
+  const handleNombreChange = (event) => {
+    setTextNombre(event.target.value);
+  };
+  const handleDescChange = (event) => {
+    setTextDesc(event.target.value);
+  };
+  const handleVidLinkChange = (event) => {
+    setTextVidLink(event.target.value);
+  };
+
   return (
     <div className={classes.root}>
+     {isLoading ? 
+      (
+        <div>Loading ...</div>
+      ) : 
+      ( 
     <List component="nav" aria-label="main mailbox folders">
-    {ejercicios.map((i) => {return [<ListItem button onClick={()=>{ handleClickOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.vidlink) }}><ListItemText primary={i.nombre} />
+    {ejercicios.map((i) => {return [<ListItem button onClick={()=>{ handleClickOpen(); setId(i._id);  setNombre(i.nombre);  setDesc(i.desc);  setVidlink(i.vidLink) }}><ListItemText primary={i.nombre} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="edit" onClick={()=>{ handleClickEditOpen(); setNombre(i.nombre); setDesc(i.desc);setVidlink(i.vidlink) }}>
+              <IconButton edge="end" aria-label="edit" onClick={()=>{ handleClickEditOpen(); setId(i._id); setTextNombre(i.nombre); setNombre(i.nombre); setTextDesc(i.desc); setDesc(i.desc); setTextVidLink(i.vidLink); setVidlink(i.vidLink) }}>
                   <EditIcon />
               </IconButton>
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
+              <IconButton edge="end" aria-label="delete" onClick={() =>{
+                  setEjercicios((prevState) => {
+                    const data = [...prevState];
+                    data.splice(data.indexOf(i), 1);
+                    deleteData(i._id);
+                    return data;
+                  });
+                
+                }
+              }>
+                <DeleteIcon/>
               </IconButton>
             </ListItemSecondaryAction>
         </ListItem>]})
     }
       
     </List>
-    <Button variant="contained" onClick={()=>{ handleClickEditOpen(); setNombre(""); setDesc("");setVidlink("") }}>Añadir</Button>
+    )}
+    <Button variant="contained" onClick={()=>{ handleClickEditOpen(); setId(null); setTextNombre(""); setNombre(""); setTextDesc(""); setDesc(""); setTextVidLink(""); setVidlink("") }}>Añadir</Button>
 
     
     <Dialog
@@ -126,12 +185,12 @@ export default function KsAsigEjTabla() {
         <DialogContentText>
           <p>Nombre: {nombre}</p>
           <p>Descripción: {desc}</p>
-          <p>Video del Ejercicio: {vidlink}</p>
+          <p>Video del Ejercicio: {vidLink}</p>
           <div className='player-wrapper'>
                 <ReactPlayer 
                     className="g1-react-player" 
-                    url= {vidlink} 
-                    key={vidlink }
+                    url= {vidLink} 
+                    key={vidLink }
                     width='100%'
                     height='100%'
                     />
@@ -165,6 +224,7 @@ export default function KsAsigEjTabla() {
             label="Nombre ejercicio" 
             defaultValue={nombre}
             variant="outlined"
+            onChange={handleNombreChange}
           />
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -192,6 +252,7 @@ export default function KsAsigEjTabla() {
           defaultValue={desc}
           multiline
           variant="outlined"
+          onChange={handleDescChange}
         />
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -199,9 +260,10 @@ export default function KsAsigEjTabla() {
         <TextField
           id="outlined-textarea"
           label="Enlace del video"
-          defaultValue={vidlink}
+          defaultValue={vidLink}
           multiline
           variant="outlined"
+          onChange={handleVidLinkChange}
         />
         </FormControl>
         </DialogContent>
@@ -209,7 +271,36 @@ export default function KsAsigEjTabla() {
           <Button autoFocus onClick={handleEditClose} color="secondary">
             Descartar
           </Button>
-          <Button onClick={handleEditClose} color="primary" autoFocus>
+          <Button onClick={()=> {
+            handleEditClose();
+            //Si no estoy usando ninguna ID 
+            if(_id == null && (textNombre != "" || textDesc != "" || textVidLink != ""))
+            {
+              postData({nombre: textNombre, desc: textDesc, vidLink: textVidLink}).then((response) => {
+                const datito = [...ejercicios];
+                datito.push(response);
+                setEjercicios(datito);
+              }) 
+            }
+            else if(_id != null)
+            {
+              var nextData = ejercicios;
+              updateData(_id,{nombre: textNombre, desc: textDesc, vidLink: textVidLink});
+              console.log(nextData);
+              var index;
+              for(var j = 0; j < nextData.length;j++)
+              {
+                if(nextData[j]._id == _id)
+                {
+                  index = j;
+                }
+              }
+              nextData[index].nombre = textNombre;
+              nextData[index].desc = textDesc;
+              nextData[index].vidLink = textVidLink;
+              setEjercicios(nextData);
+            }}
+            } color="primary" autoFocus>
             Guardar
           </Button>
         </DialogActions>

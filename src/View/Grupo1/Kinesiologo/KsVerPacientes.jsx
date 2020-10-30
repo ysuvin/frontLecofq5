@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../css/Grupo1/G1Landing.css';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Pacientes from '../../../Model/Grupo1/Pacientes';
+import {GetPacientes} from '../../../Model/Grupo1/PacientesController';
 import Button from '@material-ui/core/Button';
 import history from '../../../history.jsx';
 
@@ -16,11 +16,33 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import axios from 'axios';
+
+
 
 function KsVerPacientes() {
-  
 
-    const [paciente, setValue] = React.useState(Pacientes[0]);
+    //Query que recupera a los pacientes
+    const [paciente, setPaciente] = React.useState(null);
+    const [Pacientes, setPacientes] = React.useState(null);
+    const [isLoading,setIsLoading] = React.useState(true);
+
+    const fetchData = async () => {
+        const query = await GetPacientes();
+        return query;
+    }
+
+    useEffect(() => {
+        fetchData().then((query) => {
+          setPacientes(query);
+          console.log(query);
+          setPaciente(query[0]);
+          setIsLoading(false);
+        });
+    },[]);
+
+  ////
+    
 
     const redirectKsAsFecha = () =>
     {
@@ -41,15 +63,22 @@ function KsVerPacientes() {
 
   return (
     <div className="g1_wrapper">
+      
       <div className="g1_body">
       <img src={logo} className="App-logo" alt="logo" />
       Seleccionar Paciente:
+      {isLoading ? 
+      (
+        <div>Loading ...</div>
+      ) : 
+      ( 
+      <div>   
       <Autocomplete
         value={paciente}
         onChange={(event, newValue) => {
           //Si obtengo un valor null, no actualizo el display para evitar un crash, se utiliza redundancia
           //con console.log() debido a que la condicional no puede no retornar una funcion, cualquiera que sea.
-          newValue !== null ? setValue(newValue) : console.log() ;
+          newValue !== null ? setPaciente(newValue) : console.log() ;
           console.log(newValue);
         }}
         id="help"
@@ -63,10 +92,9 @@ function KsVerPacientes() {
               direction="column"
               justify="center"
               alignItems="center">
-          <Grid item xs={12} spacing={2}>
+          <Grid item xs={12}>
             {/* Handling de imagen, si no se asigna un paciente se muestra una imagen no definida */}
-            <Paper spacing={2} className="img-box" style={ (!!paciente.imgName) ? {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/'+paciente.imgName)+")"}
-            : {backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/anon.jpg')}}
+            <Paper spacing={2} className="img-box" style={{backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/paciente2.jpg')+")"}}
             >
             
             </Paper>
@@ -93,7 +121,7 @@ function KsVerPacientes() {
                 <p>Nombre: {`${paciente !== null ? `${paciente.nombre}` : ''}`}</p>
                 <p>Edad: {` ${paciente !== null ? `${paciente.edad}` : ''}`}</p>
                 <p>Peso: {` ${paciente !== null ? `${paciente.peso}` : ''}`}</p>
-                <p>Estatura: {` ${paciente !== null ? `${paciente.estatura}` : ''}`}</p>
+                <p>Estatura: {` ${paciente !== null ? `${paciente.altura}` : ''}`}</p>
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -112,7 +140,8 @@ function KsVerPacientes() {
               : ''} 
           </Grid>
         </Grid>
-        
+        </div>
+      )}  
       </div>
     </div>
   );

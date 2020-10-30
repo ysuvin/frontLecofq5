@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
 
@@ -18,7 +18,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import history from '../../history.jsx';
-import Fechas from '../../Model/Grupo1/Fechas';
+import {GetRutinas, PostRutina, UpdateRutina, DeleteRutina} from '../../Model/Grupo1/RutinasController';
 
 
 
@@ -42,115 +42,161 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-export default function KsAsigFechaTabla() {
+export default function KsAsigFechaTabla(rutinas) {
 
   const redirectKsAsEj = () =>
   {
     history.push('/Grupo1/KsAsFecha/KsAsEjercicios');
   }
+    
+  //Query que recupera las fechas
+  const [state, setState] = React.useState(null);
+  const [isLoading,setIsLoading] = React.useState(true);
 
-  
-  const [state, setState] = React.useState(Fechas);
+  const fetchData = async () => {
+      return await GetRutinas();
+  }
+
+  const postData = async (rutina) => {
+      return await PostRutina(rutina);
+  }
+
+  const updateData = async (id,rutina) => {
+      return await UpdateRutina(id,rutina);
+  }
+
+  const deleteData = async (id) => {
+      return await DeleteRutina(id);
+  }
+
+  useEffect(() => {
+    fetchData().then((query) =>{
+      setState(query);
+      console.log(query);
+      setIsLoading(false);
+    }
+    );
+  }, []);
+
+
+ /* { title: 'Link de Google Meet', field: 'Link', type:'string',
+      },*/
+  const columns = [
+      { title: 'Fecha', field: 'fecha', type:'date',
+      },
+      
+  ]; 
 
   return (
-    <MaterialTable
-      title="Asignar fechas"
-      icons={tableIcons}
-      columns={state.columns}
-      data={state.data}
-      actions={[
-        {
-          icon: () => <AddBox/>,
-          tooltip: 'Añadir ejercicios',
-          onClick: (event, rowData) => {
-            redirectKsAsEj()
+    <div>
+    {isLoading ? 
+      (
+        <div>Loading ...</div>
+      ) : 
+      (
+        <MaterialTable
+        title="Asignar Rutinas"
+        icons={tableIcons}
+        columns={columns}
+        data={state}
+        actions={[
+          {
+            icon: () => <AddBox/>,
+            tooltip: 'Añadir ejercicios',
+            onClick: () => {
+              redirectKsAsEj()
+            }
           }
-        }
-      ]}
-      localization={{
-        body: {
-          emptyDataSourceMessage: 'No hay datos',
-          addTooltip: 'Añadir rutinas',
-          deleteTooltip: 'Borrar',
-          editTooltip: 'Editar',
-          filterRow: {
-            filterTooltip: 'Filtrar'
+        ]}
+        localization={{
+          body: {
+            emptyDataSourceMessage: 'No hay datos',
+            addTooltip: 'Añadir rutinas',
+            deleteTooltip: 'Borrar',
+            editTooltip: 'Editar',
+            filterRow: {
+              filterTooltip: 'Filtrar'
+            },
+            editRow: {
+              deleteText: '¿Seguro que quieres eliminar esta rutina de ejericios?',
+              cancelTooltip: 'No',
+              saveTooltip: 'Sí'
+            }
           },
-          editRow: {
-            deleteText: '¿Seguro que quieres eliminar esta rutina de ejericios?',
-            cancelTooltip: 'No',
-            saveTooltip: 'Sí'
+          grouping: {
+            placeholder: 'Arrastrar columnas...',
+            groupedBy: 'Agrupar por:'
+          },
+          header: {
+            actions: 'Acciones'
+          },
+          pagination: {
+            labelDisplayedRows: '{from}-{to} de {count}',
+            labelRowsSelect: 'Rutinas',
+            labelRowsPerPage: 'Rutinas por página:',
+            firstAriaLabel: 'Primera página',
+            firstTooltip: 'Primera página',
+            previousAriaLabel: 'Página anterior',
+            previousTooltip: 'Página anterior',
+            nextAriaLabel: 'Siguente página',
+            nextTooltip: 'Siguente página',
+            lastAriaLabel: 'Última página',
+            lastTooltip: 'Última página'
+          },
+          toolbar: {
+            addRemoveColumns: 'Agregar o eliminar columnas',
+            nRowsSelected: '{0} línea (s) seleccionada (s)',
+            showColumnsTitle: 'Mostrar columnas',
+            showColumnsAriaLabel: 'Mostrar columnas',
+            exportTitle: 'Exportar',
+            exportAriaLabel: 'Exportar',
+            exportName: 'Exportar a CSV',
+            searchTooltip: 'Buscar',
+            searchPlaceholder: 'Buscar'
           }
-        },
-        grouping: {
-          placeholder: 'Arrastrar columnas...',
-          groupedBy: 'Agrupar por:'
-        },
-        header: {
-          actions: 'Acciones'
-        },
-        pagination: {
-          labelDisplayedRows: '{from}-{to} de {count}',
-          labelRowsSelect: 'Rutinas',
-          labelRowsPerPage: 'Rutinas por página:',
-          firstAriaLabel: 'Primera página',
-          firstTooltip: 'Primera página',
-          previousAriaLabel: 'Página anterior',
-          previousTooltip: 'Página anterior',
-          nextAriaLabel: 'Siguente página',
-          nextTooltip: 'Siguente página',
-          lastAriaLabel: 'Última página',
-          lastTooltip: 'Última página'
-        },
-        toolbar: {
-          addRemoveColumns: 'Agregar o eliminar columnas',
-          nRowsSelected: '{0} línea (s) seleccionada (s)',
-          showColumnsTitle: 'Mostrar columnas',
-          showColumnsAriaLabel: 'Mostrar columnas',
-          exportTitle: 'Exportar',
-          exportAriaLabel: 'Exportar',
-          exportName: 'Exportar a CSV',
-          searchTooltip: 'Buscar',
-          searchPlaceholder: 'Buscar'
-        }
-      }}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
+        }}
+        editable={{
+          onRowAdd: (newData) =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve();
+                console.log(newData);
+                postData(newData).then((response) => {
+                  const datito = [...state];
+                  datito.push(response);
+                  setState(datito);
+                })  
+              }, 600);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve();
+                if (oldData) {
+                  //Este código indecente hace que esta sección no sea flexible
+                  var nextData = state;
+                  updateData(newData._id,{fecha: newData.fecha});
+                  nextData[nextData.indexOf(oldData)].fecha = newData.fecha;
+                  setState(nextData);
+                }
+              }, 600);
+            }),
+          onRowDelete: (oldData) =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve();
                 setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
+                  const data = [...prevState];
+                  data.splice(data.indexOf(oldData), 1);
+                  deleteData(oldData._id);
+                  return data;
                 });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
-    />
+              }, 600);
+            }),
+        }}
+      />
+      )}
+      </div>
+      
   );
 }

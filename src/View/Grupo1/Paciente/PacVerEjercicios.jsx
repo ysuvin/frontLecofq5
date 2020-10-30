@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Ejercicios from '../../../Model/Grupo1/Ejercicios';
+import {GetEjercicios} from '../../../Model/Grupo1/EjerciciosController';
 import Grid from '@material-ui/core/Grid';
 import ReactPlayer from 'react-player/youtube'
 import '../../../css/Grupo1/G1Landing.css';
 import history from '../../../history';
 
-const ejercicios = Ejercicios.data;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,19 +25,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
-    var texto = [];
-    var i = 0;
-    for (i = 0; i < ejercicios.length; i++) {
-        texto[i] = ejercicios[i].nombre ;
-      }  
-  return texto;
-}
+
 
 export default function HorizontalLabelPositionBelowStepper() {
+
+  //Query que recupera las fechas
+  const [ejercicios, setEjercicios] = useState(null);
+  const [isLoading,setIsLoading] = useState(true);
+  const [steps, setSteps] = useState(null);
+
+  const fetchData = async () => {
+    const query = await GetEjercicios();
+    return query;
+    
+  }
+
+  const getSteps = (query) => {
+      var texto = [];
+      var i = 0;
+      for (i = 0; i < query.length; i++) {
+          texto[i] = query[i].nombre ;
+      }  
+      return texto;
+}
+
+  useEffect(() => {
+    fetchData().then((query) => {
+      setEjercicios(query);
+      console.log(query);
+      setSteps(getSteps(query));
+      setIsLoading(false); 
+    });
+  }, []);
+
+  ////
+
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
+  
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -59,7 +83,13 @@ export default function HorizontalLabelPositionBelowStepper() {
 
   return (
     <div className="g1_wrapper">
+      {isLoading ? 
+      (
+        <div>Loading ...</div>
+      ) : 
+      ( 
       <div className="g1_body_alt">
+        
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -85,8 +115,8 @@ export default function HorizontalLabelPositionBelowStepper() {
             <div className='player-wrapper'>
                 <ReactPlayer 
                     className="g1-react-player" 
-                    url= {ejercicios[activeStep].vidlink} 
-                    key={ejercicios[activeStep].vidlink }
+                    url= {ejercicios[activeStep].vidLink} 
+                    key={ejercicios[activeStep].vidLink }
                     width='100%'
                     height='100%'
                     />
@@ -109,6 +139,7 @@ export default function HorizontalLabelPositionBelowStepper() {
         )}
       </div>
     </div>
+    )}
   </div>
   );
 }

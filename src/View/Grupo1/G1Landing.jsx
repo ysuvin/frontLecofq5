@@ -9,6 +9,8 @@ import KsAsEjercicios from './Kinesiologo/KsAsEjercicios';
 import PacVerFechas from './Paciente/PacVerFechas';
 import PacVerEjercicios from './Paciente/PacVerEjercicios';
 
+
+
 function G1Landing() {
 	return(
   		<div>
