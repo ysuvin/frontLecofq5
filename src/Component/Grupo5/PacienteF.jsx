@@ -115,22 +115,25 @@ const useStyless = makeStyles((theme) => ({
 
     const goLogIn = () => {
         let data = {
-            Rut:rut, 
-            Domicilio:domicilio, 
-            Comuna : comuna, 
-            Estado_civil: estado_civil, 
-            Prevision:prevision, 
-            Motivo_consulta:motivo_consulta, 
-            Telefono:telefono, 
-            Fecha_ingreso:fecha_ingreso
+             rut:rut, 
+             domicilio:domicilio, 
+             comuna : comuna, 
+             estado_civil: estado_civil, 
+             prevision:prevision, 
+             motivo_consulta:motivo_consulta, 
+             telefono:telefono, 
+             fecha_ingreso:fecha_ingreso
+            
         }
 
         axios.post(`http://localhost:8080/fichaPaciente/`, data)
         .then((response) => {
-            console.log(response);
+            if (response){
+                handleClick()
+            }
           }, (error) => {
             console.log(error);
-          });
+          }).finally(()=>{console.log("termina")}).catch((e) => {console.log(e)});
     }
 
     return (
@@ -255,7 +258,7 @@ const useStyless = makeStyles((theme) => ({
                     </form>
                 </Grid>  
                 <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
-                    <Button variant="outlined" color="primary"  startIcon={<CheckIcon />} onClick={handleClick,goLogIn,Listeilor} 
+                    <Button variant="outlined" color="primary"  startIcon={<CheckIcon />} onClick={e => {goLogIn();Listeilor()}} 
                     className = { classes.submit } 
                     >
                         Finalizar
