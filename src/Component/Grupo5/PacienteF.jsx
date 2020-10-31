@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import axios from 'axios';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -93,13 +94,55 @@ const useStyless = makeStyles((theme) => ({
     };
     const [value, setValue] = React.useState('Controlled')
 
+
+    const [rut, setRut] = React.useState('');
+    const [domicilio, setDomicilio] = React.useState('');
+    const [comuna, setComuna] = React.useState('');
+    const [estado_civil, setEstado_civil] = React.useState('');
+    const [prevision, setPrevision] = React.useState('');
+    const [motivo_consulta, setMotivo_consulta] = React.useState('');
+    const [telefono, setTelefono] = React.useState('');
+    const [fecha_ingreso, setFecha_ingreso] = React.useState('');
+
+
+    const Listeilor = () => {
+        axios.get(`http://localhost:8080/fichaPaciente/`)
+            .then(res => {
+            console.log("console: ", res)
+        })
+        //history.push('Listeilor')
+    }
+
+    const goLogIn = () => {
+        let data = {
+            Rut:rut, 
+            Domicilio:domicilio, 
+            Comuna : comuna, 
+            Estado_civil: estado_civil, 
+            Prevision:prevision, 
+            Motivo_consulta:motivo_consulta, 
+            Telefono:telefono, 
+            Fecha_ingreso:fecha_ingreso
+        }
+
+        axios.post(`http://localhost:8080/fichaPaciente/`, data)
+        .then((response) => {
+            console.log(response);
+          }, (error) => {
+            console.log(error);
+          });
+    }
+
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
       </Typography>
+      <form className = { classes.form }noValidate >
             <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                    <TextField required type = "number" id="rutPaci" label="Rut (Ej: 12345678-9)" fullWidth autoComplete="rut-paci" />
+                    <TextField required type = "number" id="rutPaci" label="Rut (Ej: 12345678-9)" fullWidth autoComplete="rut-paci"
+                    value={rut} onChange={(e) => {setRut(e.target.value)}}
+                    />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
@@ -111,7 +154,7 @@ const useStyless = makeStyles((theme) => ({
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                <form className={classes.container} noValidate>
+   
                     <TextField
                         disabled
                         id="date"
@@ -124,10 +167,11 @@ const useStyless = makeStyles((theme) => ({
                         shrink: true,
                         }}
                     />
-                    </form>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextField required id="domici" label="Domicilio" fullWidth autoComplete="domici" />
+                    <TextField required id="domici" label="Domicilio" fullWidth autoComplete="domici" 
+                    value={domicilio} onChange={(e) => {setDomicilio(e.target.value)}}
+                    />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
@@ -136,11 +180,12 @@ const useStyless = makeStyles((theme) => ({
                         label="Comuna"
                         fullWidth
                         autoComplete="com"
+                        value={comuna} onChange={(e) => {setComuna(e.target.value)}}
                     />
                 </Grid>               
                 <Grid item xs={12} md={6}>
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-controlled-open-select-label">Estado Civil    </InputLabel>
+                        <InputLabel id="demo-controlled-open-select-label">Estado Civil   </InputLabel>
                         <Select
                         labelId="demo-controlled-open-select-label"
                         id="demo-controlled-open-select"
@@ -150,13 +195,14 @@ const useStyless = makeStyles((theme) => ({
                         onOpen={handleOpen2}
                         value={values}
                         onChange={handleChange}
+                        value={estado_civil} onChange={(e) => {setEstado_civil(e.target.value)}}
                         >
                         <MenuItem value="">
                             <em>(Vacio)</em>
                         </MenuItem>
-                        <MenuItem value={10}>Soltero(a)</MenuItem>
-                        <MenuItem value={20}>Casado(a)</MenuItem>
-                        <MenuItem value={20}>Viudo(a)</MenuItem>
+                        <MenuItem value={"Soltero(a)"}>Soltero(a)</MenuItem>
+                        <MenuItem value={"Casado(a)"}>Casado(a)</MenuItem>
+                        <MenuItem value={"Viudo(a)"}>Viudo(a)</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
@@ -166,7 +212,10 @@ const useStyless = makeStyles((theme) => ({
                         fullWidth
                         id="telef" 
                         label="Telefono(+56912345678)"  
-                        autoComplete="telef" />
+                        autoComplete="telef"
+                        value={telefono} onChange={(e) => {setTelefono(e.target.value)}}
+                        />
+                        
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField 
@@ -174,7 +223,9 @@ const useStyless = makeStyles((theme) => ({
                         fullWidth
                         id="prev" 
                         label="Previsión"  
-                        autoComplete="prev" />
+                        autoComplete="prev" 
+                        value={prevision} onChange={(e) => {setPrevision(e.target.value)}}
+                        />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
@@ -185,6 +236,7 @@ const useStyless = makeStyles((theme) => ({
                         rows={4}
                         defaultValue=""
                         variant="filled"
+                        value={motivo_consulta} onChange={(e) => {setMotivo_consulta(e.target.value)}}
                 />
                 </Grid>
                 <Grid item xs={12}>
@@ -198,11 +250,14 @@ const useStyless = makeStyles((theme) => ({
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            value={fecha_ingreso} onChange={(e) => {setFecha_ingreso(e.target.value)}}
                         />
                     </form>
                 </Grid>  
                 <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
-                    <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={handleClick} >
+                    <Button variant="outlined" color="primary"  startIcon={<CheckIcon />} onClick={handleClick,goLogIn,Listeilor} 
+                    className = { classes.submit } 
+                    >
                         Finalizar
                 </Button>
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -212,6 +267,7 @@ const useStyless = makeStyles((theme) => ({
                     </Snackbar>
                 </Grid>
             </Grid>
+            </form >
         </React.Fragment>
     );
 }
