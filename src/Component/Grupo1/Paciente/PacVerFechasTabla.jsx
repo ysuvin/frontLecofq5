@@ -19,8 +19,9 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import {GetRutinas} from '../../../Model/Grupo1/RutinasController';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-
 import history from '../../../history.jsx';
+import { PacienteContext } from '../../../Model/Grupo1/PacienteContext';
+import { RutinaContext } from '../../../Model/Grupo1/RutinaContext';
 
 
 
@@ -53,9 +54,22 @@ export default function PacVerFechasTabla() {
 
   const [state, setState] = React.useState(null);
   const [isLoading,setIsLoading] = React.useState(true);
+  const [pacienteC, setPacienteC] = React.useContext(PacienteContext);
+  const [rutinaC, setRutinaC] = React.useContext(RutinaContext);
 
   const fetchData = async () => {
-    const query = await GetRutinas();
+    const query = await GetRutinas().then((res) => {
+      var response = []
+      for(var i = 0; i < res.length; i++)
+      {
+
+        if(res[i].idPaciente == pacienteC._id)
+        {
+          response.push(res[i]);
+        }
+      }
+    return response;
+    });
     return query;
     
   }
@@ -79,7 +93,7 @@ export default function PacVerFechasTabla() {
     <div>
       {isLoading ? 
       (
-        <div>Loading ...</div>
+        <div>Cargando...</div>
       ) : 
       (
       <MaterialTable
@@ -92,6 +106,8 @@ export default function PacVerFechasTabla() {
           icon: () => <NavigateNextIcon/>,
           tooltip: 'Ver ejercicios asignados',
           onClick: (event, rowData) => {
+            setRutinaC({_id: rowData._id,});
+            console.log(rowData._id);
             redirectPacVerEjercicios()
           }
         }

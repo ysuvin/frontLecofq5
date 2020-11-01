@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import ReactPlayer from 'react-player/youtube'
 import '../../../css/Grupo1/G1Landing.css';
 import history from '../../../history';
+import { RutinaContext } from '../../../Model/Grupo1/RutinaContext';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,9 +35,21 @@ export default function HorizontalLabelPositionBelowStepper() {
   const [ejercicios, setEjercicios] = useState(null);
   const [isLoading,setIsLoading] = useState(true);
   const [steps, setSteps] = useState(null);
+  const [rutinaC, setRutinaC] = React.useContext(RutinaContext);
 
   const fetchData = async () => {
-    const query = await GetEjercicios();
+    const query = await GetEjercicios().then((res) => {
+      var response = []
+      for(var i = 0; i < res.length; i++)
+      {
+
+        if(res[i].idRutina == rutinaC._id)
+        {
+          response.push(res[i]);
+        }
+      }
+    return response;
+    });
     return query;
     
   }
@@ -85,7 +99,7 @@ export default function HorizontalLabelPositionBelowStepper() {
     <div className="g1_wrapper">
       {isLoading ? 
       (
-        <div>Loading ...</div>
+        <div>Cargando...</div>
       ) : 
       ( 
       <div className="g1_body_alt">
@@ -108,6 +122,8 @@ export default function HorizontalLabelPositionBelowStepper() {
         ) : (
           <div>
             <div>
+              <h5>Repeticiones:</h5>
+              {ejercicios[activeStep].repeticiones}
               <h4>Descripción:</h4>
               {ejercicios[activeStep].desc}
 

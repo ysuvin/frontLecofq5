@@ -19,6 +19,10 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import history from '../../history.jsx';
 import {GetRutinas, PostRutina, UpdateRutina, DeleteRutina} from '../../Model/Grupo1/RutinasController';
+import { PacienteContext } from '../../Model/Grupo1/PacienteContext';
+import { RutinaContext } from '../../Model/Grupo1/RutinaContext';
+import { KsViewContext } from '../../Model/Grupo1/KsViewContext';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -46,15 +50,31 @@ export default function KsAsigFechaTabla(rutinas) {
 
   const redirectKsAsEj = () =>
   {
-    history.push('/Grupo1/KsAsFecha/KsAsEjercicios');
+    setKsViewC(2);
   }
     
   //Query que recupera las fechas
   const [state, setState] = React.useState(null);
   const [isLoading,setIsLoading] = React.useState(true);
+  const [pacienteC, setPacienteC] = React.useContext(PacienteContext);
+  const [rutinaC, setRutinaC] = React.useContext(RutinaContext);
+  const [ksViewC, setKsViewC] = React.useContext(KsViewContext);
 
   const fetchData = async () => {
-      return await GetRutinas();
+      const query = await GetRutinas().then((res) => {
+        var response = []
+        for(var i = 0; i < res.length; i++)
+        {
+
+          if(res[i].idPaciente == pacienteC._id)
+          {
+            response.push(res[i]);
+          }
+        }
+      return response;
+      });
+      return query;
+
   }
 
   const postData = async (rutina) => {
@@ -91,7 +111,7 @@ export default function KsAsigFechaTabla(rutinas) {
     <div>
     {isLoading ? 
       (
-        <div>Loading ...</div>
+        <div>Cargando...</div>
       ) : 
       (
         <MaterialTable
@@ -103,8 +123,9 @@ export default function KsAsigFechaTabla(rutinas) {
           {
             icon: () => <AddBox/>,
             tooltip: 'Añadir ejercicios',
-            onClick: () => {
-              redirectKsAsEj()
+            onClick: (event, rowData) =>{
+              setRutinaC({_id: rowData._id,});
+              redirectKsAsEj();
             }
           }
         ]}
@@ -160,8 +181,9 @@ export default function KsAsigFechaTabla(rutinas) {
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
-                console.log(newData);
-                postData(newData).then((response) => {
+                console.log(newData.fecha);
+                console.log(pacienteC._id);
+                postData({idPaciente: pacienteC._id, fecha: newData.fecha,}).then((response) => {
                   const datito = [...state];
                   datito.push(response);
                   setState(datito);
@@ -175,7 +197,7 @@ export default function KsAsigFechaTabla(rutinas) {
                 if (oldData) {
                   //Este código indecente hace que esta sección no sea flexible
                   var nextData = state;
-                  updateData(newData._id,{fecha: newData.fecha});
+                  updateData(newData._id,{idPaciente: newData.idPaciente, fecha: newData.fecha});
                   nextData[nextData.indexOf(oldData)].fecha = newData.fecha;
                   setState(nextData);
                 }
@@ -196,6 +218,8 @@ export default function KsAsigFechaTabla(rutinas) {
         }}
       />
       )}
+      <p></p>
+      <Button variant="contained" color="secondary" onClick={() => { setKsViewC(0);}}>Volver</Button>
       </div>
       
   );

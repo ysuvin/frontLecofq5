@@ -12,6 +12,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import history from '../../history';
+import { KsViewContext } from '../../Model/Grupo1/KsViewContext';
 
 const useStyles = makeStyles({
   list: {
@@ -22,19 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-const redirectHome = () => 
-{
-  history.push('/Home');
-}
 
-const redirectKinesiologo = () => 
-  {
-    history.push('/Grupo1/');
-  }
-const redirectPaciente = () => 
-{
-    history.push('/Grupo1/PacVerFechas');
-}
 
 export default function SSADrawer() {
   const classes = useStyles();
@@ -44,6 +33,23 @@ export default function SSADrawer() {
     bottom: false,
     right: false,
   });
+
+  const [ksViewC, setKsViewC ] = React.useContext(KsViewContext);
+
+  const redirectHome = () => 
+  {
+    history.push('/Home');
+  }
+
+  const redirectKinesiologo = () => 
+    {
+      history.push('/Grupo1/');
+      setKsViewC(0);
+    }
+  const redirectPaciente = () => 
+  {
+      history.push('/Grupo1/PacVerFechas');
+  }
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {

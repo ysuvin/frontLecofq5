@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import '../../../css/Grupo1/G1Landing.css';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -16,13 +16,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import axios from 'axios';
+import { PacienteContext } from '../../../Model/Grupo1/PacienteContext';
+import { KsViewContext } from '../../../Model/Grupo1/KsViewContext';
 
 
-
-function KsVerPacientes() {
+function KsVerPacientes({viewStage}) {
 
     //Query que recupera a los pacientes
+    const [pacienteC, setPacienteC] = React.useContext(PacienteContext);
+    const [ksViewC, setKsViewC] = React.useContext(KsViewContext);
     const [paciente, setPaciente] = React.useState(null);
     const [Pacientes, setPacientes] = React.useState(null);
     const [isLoading,setIsLoading] = React.useState(true);
@@ -35,8 +37,8 @@ function KsVerPacientes() {
     useEffect(() => {
         fetchData().then((query) => {
           setPacientes(query);
-          console.log(query);
-          setPaciente(query[0]);
+          setPaciente(query[0])
+          setPacienteC({_id: query[0]._id, nombre: query[0].nombre,});
           setIsLoading(false);
         });
     },[]);
@@ -46,7 +48,7 @@ function KsVerPacientes() {
 
     const redirectKsAsFecha = () =>
     {
-      history.push('/Grupo1/KsAsFecha')
+      setKsViewC(1);
     }
 
     const [open, setOpen] = React.useState(false);
@@ -69,7 +71,7 @@ function KsVerPacientes() {
       Seleccionar Paciente:
       {isLoading ? 
       (
-        <div>Loading ...</div>
+        <div>Cargando...</div>
       ) : 
       ( 
       <div>   
@@ -78,8 +80,12 @@ function KsVerPacientes() {
         onChange={(event, newValue) => {
           //Si obtengo un valor null, no actualizo el display para evitar un crash, se utiliza redundancia
           //con console.log() debido a que la condicional no puede no retornar una funcion, cualquiera que sea.
-          newValue !== null ? setPaciente(newValue) : console.log() ;
-          console.log(newValue);
+          if(newValue !== null)
+          {
+            setPaciente(newValue)
+            setPacienteC({_id: newValue._id, nombre: newValue.nombre,})
+            console.log(pacienteC);
+          }
         }}
         id="help"
         options={Pacientes}
