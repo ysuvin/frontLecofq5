@@ -272,7 +272,7 @@ export default function PacienteF() {
                             </form>
                         </Grid>
                         <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
-                            <Button variant="outlined" color="primary" startIcon={<CheckIcon />} onClick={e => { goLogIn(); Listeilor() }}
+                            <Button variant="outlined" color="primary" startIcon={<CheckIcon />} onClick={e => { goLogIn(); Listeilor()}}
                                 className={classes.submit}
                             >
                                 Finalizar
