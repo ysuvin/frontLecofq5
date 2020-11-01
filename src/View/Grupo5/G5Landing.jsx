@@ -8,6 +8,7 @@ import Kinesiologo from './PlantillaKinesiologo/Kinesiologo';
 import Home from './HomeG5';
 import Nutricionista from './PlantillaNutricionista/Nutricionista';
 import Psicologo from './PlantillaPsicologo/Psicologo';
+import VerFichasPacientes from './Plantillapaciente/VerFichasPaciente';
 
 
 
@@ -26,6 +27,7 @@ function G5Landing() {
                 <Route exact path="/Grupo5/PlantillaNutricionista/" component={Nutricionista} />
                 <Route exact path="/Grupo5/PlantillaPsicologo/" component={Psicologo} />
                 <Route exact path="/Grupo5/PlantillaKinesiologo/" component={Kinesiologo} />
+                <Route exact path="/Grupo5/VerFichasPaciente/" component={VerFichasPacientes} />
                 {/* <Route exact path="/Grupo5/PlantillaMedico/" component={Medico} /> */}
                 {/* Fin Routing Grupo 5*/}
             </Switch>
