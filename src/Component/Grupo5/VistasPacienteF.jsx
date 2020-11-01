@@ -16,6 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import axios from 'axios';
 
 
 
@@ -53,17 +54,39 @@ const dataPaises = [
     { id: 10, nombre: "Egipto", minutos: 186 },
 ];
 
-export default function KinesiologoF() {
+export default function Vistapaciente() {
+
+const [data, setData] = React.useState();
 
 const classes = useStyles();
-const [data, setData] = useState(dataPaises);
+
+ const state ={
+   data:[{ rut: 1, domicilio: "Filipinas", telefono: 241 }]
+}
+
+  const peticionGet=()=>{
+    axios.get(`http://localhost:8080/fichaPaciente/`).then(response=>{
+      setData({data: response.data});
+    }).catch(error=>{
+      console.log(error.message);
+    })
+    }
+    
 
     return (
+        
+    
         <div style={{
             marginLeft:30, marginRight:30, marginBottom:30, marginTop:30
         }}>
         <React.Fragment>
             <Grid item xs={12}>
+
+            <Button variant="outlined" color="primary"  onClick={e => { peticionGet()}}
+                            >
+                                Finalizar
+                </Button>
+
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -74,17 +97,20 @@ const [data, setData] = useState(dataPaises);
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map(elemento=>
+                        {state.data.map(elemento=>{
+                        return(
                             <TableRow>
-                                <TableCell>{elemento.id}</TableCell>
-                                <TableCell>{elemento.nombre}</TableCell>
-                                <TableCell>{elemento.minutos}</TableCell>
+                                <TableCell>{elemento.rut}</TableCell>
+                                <TableCell>{elemento.domicilio}</TableCell>
+                                <TableCell>{elemento.telefono}</TableCell>
                                 <TableCell>
                                         <Button variant="contained" color="primary">Ver</Button>
                                         <Button variant="contained"color="secondary" className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
-                        )}
+                        )
+                        
+                    })}
                     </TableBody>
                 </Table>
             </Grid>
