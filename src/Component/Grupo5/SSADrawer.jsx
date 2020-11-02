@@ -42,6 +42,9 @@ const redirectPlantillaPsicologo = () => {
 const redirectVistaFichasPaciente = () => {
   history.push('/Grupo5/VerFichasPaciente');
 }
+const redirectPutFichaPaciente = () => {
+  history.push('/Grupo5/PutFichaPaciente');
+}
 
 export default function SSADrawer() {
   const classes = useStyles();
@@ -99,6 +102,10 @@ export default function SSADrawer() {
       <ListItem onClick={redirectVistaFichasPaciente} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
         <ListItemText primary={'FichasPacientes'} />
+      </ListItem>
+      <ListItem onClick={redirectPutFichaPaciente} button key='Plantilla'>
+        <ListItemIcon><AssignmentIcon /></ListItemIcon>
+        <ListItemText primary={'seboorra'} />
       </ListItem>
     </div>
   );
