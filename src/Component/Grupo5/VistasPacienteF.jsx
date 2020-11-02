@@ -17,7 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import { Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
-
+import history from '../../history';
 
 
 function Alert(props) {
@@ -46,14 +46,15 @@ export default function Vistapaciente() {
 const [data, setData] = useState([]);
 const classes = useStyles();
 
-
+const redirectPutFichaPaciente = () => {
+    { history.push('/Grupo5/PutFichaPaciente') }
+}
 
 useEffect(() => {
 
     peticionGet()
     // eslint-disable-next-line
-  }, []); 
-
+  }, [data]); 
 
 
   const peticionGet=()=>{
@@ -66,7 +67,7 @@ useEffect(() => {
     }
 
     const borrarElemento = (id) => {
-        //axios.delete()
+        axios.delete(`http://localhost:8080/fichaPaciente/${id}`)
         console.log(id)
     }
     
@@ -97,7 +98,7 @@ useEffect(() => {
                                 <TableCell>{elemento.domicilio}</TableCell>
                                 <TableCell>{elemento.telefono}</TableCell>
                                 <TableCell style={{textAlign: "center"}}> 
-                                        <Button variant="contained" color="primary">Ver </Button>
+                                        <Button variant="contained" color="primary" onClick={redirectPutFichaPaciente}> Ver </Button>
                                         <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
