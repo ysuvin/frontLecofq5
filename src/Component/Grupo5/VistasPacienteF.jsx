@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import Typography from '@material-ui/core/Typography';
 // import Grid from '@material-ui/core/Grid';
 // import TextField from '@material-ui/core/TextField';
@@ -41,35 +41,33 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const dataPaises = [
-    { id: 1, nombre: "Filipinas", minutos: 241 },
-    { id: 2, nombre: "Brasil", minutos: 225 },
-    { id: 3, nombre: "Colombia", minutos: 216 },
-    { id: 4, nombre: "Nigeria", minutos: 216 },
-    { id: 5, nombre: "Argentina", minutos: 207 },
-    { id: 6, nombre: "Indonesia", minutos: 195 },
-    { id: 7, nombre: "Emiratos Árabes Unidos", minutos: 191 },
-    { id: 8, nombre: "México", minutos: 190 },
-    { id: 9, nombre: "Sudáfrica", minutos: 190 },
-    { id: 10, nombre: "Egipto", minutos: 186 },
-];
-
 export default function Vistapaciente() {
 
-const [data, setData] = React.useState();
-
+const [data, setData] = useState([]);
 const classes = useStyles();
 
- const state ={
-   data:[{ rut: 1, domicilio: "Filipinas", telefono: 241 }]
-}
+
+
+useEffect(() => {
+
+    peticionGet()
+    // eslint-disable-next-line
+  }, []); 
+
+
 
   const peticionGet=()=>{
     axios.get(`http://localhost:8080/fichaPaciente/`).then(response=>{
-      setData({data: response.data});
+        setData(response.data.data);
+
     }).catch(error=>{
       console.log(error.message);
     })
+    }
+
+    const borrarElemento = (id) => {
+        //axios.delete()
+        console.log(id)
     }
     
 
@@ -82,30 +80,25 @@ const classes = useStyles();
         <React.Fragment>
             <Grid item xs={12}>
 
-            <Button variant="outlined" color="primary"  onClick={e => { peticionGet()}}
-                            >
-                                Finalizar
-                </Button>
-
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell> ID </TableCell>
-                            <TableCell> Nombre </TableCell>
-                            <TableCell> Minutos (Por dia) </TableCell>
-                            <TableCell> Acciones </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> ID </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Nombre </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Minutos (Por dia) </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Acciones </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {state.data.map(elemento=>{
+                        {data.map( (elemento, index ) => {
                         return(
-                            <TableRow>
-                                <TableCell>{elemento.rut}</TableCell>
+                            <TableRow key={index}>
+                                <TableCell >{elemento.rut}</TableCell>
                                 <TableCell>{elemento.domicilio}</TableCell>
                                 <TableCell>{elemento.telefono}</TableCell>
-                                <TableCell>
-                                        <Button variant="contained" color="primary">Ver</Button>
-                                        <Button variant="contained"color="secondary" className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
+                                <TableCell style={{textAlign: "center"}}> 
+                                        <Button variant="contained" color="primary">Ver </Button>
+                                        <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
                         )
