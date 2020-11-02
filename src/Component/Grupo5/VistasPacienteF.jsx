@@ -47,7 +47,7 @@ const [data, setData] = useState([]);
 const classes = useStyles();
 
 const redirectPutFichaPaciente = (id) => {
-    { history.push(`/Grupo5/PutFichaPaciente/${id}`)
+    { history.push(`/Grupo5/PutFichaPacienteF/${id}`)
     console.log(id); }
 }
 
