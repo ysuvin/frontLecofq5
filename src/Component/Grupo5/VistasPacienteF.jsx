@@ -52,7 +52,7 @@ useEffect(() => {
 
     peticionGet()
     // eslint-disable-next-line
-  }, []); 
+  }, [data]); 
 
 
 
@@ -65,9 +65,10 @@ useEffect(() => {
     })
     }
 
-    const borrarElemento = (id) => {
-        //axios.delete()
+    const BorrarElemento = (id) => {
+        axios.delete(`http://localhost:8080/fichaPaciente/${id}`)
         console.log(id)
+        
     }
     
 
@@ -98,7 +99,7 @@ useEffect(() => {
                                 <TableCell>{elemento.telefono}</TableCell>
                                 <TableCell style={{textAlign: "center"}}> 
                                         <Button variant="contained" color="primary">Ver </Button>
-                                        <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
+                                        <Button variant="contained"color="secondary" onClick={e => BorrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
                         )
