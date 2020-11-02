@@ -17,7 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import { Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
-
+import history from '../../history';
 
 
 function Alert(props) {
@@ -46,14 +46,16 @@ export default function Vistapaciente() {
 const [data, setData] = useState([]);
 const classes = useStyles();
 
-
+const redirectPutFichaPaciente = (id) => {
+    { history.push(`/Grupo5/PutFichaPaciente/${id}`)
+    console.log(id); }
+}
 
 useEffect(() => {
 
     peticionGet()
     // eslint-disable-next-line
   }, [data]); 
-
 
 
   const peticionGet=()=>{
@@ -65,7 +67,7 @@ useEffect(() => {
     })
     }
 
-    const BorrarElemento = (id) => {
+    const borrarElemento = (id) => {
         axios.delete(`http://localhost:8080/fichaPaciente/${id}`)
         console.log(id)
         
@@ -84,9 +86,9 @@ useEffect(() => {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> ID </TableCell>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Nombre </TableCell>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Minutos (Por dia) </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> RUT </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Motivo de consulta </TableCell>
+                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Fecha de ingreso </TableCell>
                             <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Acciones </TableCell>
                         </TableRow>
                     </TableHead>
@@ -94,12 +96,12 @@ useEffect(() => {
                         {data.map( (elemento, index ) => {
                         return(
                             <TableRow key={index}>
-                                <TableCell >{elemento.rut}</TableCell>
-                                <TableCell>{elemento.domicilio}</TableCell>
-                                <TableCell>{elemento.telefono}</TableCell>
+                                <TableCell >{elemento._id}</TableCell>
+                                <TableCell>{elemento.motivo_consulta}</TableCell>
+                                <TableCell>{elemento.fecha_ingreso}</TableCell>
                                 <TableCell style={{textAlign: "center"}}> 
-                                        <Button variant="contained" color="primary">Ver </Button>
-                                        <Button variant="contained"color="secondary" onClick={e => BorrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
+                                        <Button variant="contained" color="primary" onClick={e => redirectPutFichaPaciente(elemento._id)}> Ver </Button>
+                                        <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
                         )
