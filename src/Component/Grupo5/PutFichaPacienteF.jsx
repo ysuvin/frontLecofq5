@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -63,7 +63,7 @@ const styles = (theme) => ({
     },
 });
 
-export default function PutFichaPaciente() {
+export default function PutFichaPacienteF() {
 
     const classes = useStyles();
     const [values, setAge] = React.useState('');
@@ -163,8 +163,8 @@ export default function PutFichaPaciente() {
             });
     }
 
-    const verFichaP = (id) => {
-        axios.get(`http://localhost:8080/fichaPaciente/${id}`).then(response => {
+    const verFichaP = () => {
+        axios.get(`http://localhost:8080/fichaPaciente/`).then(response => {
             setData(response.data.data);
 
         }).catch(error => {
@@ -208,7 +208,7 @@ export default function PutFichaPaciente() {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                            />
+                            /> 
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField required id="domici" label="Domicilio" fullWidth autoComplete="domici"
