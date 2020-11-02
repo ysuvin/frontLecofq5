@@ -47,7 +47,7 @@ const [data, setData] = useState([]);
 const classes = useStyles();
 
 const redirectPutFichaPaciente = (id) => {
-    { history.push(`/Grupo5/PutFichaPacienteF/${id}`)
+    { history.push(`/Grupo5/PutFichaPaciente/${id}`)
     console.log(id); }
 }
 
@@ -70,6 +70,7 @@ useEffect(() => {
     const borrarElemento = (id) => {
         axios.delete(`http://localhost:8080/fichaPaciente/${id}`)
         console.log(id)
+        
     }
     
 

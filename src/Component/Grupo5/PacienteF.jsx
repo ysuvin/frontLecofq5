@@ -106,8 +106,8 @@ export default function PacienteF() {
     const [banderaAlerta, setBanderaAlerta] = useState(false);
     const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
 
-    const Listeilor = () => {
-        axios.get(`http://localhost:8080/fichaPaciente/`)
+    const Listeilor = (id) => {
+        axios.get(`http://localhost:8080/fichaPaciente/${id}`)
             .then(res => {
                 console.log("console: ", res)
             })

@@ -13,6 +13,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import history from '../../history';
+import {useParams} from 'react-router-dom';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -69,6 +70,7 @@ export default function PutFichaPacienteF() {
     const [values, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+    const {id} = useParams();
 
     const handleClick = () => {
         setOpen(true);
@@ -98,18 +100,6 @@ export default function PutFichaPacienteF() {
     const [value, setValue] = React.useState('Controlled')
 
 
-    const [rut, setRut] = React.useState('');
-    const [domicilio, setDomicilio] = React.useState('');
-    const [comuna, setComuna] = React.useState('');
-    const [estado_civil, setEstado_civil] = React.useState('');
-    const [prevision, setPrevision] = React.useState('');
-    const [motivo_consulta, setMotivo_consulta] = React.useState('');
-    const [telefono, setTelefono] = React.useState('');
-    const [fecha_ingreso, setFecha_ingreso] = React.useState('');
-    const [banderaAlerta, setBanderaAlerta] = useState(false);
-    const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
-
-
 
     // const Listeilor = () => {
     //     axios.get(`http://localhost:8080/fichaPaciente/`)
@@ -118,59 +108,22 @@ export default function PutFichaPacienteF() {
     //         })
     //     //history.push('Listeilor')
     // }
+    useEffect(() => {
 
-    // const peticionGet = () => {
-    //     axios.get(`http://localhost:8080/fichaPaciente/`).then(response => {
-    //         setData(response.data.data);
+        peticionGet(id)
+        // eslint-disable-next-line
+      }, []); 
+     const [data, setData] = useState([]);
 
-    //     }).catch(error => {
-    //         console.log(error.message);
-    //     })
-    // }
-    
-    const [data, setData] = useState([]);
+     const peticionGet = (id) => {
+         axios.get(`http://localhost:8080/fichaPaciente/${id}`).then(response => {
+             setData(response.data.data);
+             console.log("console: ",response.data.data);
 
-    const goLogIn = () => {
-        let data = {
-            rut: rut,
-            domicilio: domicilio,
-            comuna: comuna,
-            estado_civil: estado_civil,
-            prevision: prevision,
-            motivo_consulta: motivo_consulta,
-            telefono: telefono,
-            fecha_ingreso: fecha_ingreso
-
-        }
-        axios.post(`http://localhost:8080/fichaPaciente/`, data) // callback( [] , false)
-            .then((response) => {
-                if (response.data.state) {
-                    setOpen(true);
-                    setBanderaAlerta(true);
-                    setBanderaAlertaOpcion(true)
-                } else {
-                    setOpen(true);
-                    setBanderaAlerta(true);
-                    setBanderaAlertaOpcion(false)
-                }
-                console.log(response)
-
-            }).finally(() => { console.log("termina") }).catch((e) => {
-                console.log(e);
-                setOpen(true);
-                setBanderaAlerta(true);
-                setBanderaAlertaOpcion(false)
-            });
-    }
-
-    const verFichaP = () => {
-        axios.get(`http://localhost:8080/fichaPaciente/`).then(response => {
-            setData(response.data.data);
-
-        }).catch(error => {
-            console.log(error.message);
-        })
-    }
+         }).catch(error => {
+             console.log(error.message);
+         })
+     }
 
     return (
         <div style={{
@@ -182,8 +135,7 @@ export default function PutFichaPacienteF() {
                 <form className={classes.form} noValidate >
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
-                            <TextField required type="number" id="rutPaci" label="Rut (Ej: 12345678-9)" fullWidth autoComplete="rut-paci"
-                                value={rut} onChange={(e) => { setRut(e.target.value) }}
+                            <TextField disabled id="rutPaci" label={data.rut} fullWidth autoComplete="rut-paci" 
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -211,22 +163,21 @@ export default function PutFichaPacienteF() {
                             /> 
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <TextField required id="domici" label="Domicilio" fullWidth autoComplete="domici"
-                                value={domicilio} onChange={(e) => { setDomicilio(e.target.value) }}
+                            <TextField disabled required id="domici" label="Domicilio" fullWidth autoComplete="domici" defaultValue ={data.domicilio}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
+                                disabled
                                 required
                                 id="com"
                                 label="Comuna"
                                 fullWidth
                                 autoComplete="com"
-                                value={comuna} onChange={(e) => { setComuna(e.target.value) }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <FormControl className={classes.formControl}>
+                            <FormControl disabled className={classes.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Estado Civil   </InputLabel>
                                 <Select
                                     labelId="demo-controlled-open-select-label"
@@ -237,7 +188,6 @@ export default function PutFichaPacienteF() {
                                     onOpen={handleOpen2}
                                     value={values}
                                     onChange={handleChange}
-                                    value={estado_civil} onChange={(e) => { setEstado_civil(e.target.value) }}
                                 >
                                     <MenuItem value="">
                                         <em>(Vacio)</em>
@@ -257,7 +207,6 @@ export default function PutFichaPacienteF() {
                                 id="telef"
                                 label="Telefono(+56912345678)"
                                 autoComplete="telef"
-                                value={telefono} onChange={(e) => { setTelefono(e.target.value) }}
                             />
 
                         </Grid>
@@ -269,7 +218,6 @@ export default function PutFichaPacienteF() {
                                 id="prev"
                                 label="Previsión"
                                 autoComplete="prev"
-                                value={prevision} onChange={(e) => { setPrevision(e.target.value) }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -282,12 +230,12 @@ export default function PutFichaPacienteF() {
                                 rows={4}
                                 defaultValue=""
                                 variant="filled"
-                                value={motivo_consulta} onChange={(e) => { setMotivo_consulta(e.target.value) }}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <form className={classes.container} noValidate>
                                 <TextField
+                                    disabled
                                     id="fechIngreso"
                                     label="Fecha de Ingreso"
                                     type="date"
@@ -296,40 +244,9 @@ export default function PutFichaPacienteF() {
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    value={fecha_ingreso} onChange={(e) => { setFecha_ingreso(e.target.value) }}
                                 />
                             </form>
                         </Grid>
-                        <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
-                            <Button variant="outlined" color="primary" startIcon={<CheckIcon />} onClick={e => { goLogIn() }}
-                                className={classes.submit}
-                            >
-                                Guardar
-                </Button>
-
-
-                            {
-                                banderaAlerta &&
-                                <div>
-                                    {
-                                        banderaAlertaOpcion ?
-                                            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                                                <Alert onClose={handleClose} severity="success">
-                                                    La ficha se ha creado con exito!
-                            </Alert>
-                                            </Snackbar>
-                                            :
-                                            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                                                <Alert onClose={handleClose} severity="error">
-                                                    Los datos no se han subido correctamente!
-                        </Alert>
-                                            </Snackbar>
-                                    }
-                                </div>
-                            }
-
-                        </Grid>
-
                     </Grid>
                 </form >
             </React.Fragment>
