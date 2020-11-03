@@ -32,3 +32,4 @@ Corran los siguientes 3 comandos en la carpeta que más les convenga:
 `npm start`
 
 Y con eso ya debiesen tener todo funcional.
+# AppLecofq5
