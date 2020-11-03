@@ -55,7 +55,7 @@ useEffect(() => {
 
     peticionGet()
     // eslint-disable-next-line
-  }, [data]); 
+  }, []); 
 
 
   const peticionGet=()=>{
@@ -68,8 +68,11 @@ useEffect(() => {
     }
 
     const borrarElemento = (id) => {
-        axios.delete(`http://localhost:8080/fichaPaciente/${id}`)
+        axios.delete(`http://localhost:8080/fichaPaciente/${id}`).then(()=>{
+            peticionGet()
+        })
         console.log(id)
+      
         
     }
     
@@ -96,7 +99,7 @@ useEffect(() => {
                         {data.map( (elemento, index ) => {
                         return(
                             <TableRow key={index}>
-                                <TableCell >{elemento._id}</TableCell>
+                                <TableCell >{elemento.rut}</TableCell>
                                 <TableCell>{elemento.motivo_consulta}</TableCell>
                                 <TableCell>{elemento.fecha_ingreso}</TableCell>
                                 <TableCell style={{textAlign: "center"}}> 

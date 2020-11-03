@@ -13,7 +13,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import history from '../../history';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Input } from '@material-ui/core';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -70,7 +71,7 @@ export default function PutFichaPacienteF() {
     const [values, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const {id} = useParams();
+    const { id } = useParams();
 
     const handleClick = () => {
         setOpen(true);
@@ -112,18 +113,18 @@ export default function PutFichaPacienteF() {
 
         peticionGet(id)
         // eslint-disable-next-line
-      }, []); 
-     const [data, setData] = useState([]);
+    }, []);
+    const [data, setData] = useState([]);
 
-     const peticionGet = (id) => {
-         axios.get(`http://localhost:8080/fichaPaciente/${id}`).then(response => {
-             setData(response.data.data);
-             console.log("console: ",response.data.data);
+    const peticionGet = (id) => {
+        axios.get(`http://localhost:8080/fichaPaciente/${id}`).then(response => {
+            setData(response.data.data);
+            console.log("console: ", response.data.data);
 
-         }).catch(error => {
-             console.log(error.message);
-         })
-     }
+        }).catch(error => {
+            console.log(error.message);
+        })
+    }
 
     return (
         <div style={{
@@ -135,121 +136,136 @@ export default function PutFichaPacienteF() {
                 <form className={classes.form} noValidate >
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
-                            <TextField disabled id="rutPaci" label={data.rut} fullWidth autoComplete="rut-paci" 
+                        <InputLabel >Rut</InputLabel>
+                            <TextField disabled id="rutPaci" //label="Rut" 
+                            fullWidth autoComplete="rut-paci" value={Number(data.rut)}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
+                        <InputLabel >Nombre</InputLabel>
                             <TextField
                                 disabled
                                 id="nombre"
-                                label="Nombre"
+                                label="NaN"
                                 fullWidth
                                 autoComplete="nombre"
+                                value=""
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
-
+                        <InputLabel >Fecha de Nacimiento</InputLabel>
                             <TextField
                                 disabled
                                 id="date"
-                                label="Fecha de Nacimiento"
-                                type="date"
-                                defaultValue="none"
+                                //label="NaN"
+                                //type="date"
+                                defaultValue="NaN/NaN/NaN"
                                 className={classes.textField}
 
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                            /> 
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField disabled required id="domici" label="Domicilio" fullWidth autoComplete="domici" defaultValue ={data.domicilio}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
+                        <InputLabel >Domicilio</InputLabel>
+                            <TextField disabled  id="domici" //label="Domicilio"
+                             fullWidth autoComplete="domici" value={data.domicilio}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                        <InputLabel >Comuna</InputLabel>
+
                             <TextField
                                 disabled
-                                required
+                                
                                 id="com"
-                                label="Comuna"
+                               label="NaN"
                                 fullWidth
                                 autoComplete="com"
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <FormControl disabled className={classes.formControl}>
-                                <InputLabel id="demo-controlled-open-select-label">Estado Civil   </InputLabel>
-                                <Select
-                                    labelId="demo-controlled-open-select-label"
-                                    id="demo-controlled-open-select"
-                                    open={open2}
-                                    onClose={handleClose2}
+                           
+                            <InputLabel >Estado Civil</InputLabel>
 
-                                    onOpen={handleOpen2}
-                                    value={values}
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value="">
-                                        <em>(Vacio)</em>
-                                    </MenuItem>
-                                    <MenuItem value={"Soltero(a)"}>Soltero(a)</MenuItem>
-                                    <MenuItem value={"Casado(a)"}>Casado(a)</MenuItem>
-                                    <MenuItem value={"Viudo(a)"}>Viudo(a)</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
+                               {/* <br></br> */}
+                            
+                               <TextField
                                 disabled
-                                type="number"
-                                required
+                               
+                                id="com"
+                               label={data.estado_civil} 
                                 fullWidth
-                                id="telef"
-                                label="Telefono(+56912345678)"
-                                autoComplete="telef"
+                                autoComplete="com"
                             />
+                           
+                            
+                                
+                                
+                       
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                    <InputLabel >Telefono</InputLabel>
+                        <TextField
+                            disabled
+                            type="number"
+                            required
+                            fullWidth
+                            id="telef"
+                            //label="Telefono(+56912345678)"
+                            autoComplete="telef"
+                            value={data.telefono}
+                        />
 
-                        </Grid>
-                        <Grid item xs={12} md={6}>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                    <InputLabel >Prevision</InputLabel>
+                        <TextField
+                            disabled
+                            required
+                            fullWidth
+                            id="prev"
+                            //label="Previsión"
+                            autoComplete="prev"
+                            value={data.prevision}
+                        />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                    <InputLabel >Motivo de consulta</InputLabel>
+                        <TextField
+                            
+                            disabled
+                            id="filled-multiline-static"
+                            // label="Motivo de Consulta"
+                            fullWidth
+                            multiline
+                            rows={4}
+                            value={data.motivo_consulta}
+                            variant="filled"
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <InputLabel >Fecha de Ingreso</InputLabel>
+                        <form className={classes.container} noValidate>
                             <TextField
                                 disabled
-                                required
-                                fullWidth
-                                id="prev"
-                                label="Previsión"
-                                autoComplete="prev"
+                                id="fechIngreso"
+
+                                type="date"
+                                defaultValue="2017-05-24T10:30"
+                                className={classes.textField}
+                                value={data.fecha_ingreso}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                disabled
-                                id="filled-multiline-static"
-                                label="Motivo de Consulta"
-                                fullWidth
-                                multiline
-                                rows={4}
-                                defaultValue=""
-                                variant="filled"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <form className={classes.container} noValidate>
-                                <TextField
-                                    disabled
-                                    id="fechIngreso"
-                                    label="Fecha de Ingreso"
-                                    type="date"
-                                    defaultValue="2017-05-24T10:30"
-                                    className={classes.textField}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                />
-                            </form>
-                        </Grid>
+                        </form>
+                    </Grid>
                     </Grid>
                 </form >
             </React.Fragment>
-        </div>
+        </div >
     );
 }
