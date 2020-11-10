@@ -180,7 +180,7 @@ export default function PutFichaPacienteF() {
                                 disabled
                                 
                                 id="com"
-                               label="NaN"
+                               label={data.comuna}
                                 fullWidth
                                 autoComplete="com"
                             />

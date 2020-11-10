@@ -151,7 +151,8 @@ export default function PacienteF() {
             marginLeft:30, marginRight:30, marginBottom:30, marginTop:30
         }}>
             <React.Fragment>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h4" gutterBottom>
+                    Creacion ficha clinica paciente
                 </Typography>
                 <form className={classes.form} noValidate >
                     <Grid container spacing={3}>

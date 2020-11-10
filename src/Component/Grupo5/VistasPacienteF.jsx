@@ -18,7 +18,7 @@ import { Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import history from '../../history';
-
+import Typography from '@material-ui/core/Typography';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -84,6 +84,9 @@ useEffect(() => {
             marginLeft:30, marginRight:30, marginBottom:30, marginTop:30
         }}>
         <React.Fragment>
+            <Typography variant="h4" gutterBottom>
+                Fichas Clinicas Pacientes
+            </Typography>
             <Grid item xs={12}>
 
                 <Table className={classes.table} aria-label="simple table">

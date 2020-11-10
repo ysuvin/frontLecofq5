@@ -81,7 +81,7 @@ export default function SSADrawer() {
       <Divider />
       <ListItem onClick={redirectPlantillapaciente} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
-        <ListItemText primary={'PlantillaPaciente'} />
+        <ListItemText primary={'Plantilla Paciente'} />
       </ListItem>
       {/* <ListItem onClick={redirectPlantillaMedico} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
@@ -93,20 +93,17 @@ export default function SSADrawer() {
       </ListItem> */}
       <ListItem onClick={redirectPlantillaPsicologo} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
-        <ListItemText primary={'PlantillaPsicologo'} />
+        <ListItemText primary={'Plantilla Psicologo'} />
       </ListItem>
       <ListItem onClick={redirectPlantillaNutricionista} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
-        <ListItemText primary={'PlantillaNutricionista'} />
+        <ListItemText primary={'Plantilla Nutricionista'} />
       </ListItem>
       <ListItem onClick={redirectVistaFichasPaciente} button key='Plantilla'>
         <ListItemIcon><AssignmentIcon /></ListItemIcon>
-        <ListItemText primary={'FichasPacientes'} />
+        <ListItemText primary={'Fichas Pacientes'} />
       </ListItem>
-      <ListItem onClick={redirectPutFichaPaciente} button key='Plantilla'>
-        <ListItemIcon><AssignmentIcon /></ListItemIcon>
-        <ListItemText primary={'seboorra'} />
-      </ListItem>
+     
     </div>
   );
 
