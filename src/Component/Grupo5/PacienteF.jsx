@@ -277,7 +277,7 @@ export default function PacienteF() {
                                 className={classes.submit}
                             >
                                 Finalizar
-                </Button>
+                            </Button>
 
 
                         {
@@ -299,11 +299,6 @@ export default function PacienteF() {
                                 }
                             </div>
                         }
-
-                            
-
-
-
 
                         </Grid>
                         
