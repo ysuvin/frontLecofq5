@@ -15,6 +15,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import Axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { Imput } from '@material-ui/core';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -47,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NutricionistaF() {
     const classes = useStyles();
-
     const [open, setOpen] = React.useState(false);
+    const {id} = useParams();
 
     const handleClick = () => {
         setOpen(true);
@@ -90,85 +92,96 @@ export default function NutricionistaF() {
     }
 
 
+    // const[rut,setRut] = React.useState('');
+    // const[actividadLaboral,setActividadLaboral] = React.useState('');
+    // const[actividadFisica,setActividadFisica] = React.useState('');
+    // const[horasSemanales,setHorasSemanales] = React.useState('');
+    // const[consumoAlcohol,setConsumoAlcohol] = React.useState('');
+    // const[cantidadSemanalAlcohol,setCantidadSemanalAlcohol] = React.useState('');
+    // const[habitoTabaquico,setHabitoTabaquico] = React.useState('');
+    // const[cantidadSemanalTabaco,setCantidadSemanalTabaco] = React.useState('');
+    // const[peso,setPeso] = React.useState('');
+    // const[talla,setTalla] = React.useState('');
+    // const[imc,setImc] = React.useState('');
+    // const[cCintura,setCCintura] = React.useState('');
+    // const[cCadera,setCCadera] = React.useState('');
+    // const[icc,setIcc] = React.useState('');
+    // const[pitri,setPitri] = React.useState('');
+    // const[pibi,setPibi] = React.useState('');
+    // const[pisb,setPisb] = React.useState('');
+    // const[pisc,setPisc] = React.useState('');
+    // const[grasa,setGrasa] = React.useState('');
+    // const[gmb,setGmb] = React.useState('');
+    // const[pesoIdeal,setPesoIdeal] = React.useState('');
+    // const[patologia,setPatologia] = React.useState('');
+    // const[diabetes,setDiabetes] = React.useState('');
+    // const[obesidad,setObesidad] = React.useState('');
+    // const[dislipidemia,setDislipidemia] = React.useState('');
+    // const[cancer,setCancer] = React.useState('');
+    // const[hta,setHta] = React.useState('');
+    // const[otrasPatologias,setOtrasPatologias] = React.useState('');
+
+
+    // const Listo = () => {
+    //     Axios.get(`http://localhost:8080/fichaNutricionista/`)
+    //     .then(res => {
+    //         console.log("console: ",res)
+    //     })
+    // }
+
+
+    // const goLogin = () =>{
+    //     let data = {
+    //         rut: rut,
+    //         actividadLaboral: actividadLaboral,
+    //         actividadFisica: actividadFisica,
+    //         horasSemanales: horasSemanales,
+    //         consumoAlcohol: consumoAlcohol,
+    //         cantidadSemanalAlcohol: cantidadSemanalAlcohol,
+    //         habitoTabaquico: habitoTabaquico,
+    //         cantidadSemanalTabaco: cantidadSemanalTabaco,
+    //         patologia: patologia,
+    //         diabetes: diabetes,
+    //         obesidad: obesidad,
+    //         dislipidemia: dislipidemia,
+    //         cancer: cancer,
+    //         hta: hta,
+    //         otrasPatologias: otrasPatologias,
+    //         peso: peso,
+    //         talla: talla,
+    //         imc: imc,
+    //         cCintura: cCintura,
+    //         cCadera: cCadera,
+    //         icc: icc,
+    //         pitri: pitri,
+    //         pibi: pibi,
+    //         pisb: pisb,
+    //         pisc: pisc,
+    //         grasa: grasa,
+    //         gmb: gmb,
+    //         pesoIdeal: pesoIdeal
+    //     }
+    //     Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
+    // }
 
 
 
 
-    const[rut,setRut] = React.useState('');
-    const[actividadLaboral,setActividadLaboral] = React.useState('');
-    const[actividadFisica,setActividadFisica] = React.useState('');
-    const[horasSemanales,setHorasSemanales] = React.useState('');
-    const[consumoAlcohol,setConsumoAlcohol] = React.useState('');
-    const[cantidadSemanalAlcohol,setCantidadSemanalAlcohol] = React.useState('');
-    const[habitoTabaquico,setHabitoTabaquico] = React.useState('');
-    const[cantidadSemanalTabaco,setCantidadSemanalTabaco] = React.useState('');
-    const[peso,setPeso] = React.useState('');
-    const[talla,setTalla] = React.useState('');
-    const[imc,setImc] = React.useState('');
-    const[cCintura,setCCintura] = React.useState('');
-    const[cCadera,setCCadera] = React.useState('');
-    const[icc,setIcc] = React.useState('');
-    const[pitri,setPitri] = React.useState('');
-    const[pibi,setPibi] = React.useState('');
-    const[pisb,setPisb] = React.useState('');
-    const[pisc,setPisc] = React.useState('');
-    const[grasa,setGrasa] = React.useState('');
-    const[gmb,setGmb] = React.useState('');
-    const[pesoIdeal,setPesoIdeal] = React.useState('');
-    const[patologia,setPatologia] = React.useState('');
-    const[diabetes,setDiabetes] = React.useState('');
-    const[obesidad,setObesidad] = React.useState('');
-    const[dislipidemia,setDislipidemia] = React.useState('');
-    const[cancer,setCancer] = React.useState('');
-    const[hta,setHta] = React.useState('');
-    const[otrasPatologias,setOtrasPatologias] = React.useState('');
-    
+    useEffect(() => {
+        peticionGet(id)
+    }, []);
 
-    const Listo = () => {
-        Axios.get(`http://localhost:8080/fichaNutricionista/`)
-        .then(res => {
-            console.log("console: ",res)
-        })
+    const [data, setData] = useState([]);
+
+    const peticionGet = (id) => {
+        Axios.get(`http://localhost:8080/fichaNutricionista/${id}`).then(response => {
+            setData(response.data.data);
+            console.log("console: ", response.data.data);
+    })
+        // }).catch.(error => {
+        //     console.log(error.message);
+        // })
     }
-
-
-    const goLogin = () =>{
-        let data = {
-            rut: rut,
-            actividadLaboral: actividadLaboral,
-            actividadFisica: actividadFisica,
-            horasSemanales: horasSemanales,
-            consumoAlcohol: consumoAlcohol,
-            cantidadSemanalAlcohol: cantidadSemanalAlcohol,
-            habitoTabaquico: habitoTabaquico,
-            cantidadSemanalTabaco: cantidadSemanalTabaco,
-            patologia: patologia,
-            diabetes: diabetes,
-            obesidad: obesidad,
-            dislipidemia: dislipidemia,
-            cancer: cancer,
-            hta: hta,
-            otrasPatologias: otrasPatologias,
-            peso: peso,
-            talla: talla,
-            imc: imc,
-            cCintura: cCintura,
-            cCadera: cCadera,
-            icc: icc,
-            pitri: pitri,
-            pibi: pibi,
-            pisb: pisb,
-            pisc: pisc,
-            grasa: grasa,
-            gmb: gmb,
-            pesoIdeal: pesoIdeal
-        }
-        Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
-    }
-
-
-
-
 
 
     return (
@@ -182,12 +195,11 @@ export default function NutricionistaF() {
                 </Typography>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
-                        <TextField 
-                            required id="rutPaci" 
-                            label="Rut del Paciente" 
+                        <TextField
+                            required id="rutPaci"
+                            label="Rut del Paciente"
                             fullWidth autoComplete="rut-paci"
-                            value={rut}
-                            onChange={(e) => { setRut(e.target.value) }} 
+                            value={Number(data.rut)}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -232,8 +244,7 @@ export default function NutricionistaF() {
                             label="Actividad Laboral"
                             fullWidth
                             autoComplete="act-lab"
-                            value={actividadLaboral}
-                            onChange={(e) => { setActividadLaboral(e.target.value) }}
+                            value={data.actividadLaboral}
                         />
                     </Grid>
 
@@ -243,8 +254,7 @@ export default function NutricionistaF() {
                             label="Actividad Fisica"
                             fullWidth
                             autoComplete="act-fis"
-                            value={actividadFisica}
-                            onChange={(e) => { setActividadFisica(e.target.value) }}
+                            value={data.actividadFisica}
                         />
                     </Grid>
 
@@ -255,8 +265,7 @@ export default function NutricionistaF() {
                             label="Hrs Por Semanas"
                             fullWidth
                             autoComplete="h-sem"
-                            value={horasSemanales}
-                            onChange={(e) => { setHorasSemanales(e.target.value) }}
+                            value={data.horasSemanales}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
@@ -265,8 +274,7 @@ export default function NutricionistaF() {
                             label="Consumo de Alcohol"
                             fullWidth
                             autoComplete="con-Al"
-                            value={consumoAlcohol}
-                            onChange={(e) => { setConsumoAlcohol(e.target.value) }}
+                            value={data.consumoAlcohol}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
@@ -276,8 +284,7 @@ export default function NutricionistaF() {
                             label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem1"
-                            value={cantidadSemanalAlcohol}
-                            onChange={(e) => { setCantidadSemanalAlcohol(e.target.value) }}
+                            value={data.cantidadSemanalAlcohol}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
@@ -286,8 +293,7 @@ export default function NutricionistaF() {
                             label="Hábito tabáquico"
                             fullWidth
                             autoComplete="hab-taba"
-                            value={habitoTabaquico}
-                            onChange={(e) => {setHabitoTabaquico(e.target.value) }}
+                            value={data.habitoTabaquico}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
@@ -297,8 +303,7 @@ export default function NutricionistaF() {
                             label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem2"
-                            value={cantidadSemanalTabaco}
-                            onChange={(e) => { setCantidadSemanalTabaco(e.target.value) }}
+                            value={data.cantidadSemanaltabaco}
                         />
                     </Grid>
 
@@ -315,8 +320,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkPatologia"
                                         color="primary"
-                                        value={patologia}
-                                        onChange={(e) => { setPatologia(e.target.value) }}
+                                        
                                     />
                                 }
                                 label="Patologia"
@@ -326,8 +330,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDiabetes"
                                         color="primary"
-                                        value={diabetes}
-                                        onChange={(e) => { setDiabetes(e.target.value) }}
+                                        
                                     />
                                 }
                                 label="Diabetes"
@@ -337,8 +340,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkObesidad"
                                         color="primary"
-                                        value={obesidad}
-                                        onChange={(e) => { setObesidad(e.target.value) }}
+                                        
                                     />
                                 }
                                 label="Obesidad"
@@ -348,8 +350,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDislipidemia"
                                         color="primary"
-                                        value={dislipidemia}
-                                        onChange={(e) => { setDislipidemia(e.target.value) }}
+                                        
                                     />
                                 }
                                 label="Dislipidemia"
@@ -359,8 +360,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkCancer"
                                         color="primary"
-                                        value={cancer}
-                                        onChange={(e) => { setCancer(e.target.value) }}
+                                        
                                     />
                                 }
                                 label="Cancer"
@@ -370,8 +370,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkHTA"
                                         color="primary"
-                                        value={hta}
-                                        onChange={(e) => { setHta(e.target.value) }}
+                                        
                                     />
                                 }
                                 label="HTA"
@@ -386,15 +385,14 @@ export default function NutricionistaF() {
                                 multiline
                                 rows={3}
                                 defaultValue=""
-                                value={otrasPatologias}
-                                onChange={(e) => { setOtrasPatologias(e.target.value) }}
+                                
                             />
                         </Grid>
                     </div>
 
 
                     <Grid item xs={12} md={12}>
-                    <Typography variant="h6" gutterBottom>
+                        <Typography variant="h6" gutterBottom>
                             Antropometría
                     </Typography>
                     </Grid>
@@ -406,8 +404,7 @@ export default function NutricionistaF() {
                                 label="Peso (Kg)"
                                 fullWidth
                                 autoComplete="peso-kg"
-                                value={peso}
-                                onChange={(e) => { setPeso(e.target.value) }}
+                                value={Number(data.peso)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -417,8 +414,7 @@ export default function NutricionistaF() {
                                 label="Talla (cm)"
                                 fullWidth
                                 autoComplete="talla-cm"
-                                value={talla}
-                                onChange={(e) => { setTalla(e.target.value) }}
+                                value={Number(data.talla)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -428,8 +424,7 @@ export default function NutricionistaF() {
                                 label="IMC"
                                 fullWidth
                                 autoComplete="imc"
-                                value={imc}
-                                onChange={(e) => { setImc(e.target.value) }}
+                                value={Number(data.imc)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -439,8 +434,7 @@ export default function NutricionistaF() {
                                 label="C. cintura"
                                 fullWidth
                                 autoComplete="c-cint"
-                                value={cCintura}
-                                onChange={(e) => { setCCintura(e.target.value) }}
+                                value={Number(data.cCintura)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -450,8 +444,7 @@ export default function NutricionistaF() {
                                 label="C. Cadera"
                                 fullWidth
                                 autoComplete="c-cad"
-                                value={cCadera}
-                                onChange={(e) => { setCCadera(e.target.value) }}
+                                value={Number(data.cCadera)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -461,8 +454,7 @@ export default function NutricionistaF() {
                                 label="I.C.C."
                                 fullWidth
                                 autoComplete="icc"
-                                value={icc}
-                                onChange={(e) => { setIcc(e.target.value) }}
+                                value={Number(data.icc)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -472,8 +464,7 @@ export default function NutricionistaF() {
                                 label="PITRI"
                                 fullWidth
                                 autoComplete="pitri"
-                                value={pitri}
-                                onChange={(e) => { setPitri(e.target.value) }}
+                                value={Number(data.pitri)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -483,8 +474,7 @@ export default function NutricionistaF() {
                                 label="PIBI"
                                 fullWidth
                                 autoComplete="pibi"
-                                value={pibi}
-                                onChange={(e) => { setPibi(e.target.value) }}
+                                value={Number(data.pibi)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -494,8 +484,7 @@ export default function NutricionistaF() {
                                 label="PISB"
                                 fullWidth
                                 autoComplete="pisb"
-                                value={pisb}
-                                onChange={(e) => { setPisb(e.target.value) }}
+                                value={Number(data.pisb)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -505,8 +494,7 @@ export default function NutricionistaF() {
                                 label="PISC"
                                 fullWidth
                                 autoComplete="pisc"
-                                value={pisc}
-                                onChange={(e) => { setPisc(e.target.value) }}
+                                value={Number(data.pisc)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -516,8 +504,7 @@ export default function NutricionistaF() {
                                 label="% Grasa"
                                 fullWidth
                                 autoComplete="porcent-g"
-                                value={grasa}
-                                onChange={(e) => { setGrasa(e.target.value) }}
+                                value={Number(data.grasa)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -527,8 +514,7 @@ export default function NutricionistaF() {
                                 label="G.M.B."
                                 fullWidth
                                 autoComplete="gmb"
-                                value={gmb}
-                                onChange={(e) => { setGmb(e.target.value) }}
+                                value={Number(data.gmb)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2} >
@@ -538,8 +524,7 @@ export default function NutricionistaF() {
                                 label="Peso Ideal"
                                 fullWidth
                                 autoComplete="peso-ideal"
-                                value={pesoIdeal}
-                                onChange={(e) => { setPesoIdeal(e.target.value) }}
+                                value={Number(data.pesoIdeal)}
                             />
                         </Grid>
                     </Grid>
@@ -570,7 +555,7 @@ export default function NutricionistaF() {
 
                     </Grid>
                     <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
-                        <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={e => { goLogin(); Listo() }} >
+                        <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={e => { }} >
                             Finalizar
                         </Button>
                         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
