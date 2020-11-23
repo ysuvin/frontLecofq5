@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +14,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Axios from 'axios';
-
+import { useParams } from 'react-router-dom';
 
 
 function Alert(props) {
@@ -66,9 +66,9 @@ const useStyless = makeStyles((theme) => ({
     },
   });
 
-export default function PsicologoF() {
+export default function PutFichaPsicologoF() {
 
-
+    const { id } = useParams();
     const [values, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
@@ -103,107 +103,21 @@ export default function PsicologoF() {
     const classes = useStyles();
 
 
-    const[rut,setRut] = React.useState('');
-    const[ocupacion,setOcupacion] = React.useState('');
-    const[escolaridad,setEscolaridad] = React.useState('');
-    const[telefono,setTelefono] = React.useState('');
-    const[ocupacionActual,setOcupacionActual] = React.useState('');
-    const[razonesConsulta,setRazonesConsulta] = React.useState('');
-    const[causasConsulta,setCausasConsulta] = React.useState('');
-    const[psicologoAnteriorRazon,setPsicologoAnteriorRazon] = React.useState('');
-    const[antecedentePrenatal,setAntecedentePrenatal] = React.useState('');
-    const[tipoParto,setTipoParto] = React.useState('');
-    const[antecedentePerinatal,setAntecedentePerinatal] = React.useState('');
-    const[antecedenteNacido,setAntecedenteNacido] = React.useState('');
-    const[nacimiento,setNacimiento] = React.useState('');
-    const[antecedenteDesarrollo,setAntecedenteDesarrollo] = React.useState('');
-    const[dificultadesAprender,setDificultadesAprender] = React.useState('');
-    const[enfermedades,setEnfermedades] = React.useState('');
-    const[datosEscolar,setDatosEscolar] = React.useState('');
-    const[conductaEscolar,setConductaEscolar] = React.useState('');
-    const[adaptacionEscolar,setaAdaptacionEscolar] = React.useState('');
-    const[remuneracion,setRemuneracion] = React.useState('');
-    const[tipoTrabajo,setTipoTrabajo] = React.useState('');
-    const[calidadTrabajo,setCalidadTrabajo] = React.useState('');
-    const[relacionCompañeros,setRelacionCompañeros] = React.useState('');
-    const[calidadLaboral,setCalidadLaboral] = React.useState('');
-    const[relacionSuperior,setRelacionSuperior] = React.useState('');
-    const[estabilidadLaboral,setEstabilidadLaboral] = React.useState('');
-    const[perspectivaDesarrollo,setPerspectivaDesarrollo] = React.useState('');
-    const[tipoPersona,setTipoPersona] = React.useState('');
-    const[balanceSocial,setBalanceSocial] = React.useState('');
-    const[estadoAnimo,setEstadoAnimo] = React.useState('');
-    const[situacionUltimoAño,setSituacionUltimoAño] = React.useState('');
-    const[tiempoPareja,setTiempoPareja] = React.useState('');
-    const[nombrePareja,setNombrePareja] = React.useState('');
-    const[edadPareja,setEdadPareja] = React.useState('');
-    const[nivelEducacionalPareja,setNivelEducacionalPareja] = React.useState('');
-    const[ocupacionActualPareja,setOcupacionActualPareja]= React.useState('');
-    const[relacionPareja,setRelacionPareja] = React.useState('');
-    const[metasVida,setMetasVida] = React.useState('');
-    const[sintomas,setSintomas] = React.useState('');
-    const[miedosDesproporcionados,setMiedosDesproporcionados] = React.useState('');
-    const[otrosMiedos,setOtrosMiedos] = React.useState('');
-    
+    useEffect(() => {
+        peticionGet(id)
+    }, []);
 
-    const Listo = () => {
-        Axios.get(`http://localhost:8080/fichaNutricionista/`)
-        .then(res => {
-            console.log("console: ",res)
-        })
+    const [data, setData] = useState([]);
+
+    const peticionGet = (id) => {
+        Axios.get(`http://localhost:8080/fichaPsicologo/${id}`).then(response => {
+            setData(response.data.data);
+            console.log("console: ", response.data.data);
+    })
+        // }).catch.(error => {
+        //     console.log(error.message);
+        // })
     }
-
-
-    const goLogin = () =>{
-        let data = {
-            rut: rut,
-            ocupacion: ocupacion,
-            escolaridad: escolaridad,
-            telefono: telefono,
-            ocupacionActual: ocupacionActual,
-            razonesConsulta: razonesConsulta,
-            causasConsulta: causasConsulta,
-            psicologoAnteriorRazon: psicologoAnteriorRazon,
-            antecedentePrenatal: antecedentePrenatal,
-            tipoParto: tipoParto,
-            antecedentePerinatal: antecedentePerinatal,
-            antecedenteNacido: antecedenteNacido,
-            nacimiento: nacimiento,
-            antecedenteDesarrollo: antecedenteDesarrollo,
-            dificultadesAprender: dificultadesAprender,
-            enfermedades: enfermedades,
-            datosEscolar: datosEscolar,
-            conductaEscolar: conductaEscolar,
-            adaptacionEscolar: adaptacionEscolar,
-            remuneracion: remuneracion,
-            tipoTrabajo: tipoTrabajo,
-            calidadTrabajo: calidadTrabajo,
-            relacionCompañeros: relacionCompañeros,
-            calidadLaboral: calidadLaboral,
-            relacionSuperior: relacionSuperior,
-            estabilidadLaboral: estabilidadLaboral,
-            perspectivaDesarrollo: perspectivaDesarrollo,
-            tipoPersona: tipoPersona,
-            balanceSocial: balanceSocial,
-            estadoAnimo: estadoAnimo,
-            situacionUltimoAño: situacionUltimoAño,
-            tiempoPareja: tiempoPareja,
-            nombrePareja: nombrePareja,
-            edadPareja: edadPareja,
-            nivelEducacionalPareja: nivelEducacionalPareja,
-            ocupacionActualPareja: ocupacionActualPareja,
-            relacionPareja: relacionPareja,
-            metasVida: metasVida,
-            sintomas: sintomas,
-            miedosDesproporcionados: miedosDesproporcionados,
-            otrosMiedos: otrosMiedos
-        }
-        Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
-    }
-
-
-
-
 
     return (
         <div style={{
@@ -242,7 +156,7 @@ export default function PsicologoF() {
                         label="Nombre"
                         fullWidth
                         autoComplete="nombre"
-                        value={rut}
+                        value={Number(data.rut)}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
