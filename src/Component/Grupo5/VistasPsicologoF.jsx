@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -38,81 +38,83 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Vistapaciente() {
 
-const [data, setData] = useState([]);
-const classes = useStyles();
+    const [data, setData] = useState([]);
+    const classes = useStyles();
 
 
-const redirectPutFichaPsicologo = (id) => {
-    { history.push(`/Grupo5/PutFichaPsicologo/${id}`)
-    console.log(id); }
-}
+    const redirectPutFichaPsicologo = (id) => {
+        {
+            history.push(`/Grupo5/PutFichaPsicologo/${id}`)
+            console.log(id);
+        }
+    }
 
-useEffect(() => {
+    useEffect(() => {
 
-    peticionGet()
-    // eslint-disable-next-line
-  }, []); 
+        peticionGet()
+        // eslint-disable-next-line
+    }, []);
 
 
-  const peticionGet=()=>{
-    axios.get(`http://localhost:8080/fichaPsicologo/`).then(response=>{
+    const peticionGet = () => {
+        axios.get(`http://localhost:8080/fichaPsicologo/`).then(response => {
         setData(response.data.data);
-
-    }).catch(error=>{
-      console.log(error.message);
-    })
+        //console.log(response.data);
+        }).catch(error => {
+            console.log(error.message);
+        })
     }
 
     const borrarElemento = (id) => {
-        axios.delete(`http://localhost:8080/fichaPsicologo/${id}`).then(()=>{
+        axios.delete(`http://localhost:8080/fichaPsicologo/${id}`).then(() => {
             peticionGet()
         })
         console.log(id)
-      
-        
+
+
     }
-    
+
 
     return (
-        
-    
-        <div style={{
-            marginLeft:30, marginRight:30, marginBottom:30, marginTop:30
-        }}>
-        <React.Fragment>
-            <Typography variant="h4" gutterBottom>
-                Fichas Clinicas Psicologo
-            </Typography>
-            <Grid item xs={12}>
 
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> RUT </TableCell>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Peso </TableCell>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Peso Ideal </TableCell>
-                            <TableCell style={{textAlign: "center", fontWeight: "bold"}}> Acciones </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {data.map( (elemento, index ) => {
-                        return(
-                            <TableRow key={index}>
-                                <TableCell >{elemento.rut}</TableCell>
-                                <TableCell>{elemento.peso}</TableCell>
-                                <TableCell>{elemento.pesoIdeal}</TableCell>
-                                <TableCell style={{textAlign: "center"}}> 
-                                        <Button variant="contained" color="primary" onClick={e => redirectPutFichaPsicologo(elemento._id)}> Ver </Button>
-                                        <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
-                                </TableCell>
+
+        <div style={{
+            marginLeft: 30, marginRight: 30, marginBottom: 30, marginTop: 30
+        }}>
+            <React.Fragment>
+                <Typography variant="h4" gutterBottom>
+                    Fichas Clinicas Psicologo
+            </Typography>
+                <Grid item xs={12}>
+
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> RUT </TableCell>
+                                <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> ocupacionActual </TableCell>
+                                <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> Escolaridad </TableCell>
+                                <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> Acciones</TableCell>
                             </TableRow>
-                        )
-                        
-                    })}
-                    </TableBody>
-                </Table>
-            </Grid>
-        </React.Fragment>
+                        </TableHead>
+                        <TableBody>
+                            {data.map((elemento, index) => {
+                                return (
+                                    <TableRow key={index}>
+                                        <TableCell >{elemento.rut}</TableCell>
+                                        <TableCell>{elemento.ocupacionActual}</TableCell>
+                                        <TableCell>{elemento.escolaridad}</TableCell>
+                                        <TableCell style={{ textAlign: "center" }}>
+                                            <Button variant="contained" color="primary" onClick={e => redirectPutFichaPsicologo(elemento._id)}> Ver </Button>
+                                            <Button variant="contained" color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
+                                        </TableCell>
+                                    </TableRow>
+                                )
+
+                            })}
+                        </TableBody>
+                    </Table>
+                </Grid>
+            </React.Fragment>
         </div>
     );
 }

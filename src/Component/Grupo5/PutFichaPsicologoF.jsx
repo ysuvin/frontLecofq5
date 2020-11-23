@@ -113,10 +113,9 @@ export default function PutFichaPsicologoF() {
         Axios.get(`http://localhost:8080/fichaPsicologo/${id}`).then(response => {
             setData(response.data.data);
             console.log("console: ", response.data.data);
-    })
-        // }).catch.(error => {
-        //     console.log(error.message);
-        // })
+        }).catch(error => {
+            console.log(error.message);
+        })
     }
 
     return (
