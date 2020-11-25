@@ -21,18 +21,21 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 const useStyles = makeStyles((theme) => ({
-    //uso:    className={classes.container}
+    //uso:    className={classes.container3}
     container: {
-         display: 'flex',
-         flexWrap: 'wrap',
+        display: 'flex',
+        flexWrap: 'wrap',
     },
     container1: {
         marginTop: 50,
         marginBottom: 5,
-        
+
     },
     container2: {
         marginBottom: 10,
+    },
+    container3: {
+        marginLeft: 10,
     },
     textField: {
         marginTop: 10,
@@ -44,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 50,
     },
     formControl: {
-       
+
         marginTop: 0,
         marginBottom: 10,
         width: 300,
@@ -55,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(2),
         },
     }
-    
-    
+
+
 }));
 
 
@@ -228,16 +231,16 @@ export default function PsicologoF() {
 
 
     return (
-        <div style={{ 
+        <div style={{
             marginLeft: 100, marginRight: 100, marginBottom: 50, marginTop: 50
         }}>
             <React.Fragment>
                 <Grid xs={12} >
-                <Typography variant="h3"  >
-                    Ficha Clinica Psicológica
-                </Typography>
+                    <Typography variant="h3"  >
+                        Ficha Clinica Psicológica
+                    </Typography>
                 </Grid>
-                <Grid container xs={12} md={12}
+                <Grid container 
                     direction="column"
                     //justify="flex-start"
                     //alignItems="stretch"
@@ -245,14 +248,14 @@ export default function PsicologoF() {
 
                     <Grid item >
                         <Typography variant="h4" gutterBottom className={classes.container1}>
-                        Identificación Paciente
+                            Identificación Paciente
                         </Typography>
                         <Grid item >
-                            <TextField required 
+                            <TextField required
                                 type="number"
                                 id="rutPaci"
                                 label="Rut (Ej: 6345678-9)"
-                                fullWidth 
+                                fullWidth
                                 autoComplete="rut-paci" />
                         </Grid>
                         <Grid item  >
@@ -310,7 +313,7 @@ export default function PsicologoF() {
                             <TextField
                                 disabled
                                 id="estC"
-                                label="Estadi Civil"
+                                label="Estado Civil"
                                 fullWidth
                                 autoComplete="est-civil"
 
@@ -370,7 +373,7 @@ export default function PsicologoF() {
                             label="Señale brevemente las razones que le han traido a consulta"
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={razonesConsulta} onChange={(e) => { setRazonesConsulta(e.target.value) }}
                         />
@@ -381,7 +384,7 @@ export default function PsicologoF() {
                             label="Cual cree UD., que es la o las causas que originaron el o los problemas por los que consulta"
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={causasConsulta} onChange={(e) => { setCausasConsulta(e.target.value) }}
                         />
@@ -392,7 +395,7 @@ export default function PsicologoF() {
                             label="Ha consultado con anterioridad a algun psicologo, psiquiatra o neurologo. Explique cuando y porque"
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={psicologoAnteriorRazon} onChange={(e) => { setPsicologoAnteriorRazon(e.target.value) }}
                         />
@@ -411,7 +414,7 @@ export default function PsicologoF() {
                             label=""
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={antecedentePrenatal} onChange={(e) => { setAntecedentePrenatal(e.target.value) }}
                         /> <br />
@@ -423,7 +426,7 @@ export default function PsicologoF() {
                         <FormControl className={classes.formControl}>
                             <InputLabel id="demo-controlled-open-select-label">Cuando nacio su parto fue:    </InputLabel>
                             <Select
-                                
+
                                 labelId="demo-controlled-open-select-label"
                                 id="demo-controlled-open-select"
                                 open={open2}
@@ -456,7 +459,7 @@ export default function PsicologoF() {
                             label=""
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={antecedenteNacido} onChange={(e) => { setAntecedenteNacido(e.target.value) }}
                         />
@@ -469,7 +472,7 @@ export default function PsicologoF() {
                             label=""
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={antecedenteDesarrollo} onChange={(e) => { setAntecedenteDesarrollo(e.target.value) }}
                         />
@@ -477,7 +480,7 @@ export default function PsicologoF() {
                             Dificultades para aprener a:
                     </Typography>
                     </Grid>
-                    <Grid item  >
+                    <Grid item className={classes.container3} >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -540,7 +543,7 @@ export default function PsicologoF() {
                             label="Enfermedades"
                             fullWidth
                             multiline
-                            rows={5}
+                            rows={4}
                             defaultValue=""
                             value={enfermedades} onChange={(e) => { setEnfermedades(e.target.value) }}
                         />
@@ -552,7 +555,7 @@ export default function PsicologoF() {
                     </Grid>
                     <Grid item  >
                         <TextField
-                        className={classes.container2}
+                            className={classes.container2}
                             id="esco"
                             label="Nivel Escolar y establecimiento"
                             fullWidth
@@ -576,7 +579,7 @@ export default function PsicologoF() {
                                 onOpen={handleOpen3}
                                 value={values3}
                                 onChange={handleChange3}
-                                value={adaptacionEscolar} onChange={(e) => {  setConductaEscolar(e.target.value)  }}
+                                value={adaptacionEscolar} onChange={(e) => { setConductaEscolar(e.target.value) }}
                             >
                                 <MenuItem value="">
                                     <em>(Vacio)</em>
@@ -659,7 +662,7 @@ export default function PsicologoF() {
                             Evaluando en terminos generales lo que ha sido su historial como estudiante Usted se encuentra:
                     </Typography>
                     </Grid>
-                    <Grid item  >
+                    <Grid item className={classes.container3} >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -778,7 +781,7 @@ export default function PsicologoF() {
                             value={relacionSuperior} onChange={(e) => { setRelacionSuperior(e.target.value) }}
                         />
                     </Grid>
-                        {/* </Grid>
+                    {/* </Grid>
                         <Grid container justify="space-around" spacing={1}> */}
                     <Grid item  >
                         <TextField
@@ -792,7 +795,7 @@ export default function PsicologoF() {
                     </Grid>
                     <Grid item  >
                         <TextField
-                            
+
                             type=""
                             id="perspDesa"
                             label="Perspectiva de desarrollo"
@@ -810,7 +813,7 @@ export default function PsicologoF() {
                             A traves de su vida Ud. ha sido una persona:
                     </Typography>
                     </Grid>
-                    <Grid item  >
+                    <Grid item className={classes.container3} >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -848,7 +851,7 @@ export default function PsicologoF() {
                             Usted esta:
                     </Typography>
                     </Grid>
-                    <Grid item  >
+                    <Grid item className={classes.container3} >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -904,7 +907,7 @@ export default function PsicologoF() {
                             En general sus estados de animo son:
                     </Typography>
                     </Grid>
-                    <Grid item  >
+                    <Grid item className={classes.container3} >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -939,7 +942,7 @@ export default function PsicologoF() {
                             Alguna de situaciones ha estado presente en su vida durante el ultimo año:
                     </Typography>
                     </Grid>
-                    <Grid item  >
+                    <Grid item className={classes.container3} >
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -1041,7 +1044,7 @@ export default function PsicologoF() {
                         <Typography variant="h7" gutterBottom>
                             En la actualidad tiene una relaion de pareja:
                     </Typography>
-                        <Grid>
+                        <Grid className={classes.container3}>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -1116,7 +1119,7 @@ export default function PsicologoF() {
                         <Typography variant="h7" gutterBottom>
                             En la relacion de pareja:
                     </Typography>
-                        <Grid>
+                        <Grid className={classes.container3}>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -1127,7 +1130,7 @@ export default function PsicologoF() {
                                 label="Usted está más satisfecho que su pareja"
                             />
                         </Grid>
-                        <Grid>
+                        <Grid className={classes.container3}>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -1138,7 +1141,7 @@ export default function PsicologoF() {
                                 label="Ambos estan igual de satisfechos"
                             />
                         </Grid>
-                        <Grid>
+                        <Grid className={classes.container3}>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -1162,7 +1165,7 @@ export default function PsicologoF() {
                                 label="Mencione Tres metas en la vida"
                                 fullWidth
                                 multiline
-                                rows={5}
+                                rows={4}
                                 defaultValue=""
                                 value={metasVida} onChange={(e) => { setMetasVida(e.target.value) }}
                             />
@@ -1174,8 +1177,8 @@ export default function PsicologoF() {
 
                         </Typography>
                     </Grid>
-                    <Grid item xs={1} md={12} >
-                        <Grid item xs={2} md={6} >    
+                    <Grid item  className={classes.container3} >
+                        <Grid item xs={2} md={6} >
                             <FormControlLabel control={<Checkbox name="S1" color="primary" />}
                                 label="1. Problemas de concentración y atención"
                             />
@@ -1302,26 +1305,26 @@ export default function PsicologoF() {
                             <FormControlLabel control={<Checkbox name="S42" color="primary" />}
                                 label="42. Hipocondría (tendecia excesiva a atribuirse enfermedades) "
                             />
-                            <Grid>
-                            <Typography variant="h7" gutterBottom>
-                                43. Miedos desproporcionados: <br />
-                            </Typography>
-                            <FormControlLabel control={<Checkbox name="S43.a" color="primary" />}
-                                label="a. Las alturas  "
-                            />
-                            <FormControlLabel control={<Checkbox name="S43.b" color="primary" />}
-                                label="b. Los espacios cerrados "
-                            />
-                            <FormControlLabel control={<Checkbox name="S43.c" color="primary" />}
-                                label="c. Viajar en avión "
-                            />
-                            <FormControlLabel control={<Checkbox name="S43.d" color="primary" />}
-                                label="d. Ver sangre "
-                            />
-                            <FormControlLabel control={<Checkbox name="S43.e" color="primary" />}
-                                label="e. Los espacion abiertos  "
-                                value={miedosDesproporcionados} onChange={(e) => { setMiedosDesproporcionados(e.target.value) }}
-                            /><br />
+                            <Grid >
+                                <Typography variant="h7" gutterBottom >
+                                    43. Miedos desproporcionados: <br />
+                                </Typography>
+                                <FormControlLabel control={<Checkbox name="S43.a" color="primary" />}
+                                    label="a. Las alturas  "
+                                />
+                                <FormControlLabel control={<Checkbox name="S43.b" color="primary" />}
+                                    label="b. Los espacios cerrados "
+                                />
+                                <FormControlLabel control={<Checkbox name="S43.c" color="primary" />}
+                                    label="c. Viajar en avión "
+                                />
+                                <FormControlLabel control={<Checkbox name="S43.d" color="primary" />}
+                                    label="d. Ver sangre "
+                                />
+                                <FormControlLabel control={<Checkbox name="S43.e" color="primary" />}
+                                    label="e. Los espacios abiertos  "
+                                    value={miedosDesproporcionados} onChange={(e) => { setMiedosDesproporcionados(e.target.value) }}
+                                /><br />
                             </Grid>
                             <Typography variant="h7" gutterBottom>
                                 44. Otros miedos: <br />
@@ -1331,16 +1334,16 @@ export default function PsicologoF() {
                                 label=""
                                 fullWidth
                                 multiline
-                                rows={3}
+                                rows={4}
                                 defaultValue=""
                                 value={otrosMiedos} onChange={(e) => { setOtrosMiedos(e.target.value) }}
                             />
                         </Grid>
-                    </Grid>            
+                    </Grid>
 
 
 
-                    <Grid item   alignContent="flex-end" className={classes.root}>
+                    <Grid item alignContent="flex-end" className={classes.root}>
                         <Button className={classes.container1} variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={e => { goLogin(); Listo() }} >
                             Finalizar
                         </Button>
