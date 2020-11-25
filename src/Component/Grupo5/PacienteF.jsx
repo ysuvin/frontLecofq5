@@ -208,7 +208,6 @@ export default function PacienteF() {
                                     id="demo-controlled-open-select"
                                     open={open2}
                                     onClose={handleClose2}
-
                                     onOpen={handleOpen2}
                                     value={values}
                                     onChange={handleChange}
