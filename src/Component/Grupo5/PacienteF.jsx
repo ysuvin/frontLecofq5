@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
     },
     textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
+        
         width: 200,
     },
     button: {
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
     formControl: {
-        margin: theme.spacing(1),
+        
         minWidth: 380,
     },
     root: {
