@@ -115,12 +115,12 @@ export default function NutricionistaF() {
     const[grasa,setGrasa] = React.useState('');
     const[gmb,setGmb] = React.useState('');
     const[pesoIdeal,setPesoIdeal] = React.useState('');
-    const[patologia,setPatologia] = React.useState('');
-    const[diabetes,setDiabetes] = React.useState('');
-    const[obesidad,setObesidad] = React.useState('');
-    const[dislipidemia,setDislipidemia] = React.useState('');
-    const[cancer,setCancer] = React.useState('');
-    const[hta,setHta] = React.useState('');
+    const[patologia,setPatologia] = React.useState(false);
+    const[diabetes,setDiabetes] = React.useState(false);
+    const[obesidad,setObesidad] = React.useState(false);
+    const[dislipidemia,setDislipidemia] = React.useState(false);
+    const[cancer,setCancer] = React.useState(false);
+    const[hta,setHta] = React.useState(false);
     const[otrasPatologias,setOtrasPatologias] = React.useState('');
     
 
@@ -315,8 +315,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkPatologia"
                                         color="primary"
-                                        value={patologia}
-                                        onChange={(e) => { setPatologia(e.target.value) }}
+                                        value={true} onClick={(e) => { setPatologia(e.target.value) }}
                                     />
                                 }
                                 label="Patologia"
@@ -326,8 +325,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDiabetes"
                                         color="primary"
-                                        value={diabetes}
-                                        onChange={(e) => { setDiabetes(e.target.value) }}
+                                        value={true} onClick={(e) => { setDiabetes(e.target.value) }}
                                     />
                                 }
                                 label="Diabetes"
@@ -337,8 +335,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkObesidad"
                                         color="primary"
-                                        value={obesidad}
-                                        onChange={(e) => { setObesidad(e.target.value) }}
+                                        value={true} onClick={(e) => { setObesidad(e.target.value) }}
                                     />
                                 }
                                 label="Obesidad"
@@ -348,8 +345,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDislipidemia"
                                         color="primary"
-                                        value={dislipidemia}
-                                        onChange={(e) => { setDislipidemia(e.target.value) }}
+                                        value={true} onClick={(e) => { setDislipidemia(e.target.value) }}
                                     />
                                 }
                                 label="Dislipidemia"
@@ -359,8 +355,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkCancer"
                                         color="primary"
-                                        value={cancer}
-                                        onChange={(e) => { setCancer(e.target.value) }}
+                                        value={true} onClick={(e) => { setCancer(e.target.value) }}
                                     />
                                 }
                                 label="Cancer"
@@ -370,8 +365,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkHTA"
                                         color="primary"
-                                        value={hta}
-                                        onChange={(e) => { setHta(e.target.value) }}
+                                        value={true} onClick={(e) => { setHta(e.target.value) }}
                                     />
                                 }
                                 label="HTA"
