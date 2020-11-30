@@ -13,6 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import history from '../../history';
 import { KsViewContext } from '../../Model/Grupo1/KsViewContext';
+import { PacViewContext } from '../../Model/Grupo1/PacViewContext';
 
 const useStyles = makeStyles({
   list: {
@@ -35,6 +36,7 @@ export default function SSADrawer() {
   });
 
   const [ksViewC, setKsViewC ] = React.useContext(KsViewContext);
+  const [pacViewC, setPacViewC ] = React.useContext(PacViewContext);
 
   const redirectHome = () => 
   {
@@ -48,7 +50,8 @@ export default function SSADrawer() {
     }
   const redirectPaciente = () => 
   {
-      history.push('/Grupo1/PacVerFechas');
+      history.push('/Grupo1/Paciente');
+      setPacViewC(0);
   }
 
   const toggleDrawer = (anchor, open) => (event) => {

@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import {GetPacientes} from '../../../Model/Grupo1/PacientesController';
+import {GetFichasPaciente} from '../../../Model/Grupo1/fichasPacienteController';
 import Button from '@material-ui/core/Button';
 import history from '../../../history.jsx';
 
@@ -18,28 +18,61 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { PacienteContext } from '../../../Model/Grupo1/PacienteContext';
 import { KsViewContext } from '../../../Model/Grupo1/KsViewContext';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 
-function KsVerPacientes({viewStage}) {
+function KsVerPacientes() {
 
     //Query que recupera a los pacientes
     const [pacienteC, setPacienteC] = React.useContext(PacienteContext);
+    const [fichasDePacientes,setFichasDePacientes] = React.useState(null);
+    const [fichasPaciente, setFichasPaciente] = React.useState(null);
+    const [fichaPaciente, setFichaPaciente] = React.useState(null);
     const [ksViewC, setKsViewC] = React.useContext(KsViewContext);
-    const [paciente, setPaciente] = React.useState(null);
-    const [Pacientes, setPacientes] = React.useState(null);
     const [isLoading,setIsLoading] = React.useState(true);
-
-    const fetchData = async () => {
-        const query = await GetPacientes();
-        return query;
+    const [fichasRut,setFichasRut] = React.useState(null);
+    const [fichaRut,setFichaRut ] = React.useState(null);
+    
+    const fetchDataFicha = async () => {
+      const query = await GetFichasPaciente();
+      return query;
     }
 
     useEffect(() => {
-        fetchData().then((query) => {
-          setPacientes(query);
-          setPaciente(query[0])
-          setPacienteC({_id: query[0]._id, nombre: query[0].nombre,});
+        fetchDataFicha().then((query) =>{
+          var rut = [];
+          var prevRut = "";
+          for(var i = 0; i < query.length; i++)
+          {
+            if(query[i].rut != prevRut)
+            {
+              rut.push(query[i].rut);
+              prevRut = query[i].rut;
+            }
+          }
+          setFichasDePacientes(query);
+          setFichasRut(rut);
+          setFichaRut(rut[0]);
+          var fichas = [];
+          for(var i = 0; i < rut.length; i++)
+          {
+            if(query[i].rut == rut[0])
+            {
+              fichas.push(query[i]);
+            }
+          }
+          setFichasPaciente(fichas);
+          setFichaPaciente(fichas[0]);
+          console.log("lassfichas");
+          console.log(fichas);
+          setPacienteC({rut: query[0].rut,});
           setIsLoading(false);
+          console.log(query);
         });
     },[]);
 
@@ -50,6 +83,21 @@ function KsVerPacientes({viewStage}) {
     {
       setKsViewC(1);
     }
+    /*const updateFichas = () =>
+    {
+      var fichas = [];
+      for(var i = 0; i < fichasDePacientes.length; i++)
+      {
+        if(fichasDePacientes[i].rut == fichaRut)
+        {
+          fichas.push(fichasDePacientes[i]);
+        }
+      }
+      setFichasPaciente(fichas);
+      setFichaPaciente(fichas[0]);
+      console.log("lassfichas");
+      console.log(fichas);
+    }*/
 
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -68,7 +116,7 @@ function KsVerPacientes({viewStage}) {
       
       <div className="g1_body">
       <img src={logo} className="App-logo" alt="logo" />
-      Seleccionar Paciente:
+      <p>Seleccionar Paciente:</p>
       {isLoading ? 
       (
         <div>Cargando...</div>
@@ -76,34 +124,58 @@ function KsVerPacientes({viewStage}) {
       ( 
       <div>   
       <Autocomplete
-        value={paciente}
+        value={fichaRut}
         onChange={(event, newValue) => {
           //Si obtengo un valor null, no actualizo el display para evitar un crash, se utiliza redundancia
           //con console.log() debido a que la condicional no puede no retornar una funcion, cualquiera que sea.
           if(newValue !== null)
           {
-            setPaciente(newValue)
-            setPacienteC({_id: newValue._id, nombre: newValue.nombre,})
+            setFichaRut(newValue)
+            setPacienteC({rut: newValue,})
+            var fichas = [];
+            for(var i = 0; i < fichasDePacientes.length; i++)
+            {
+              if(fichasDePacientes[i].rut == newValue)
+              {
+                fichas.push(fichasDePacientes[i]);
+              }
+            }
+            setFichasPaciente(fichas);
+            setFichaPaciente(fichas[0]);
+            console.log("lassfichas");
+            console.log(fichas);
             console.log(pacienteC);
           }
         }}
         id="help"
-        options={Pacientes}
-        getOptionLabel={(option) => option.nombre}
+        options={fichasRut}
+        getOptionLabel={(option) => option}
         style={{ width: 300, color: '#f99f31'}}
-        renderInput={(params) => <TextField {...params} label="Paciente" variant="outlined" />}
+        renderInput={(params) => <TextField {...params} label="Rut Paciente" variant="outlined" />}
       />
       <p></p>
-        <Grid container spacing={2} 
+        <Grid container spacing={1} 
               direction="column"
               justify="center"
               alignItems="center">
           <Grid item xs={12}>
-            {/* Handling de imagen, si no se asigna un paciente se muestra una imagen no definida */}
-            <Paper spacing={2} className="img-box" style={{backgroundImage: "url("+require('../../../Model/Grupo1/Assets/FotosPacientes/paciente2.jpg')+")"}}
-            >
-            
-            </Paper>
+              <p>Seleccionar Ficha:</p>
+              <Autocomplete
+              value={fichaPaciente}
+              onChange={(event, newValue) => {
+                //Si obtengo un valor null, no actualizo el display para evitar un crash, se utiliza redundancia
+                //con console.log() debido a que la condicional no puede no retornar una funcion, cualquiera que sea.
+                if(newValue !== null)
+                {
+                  setFichaPaciente(newValue)
+                }
+              }}
+              id="help"
+              options={fichasPaciente}
+              getOptionLabel={(option) => option.fecha_ingreso}
+              style={{ width: 300, color: '#f99f31'}}
+              renderInput={(params) => <TextField {...params} label="Rut Paciente" variant="outlined" />}
+              />
             </Grid>
             <Grid item xs={12}>
             {/* <Paper className="paper">
@@ -112,8 +184,8 @@ function KsVerPacientes({viewStage}) {
             <p>Peso: {` ${paciente !== null ? `${paciente.peso}` : ''}`}</p>
             <p>Estatura: {` ${paciente !== null ? `${paciente.estatura}` : ''}`}</p>
             </Paper> */}
-            <Button variant="contained" color="primary" onClick={handleClickOpen}>
-              Ver detalle
+            <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+              Ver Ficha
             </Button>
             <Dialog
               fullScreen={fullScreen}
@@ -124,10 +196,11 @@ function KsVerPacientes({viewStage}) {
             <DialogTitle id="responsive-dialog-title">{"Ficha del paciente"}</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                <p>Nombre: {`${paciente !== null ? `${paciente.nombre}` : ''}`}</p>
-                <p>Edad: {` ${paciente !== null ? `${paciente.edad}` : ''}`}</p>
-                <p>Peso: {` ${paciente !== null ? `${paciente.peso}` : ''}`}</p>
-                <p>Estatura: {` ${paciente !== null ? `${paciente.altura}` : ''}`}</p>
+                <p>Domicilio: {`${fichaPaciente !== null ? `${fichaPaciente.domicilio}` : ''}`}</p>
+                <p>Comuna: {` ${fichaPaciente !== null ? `${fichaPaciente.comuna}` : ''}`}</p>
+                <p>Estado Civil: {` ${fichaPaciente !== null ? `${fichaPaciente.estado_civil}` : ''}`}</p>
+                <p>Prevision: {` ${fichaPaciente !== null ? `${fichaPaciente.prevision}` : ''}`}</p>
+                <p>Motivo de la consulta: {` ${fichaPaciente !== null ? `${fichaPaciente.motivo_consulta}` : ''}`}</p>
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -141,7 +214,7 @@ function KsVerPacientes({viewStage}) {
             </Dialog>
           </Grid>
           <Grid item xs={12}>
-            {paciente !== null
+            {fichaPaciente !== null
               ? <Button onClick={redirectKsAsFecha} variant="contained" color = "primary">Asignar Ejercicios</Button> 
               : ''} 
           </Grid>

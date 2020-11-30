@@ -11,6 +11,7 @@ import ReactPlayer from 'react-player/youtube'
 import '../../../css/Grupo1/G1Landing.css';
 import history from '../../../history';
 import { RutinaContext } from '../../../Model/Grupo1/RutinaContext';
+import { PacViewContext } from '../../../Model/Grupo1/PacViewContext';
 
 
 
@@ -36,6 +37,7 @@ export default function HorizontalLabelPositionBelowStepper() {
   const [isLoading,setIsLoading] = useState(true);
   const [steps, setSteps] = useState(null);
   const [rutinaC, setRutinaC] = React.useContext(RutinaContext);
+  const [pacViewC,setPacViewC] = React.useContext(PacViewContext);
 
   const fetchData = async () => {
     const query = await GetEjercicios().then((res) => {
@@ -92,7 +94,7 @@ export default function HorizontalLabelPositionBelowStepper() {
 
   const redirectFechas = () => 
 {
-    history.push('/Grupo1/PacVerFechas');
+    setPacViewC(1);
 }
 
   return (
@@ -154,6 +156,7 @@ export default function HorizontalLabelPositionBelowStepper() {
           </div>
         )}
       </div>
+      <p><Button variant="contained" color="secondary" onClick={() => { setPacViewC(1);}}>Volver</Button></p>
     </div>
     )}
   </div>

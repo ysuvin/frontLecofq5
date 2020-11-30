@@ -65,8 +65,11 @@ export default function KsAsigFechaTabla(rutinas) {
         var response = []
         for(var i = 0; i < res.length; i++)
         {
-
-          if(res[i].idPaciente == pacienteC._id)
+          console.log("Rut rutina");
+          console.log(res[i].rut);
+          console.log("Rut Contexto");
+          console.log(pacienteC.rut);
+          if(res[i].rut == pacienteC.rut)
           {
             response.push(res[i]);
           }
@@ -182,8 +185,8 @@ export default function KsAsigFechaTabla(rutinas) {
               setTimeout(() => {
                 resolve();
                 console.log(newData.fecha);
-                console.log(pacienteC._id);
-                postData({idPaciente: pacienteC._id, fecha: newData.fecha,}).then((response) => {
+                console.log(pacienteC.rut);
+                postData({rut: pacienteC.rut, fecha: newData.fecha,}).then((response) => {
                   const datito = [...state];
                   datito.push(response);
                   setState(datito);
@@ -197,7 +200,7 @@ export default function KsAsigFechaTabla(rutinas) {
                 if (oldData) {
                   //Este código indecente hace que esta sección no sea flexible
                   var nextData = state;
-                  updateData(newData._id,{idPaciente: newData.idPaciente, fecha: newData.fecha});
+                  updateData(newData._id,{rut: newData.rut, fecha: newData.fecha});
                   nextData[nextData.indexOf(oldData)].fecha = newData.fecha;
                   setState(nextData);
                 }

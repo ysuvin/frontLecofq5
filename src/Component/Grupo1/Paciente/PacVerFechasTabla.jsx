@@ -22,6 +22,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import history from '../../../history.jsx';
 import { PacienteContext } from '../../../Model/Grupo1/PacienteContext';
 import { RutinaContext } from '../../../Model/Grupo1/RutinaContext';
+import { PacViewContext } from '../../../Model/Grupo1/PacViewContext';
 
 
 
@@ -49,13 +50,14 @@ export default function PacVerFechasTabla() {
 
   const redirectPacVerEjercicios = () =>
   {
-    history.push('/Grupo1/PacVerFechas/PacVerEjercicios');
+    setPacViewC(2);
   }
 
   const [state, setState] = React.useState(null);
   const [isLoading,setIsLoading] = React.useState(true);
   const [pacienteC, setPacienteC] = React.useContext(PacienteContext);
   const [rutinaC, setRutinaC] = React.useContext(RutinaContext);
+  const [pacViewC,setPacViewC] = React.useContext(PacViewContext);
 
   const fetchData = async () => {
     const query = await GetRutinas().then((res) => {
@@ -63,7 +65,7 @@ export default function PacVerFechasTabla() {
       for(var i = 0; i < res.length; i++)
       {
 
-        if(res[i].idPaciente == pacienteC._id)
+        if(res[i].rut == pacienteC.rut)
         {
           response.push(res[i]);
         }

@@ -4,8 +4,7 @@ const PacienteContext = React.createContext([{}, () => {}]);
 
 const PacienteProvider = (props) => {
   const [pacienteC, setPacienteC] = useState({
-    _id: '',
-    nombre: '',
+    rut: '',
   });
   return (
     <PacienteContext.Provider value={[pacienteC, setPacienteC]}>
