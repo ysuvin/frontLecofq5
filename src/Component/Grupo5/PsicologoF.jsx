@@ -1606,7 +1606,7 @@ export default function PsicologoF() {
                         <Button className={classes.container1} variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={e => { goLogin(); Listo() }} >
                             Finalizar
                         </Button>
-                        {/* /*    {
+                        {     
                             banderaAlerta &&
                             <div>
                                 {
@@ -1625,7 +1625,7 @@ export default function PsicologoF() {
                                     }
                                 </div>
                             }
-                        */ }
+                         
 
                     </Grid>
                 </Grid>

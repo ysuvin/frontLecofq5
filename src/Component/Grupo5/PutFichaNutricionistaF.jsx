@@ -17,6 +17,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Imput } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -64,34 +65,34 @@ export default function NutricionistaF() {
         setOpen(false);
     };
 
-    const [cont, setCont] = useState(1);
-    const [matriz, setMatriz] = useState([])
+    // const [cont, setCont] = useState(1);
+    // const [matriz, setMatriz] = useState([])
 
     
     
-    useEffect(() => {
-        iterar()
-    }, [cont])
+    // useEffect(() => {
+    //     iterar()
+    // }, [cont])
 
-    const iterar = () => {
-        var matriztemp = [];
-        for (let index = 0; index < cont; index++) {
-            matriztemp.push(
-                <TableRow>
-                    <TableCell>
-                        <TextField id="tiempComida" variant="outlined" fullWidth></TextField>
-                    </TableCell >
-                    <TableCell >
-                        <TextField id="comida" variant="outlined" fullWidth></TextField>
-                    </TableCell>
-                    <TableCell>
-                        {/* <Button>+</Button> */}
-                    </TableCell>
-                </TableRow>
-            )
-        }
-        setMatriz(matriztemp)
-    }
+    // const iterar = () => {
+    //     var matriztemp = [];
+    //     for (let index = 0; index < cont; index++) {
+    //         matriztemp.push(
+    //             <TableRow>
+    //                 <TableCell>
+    //                     <TextField id="tiempComida" variant="outlined" fullWidth></TextField>
+    //                 </TableCell >
+    //                 <TableCell >
+    //                     <TextField id="comida" variant="outlined" fullWidth></TextField>
+    //                 </TableCell>
+    //                 <TableCell>
+    //                     {/* <Button>+</Button> */}
+    //                 </TableCell>
+    //             </TableRow>
+    //         )
+    //     }
+    //     setMatriz(matriztemp)
+    // }
 
 
     // const[rut,setRut] = React.useState('');
@@ -204,11 +205,15 @@ export default function NutricionistaF() {
                 </Typography>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
+                    <InputLabel >Rut del Paciente</InputLabel>
                         <TextField
-                            required id="rutPaci"
-                            label="Rut del Paciente"
-                            fullWidth autoComplete="rut-paci"
-                            value={Number(data.patologia)}
+                            required
+                            disabled
+                            id="rutPaci"
+                            // label="Rut del Paciente"
+                            fullWidth 
+                            autoComplete="rut-paci"
+                            value={data.rut}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -248,9 +253,11 @@ export default function NutricionistaF() {
                     </Grid>
 
                     <Grid item xs={6} md={12}>
+                    <InputLabel >Actividad Laboral</InputLabel>
                         <TextField
+                            disabled
                             id="actL"
-                            label="Actividad Laboral"
+                            // label="Actividad Laboral"
                             fullWidth
                             autoComplete="act-lab"
                             value={data.actividadLaboral}
@@ -258,9 +265,11 @@ export default function NutricionistaF() {
                     </Grid>
 
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Actividad Fisica</InputLabel>
                         <TextField
+                            disabled
                             id="actF"
-                            label="Actividad Fisica"
+                            // label="Actividad Fisica"
                             fullWidth
                             autoComplete="act-fis"
                             value={data.actividadFisica}
@@ -268,48 +277,58 @@ export default function NutricionistaF() {
                     </Grid>
 
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Hrs Por Semanas</InputLabel>
                         <TextField
+                            disabled
                             type="number"
                             id="hSem"
-                            label="Hrs Por Semanas"
+                            // label="Hrs Por Semanas"
                             fullWidth
                             autoComplete="h-sem"
                             value={data.horasSemanales}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Consumo de Alcohol</InputLabel>
                         <TextField
+                            disabled
                             id="conAl"
-                            label="Consumo de Alcohol"
+                            // label="Consumo de Alcohol"
                             fullWidth
                             autoComplete="con-Al"
                             value={data.consumoAlcohol}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Cantidad por Semana</InputLabel>
                         <TextField
+                            disabled
                             type="number"
                             id="cantSem1"
-                            label="Cantidad por Semana"
+                            // label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem1"
                             value={data.cantidadSemanalAlcohol}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Hábito tabáquico</InputLabel>
                         <TextField
+                            disabled
                             id="habTaba"
-                            label="Hábito tabáquico"
+                            // label="Hábito tabáquico"
                             fullWidth
                             autoComplete="hab-taba"
                             value={data.habitoTabaquico}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Cantidad por Semana</InputLabel>
                         <TextField
+                            disabled
                             type="number"
                             id="cantSem2"
-                            label="Cantidad por Semana"
+                            // label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem2"
                             value={data.cantidadSemanaltabaco}
@@ -395,9 +414,11 @@ export default function NutricionistaF() {
                         </Grid>
 
                         <Grid item xs={12}>
+                        <InputLabel >Otras Patologias</InputLabel>
                             <TextField
+                                disabled
                                 id="otrasPat"
-                                label="Otras Patologias"
+                                // label="Otras Patologias"
                                 fullWidth
                                 multiline
                                 rows={3}
@@ -416,6 +437,7 @@ export default function NutricionistaF() {
                     <Grid container justify="flex-start" spacing={1}>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="peso"
                                 label="Peso (Kg)"
@@ -426,6 +448,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="talla"
                                 label="Talla (cm)"
@@ -436,6 +459,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="imc"
                                 label="IMC"
@@ -446,6 +470,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="cCint"
                                 label="C. cintura"
@@ -456,6 +481,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="cCad"
                                 label="C. Cadera"
@@ -466,6 +492,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="icc"
                                 label="I.C.C."
@@ -476,6 +503,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="pitri"
                                 label="PITRI"
@@ -486,6 +514,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="pibi"
                                 label="PIBI"
@@ -496,6 +525,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="pisb"
                                 label="PISB"
@@ -506,6 +536,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="pisc"
                                 label="PISC"
@@ -516,6 +547,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="porcentG"
                                 label="% Grasa"
@@ -526,6 +558,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2}>
                             <TextField
+                                disabled
                                 type="number"
                                 id="gmb"
                                 label="G.M.B."
@@ -536,6 +569,7 @@ export default function NutricionistaF() {
                         </Grid>
                         <Grid item xs={2} md={2} >
                             <TextField
+                                disabled
                                 type="number"
                                 id="pesoIdeal"
                                 label="Peso Ideal"
@@ -550,9 +584,41 @@ export default function NutricionistaF() {
                             Anamnesis alimentaria: Recordatorio 24 Hrs
                     </Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={3} md={3}>
+                        <InputLabel >Tiempos de Comida</InputLabel>
+                            <TextField
+                                disabled
+                                id="tiempcomida"
+                                // label="Tiempos de Comida"
+                                fullWidth
+                                autoComplete="tiempo-comida"
+                                multiline
+                                rows={15}
+                                value={data.tiemposComida}
+                            />
+                        </Grid>
+                        <Grid item xs={9} md={9}>
+                        <InputLabel >Alimentos y Porciiones</InputLabel>
+                            <TextField
+                                disabled
+                                id="alimPorc"
+                                // label="Alimentos y Porciiones"
+                                fullWidth
+                                autoComplete="alimentos-porciones"
+                                multiline
+                                rows={15}
+                                value={data.alimentosPorciones}
+                            />
+                        </Grid>
 
-                        <Table className={classes.table} aria-label="simple table">
+
+
+
+
+
+
+                        {/* <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell className={classes.tablecell} size="small" >Tiempos de Comida</TableCell>
@@ -567,19 +633,7 @@ export default function NutricionistaF() {
                                 <Button variant="contained" color="secondary" onClick={e => { setCont(cont - 1) }}>Quitar Comida</Button>
 
                             </TableBody>
-                        </Table>
-
-
-                    </Grid>
-                    <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
-                        <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={e => { }} >
-                            Finalizar
-                        </Button>
-                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
-                                La ficha se ha creado con exito!
-                        </Alert>
-                        </Snackbar>
+                        </Table> */}
                     </Grid>
                 </Grid>
             </React.Fragment>
