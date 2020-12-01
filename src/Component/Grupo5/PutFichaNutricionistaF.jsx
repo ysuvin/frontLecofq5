@@ -51,7 +51,7 @@ export default function NutricionistaF() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const {id} = useParams();
-
+    const [banderaAlerta, setBanderaAlerta] = useState(false);
     const handleClick = () => {
         setOpen(true);
     };
@@ -67,6 +67,8 @@ export default function NutricionistaF() {
     const [cont, setCont] = useState(1);
     const [matriz, setMatriz] = useState([])
 
+    
+    
     useEffect(() => {
         iterar()
     }, [cont])
@@ -164,7 +166,13 @@ export default function NutricionistaF() {
     //     Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
     // }
 
+    const check = (data) => {
+        if (data == true) {
+            return;
+        }
 
+        setOpen(false);
+    };
 
 
     useEffect(() => {
@@ -172,7 +180,7 @@ export default function NutricionistaF() {
     }, []);
 
     const [data, setData] = useState([]);
-
+    
     const peticionGet = (id) => {
         Axios.get(`http://localhost:8080/fichaNutricionista/${id}`).then(response => {
             setData(response.data.data);
@@ -182,6 +190,7 @@ export default function NutricionistaF() {
         //     console.log(error.message);
         // })
     }
+
 
 
     return (
@@ -199,7 +208,7 @@ export default function NutricionistaF() {
                             required id="rutPaci"
                             label="Rut del Paciente"
                             fullWidth autoComplete="rut-paci"
-                            value={Number(data.rut)}
+                            value={Number(data.patologia)}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -315,21 +324,25 @@ export default function NutricionistaF() {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        name="checkPatologia"
-                                        color="primary"
-                                        
-                                    />
-                                }
-                                label="Patologia"
-                            />
+                        <FormControlLabel
+                            
+                             control={
+                                <Checkbox                                          
+                                    color="primary"
+                                    checked={Boolean(data.patologia)}
+     
+                                />
+                            }
+                            label="Patologia"
+                        />
+
+                            
                             <FormControlLabel
                                 control={
                                     <Checkbox
                                         name="checkDiabetes"
                                         color="primary"
+                                        checked={Boolean(data.diabetes)}
                                         
                                     />
                                 }
@@ -340,6 +353,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkObesidad"
                                         color="primary"
+                                        checked={Boolean(data.obesidad)}
                                         
                                     />
                                 }
@@ -350,6 +364,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDislipidemia"
                                         color="primary"
+                                        checked={Boolean(data.dislipidemia)}
                                         
                                     />
                                 }
@@ -360,6 +375,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkCancer"
                                         color="primary"
+                                        checked={Boolean(data.cancer)}
                                         
                                     />
                                 }
@@ -370,6 +386,7 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkHTA"
                                         color="primary"
+                                        checked={Boolean(data.hta)}
                                         
                                     />
                                 }
@@ -384,7 +401,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 multiline
                                 rows={3}
-                                defaultValue=""
+                                value={data.otrasPatologias}
                                 
                             />
                         </Grid>
