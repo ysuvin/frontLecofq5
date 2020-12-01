@@ -400,6 +400,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkHablar"
                                     color="primary"
+                                    checked={Boolean(data.hablar)}
                                 />
                             }
                             label="Hablar"
@@ -410,6 +411,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkLeerEscribir"
                                     color="primary"
+                                    checked={Boolean(data.leerYEscribir)}
                                 />
                             }
                             label="Leer y Escribir"
@@ -420,6 +422,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkControlar"
                                     color="primary"
+                                    checked={Boolean(data.controlarEsfinter)}
                                 />
                             }
                             label="Controlar Esfinter"
@@ -430,6 +433,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkConductual"
                                     color="primary"
+                                    checked={Boolean(data.conductual)}
                                 />
                             }
                             label="Conductual"
@@ -440,6 +444,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkOtros"
                                     color="primary"
+                                    checked={Boolean(data.otros)}
                                 />
                             }
                             label="Otros"
@@ -527,6 +532,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkMSatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.muySatisfecho)}
                                 />
                             }
                             label="Muy Satisfecho"
@@ -537,6 +543,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkSatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.satisfecho)}
                                 />
                             }
                             label="Satisfecho"
@@ -547,6 +554,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkRSatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.relativamenteSatisfecho)}
                                 />
                             }
                             label="Relativamente Satisfecho"
@@ -557,6 +565,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkInsatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.insatisfecho)}
                                 />
                             }
                             label="Insatisfecho"
@@ -567,6 +576,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkMInsatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.muyInsatisfecho)}
                                 />
                             }
                             label="Muy Insatisfecho"
@@ -674,7 +684,7 @@ export default function PutFichaPsicologoF() {
                             //label="Estabilidad laboral"
                             fullWidth
                             autoComplete="est-lab"
-                            value= {data.estabilidaLabolar}
+                            value= {data.estabilidadLaboral}
                             
                         />
                     </Grid>
@@ -707,6 +717,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkSociable"
                                     color="primary"
+                                    checked={Boolean(data.sociable)}
                                 />
                             }
                             label="Sociable"
@@ -717,6 +728,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkRSociable"
                                     color="primary"
+                                    checked={Boolean(data.relativamenteSociable)}
                                 />
                             }
                             label="Relativamente sociable"
@@ -727,6 +739,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkPsociable"
                                     color="primary"
+                                    checked={Boolean(data.pocoSociable)}
                                 />
                             }
                             label="Poco Sociable"
@@ -748,6 +761,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkPSatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.plenamenteSatisfecho)}
                                 />
                             }
                             label="Plenamente Satisfecho"
@@ -758,6 +772,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkSatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.satisfecho2)}
                                 />
                             }
                             label="Satisfecho"
@@ -768,6 +783,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkRSatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.relativamenteSatisfecho2)}
                                 />
                             }
                             label="Relativamente Satisfecho"
@@ -778,6 +794,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkInsatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.insatisfecho2)}
                                 />
                             }
                             label="Insatisfecho"
@@ -788,6 +805,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkMInsatisfecho"
                                     color="primary"
+                                    checked={Boolean(data.muyInsatisfecho2)}
                                 />
                             }
                             label="Muy Insatisfecho"
@@ -809,6 +827,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkMEstable"
                                     color="primary"
+                                    checked={Boolean(data.muyEstable)}
                                 />
                             }
                             label="Muy Estable"
@@ -819,6 +838,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkREstable"
                                     color="primary"
+                                    checked={Boolean(data.relativamenteEstable)}
                                 />
                             }
                             label="Relativamente Estable"
@@ -829,6 +849,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkVariado"
                                     color="primary"
+                                    checked={Boolean(data.variaEnFuncionDeLasExperencias)}
                                 />
                             }
                             label="Varia en funcion de las experiencias"
@@ -847,6 +868,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkCesantia"
                                     color="primary"
+                                    checked={Boolean(data.cesantia)}
                                 />
                             }
                             label="Cesantia"
@@ -857,6 +879,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkSMatrimonial"
                                     color="primary"
+                                    checked={Boolean(data.separacionMatrimonial)}
                                 />
                             }
                             label="Separacion Matrimonial"
@@ -867,6 +890,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkDLaboral"
                                     color="primary"
+                                    checked={Boolean(data.despidoLaboral)}
                                 />
                             }
                             label="Despido Laboral"
@@ -877,6 +901,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkMFamiliar"
                                     color="primary"
+                                    checked={Boolean(data.muerteDeUnFamiliarCercano)}
                                 />
                             }
                             label="Muerte de un Familiar Cercano"
@@ -887,6 +912,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkEnfermedad"
                                     color="primary"
+                                    checked={Boolean(data.enfermedad)}
                                 />
                             }
                             label="Enfermedad"
@@ -897,6 +923,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkFProblemas"
                                     color="primary"
+                                    checked={Boolean(data.fuertesProblemasEconomicos)}
                                 />
                             }
                             label="Fuertes Problemas Economicos"
@@ -907,6 +934,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkAccidente"
                                     color="primary"
+                                    checked={Boolean(data.accidente)}
                                 />
                             }
                             label="Accidente"
@@ -917,6 +945,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkFAcadenico"
                                     color="primary"
+                                    checked={Boolean(data.fracasoAcademico)}
                                 />
                             }
                             label="Fracaso Academico"
@@ -927,6 +956,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkEHijo"
                                     color="primary"
+                                    checked={Boolean(data.enfermedadDeUnHijo)}
                                 />
                             }
                             label="Enfermedad de un Hijo"
@@ -937,6 +967,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkCResidencia"
                                     color="primary"
+                                    checked={Boolean(data.cambioDeResidencia)}
                                 />
                             }
                             label="Cambio de Residencia"
@@ -960,6 +991,7 @@ export default function PutFichaPsicologoF() {
                                     <Checkbox
                                         name="checkSi"
                                         color="primary"
+                                        checked={Boolean(data.si)}
                                     />
                                 }
                                 label="Si"
@@ -970,6 +1002,7 @@ export default function PutFichaPsicologoF() {
                                     <Checkbox
                                         name="checkNo"
                                         color="primary"
+                                        checked={Boolean(data.no)}
                                     />
                                 }
                                 label="No"
@@ -1048,6 +1081,7 @@ export default function PutFichaPsicologoF() {
                                     <Checkbox
                                         name="checkSatisUd"
                                         color="primary"
+                                        checked={Boolean(data.ustedEstaMasSatisfechoQueSuPareja)}
                                     />
                                 }
                                 label="Usted está más satisfecho que su pareja"
@@ -1060,6 +1094,7 @@ export default function PutFichaPsicologoF() {
                                     <Checkbox
                                         name="checkSatisAmbos"
                                         color="primary"
+                                        checked={Boolean(data.ambosEstanIgualDeSatisfechos)}
                                     />
                                 }
                                 label="Ambos estan igual de satisfechos"
@@ -1072,6 +1107,7 @@ export default function PutFichaPsicologoF() {
                                     <Checkbox
                                         name="checkSatisPareja"
                                         color="primary"
+                                        checked={Boolean(data.suParejaEstaMasSatisfechaQueUsted)}
                                     />
                                 }
                                 label="Su pareja esta más satisfecha que usted"
@@ -1106,149 +1142,147 @@ export default function PutFichaPsicologoF() {
                     </Grid>
                     <Grid item  className={classes.container3} >
                         <Grid item xs={2} md={6} >
-                            <FormControlLabel disabled control={<Checkbox name="S1" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S1" color="primary" checked={Boolean(data.problemasConcentracion)}/>}
                                 label="1. Problemas de concentración y atención"
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S2" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S2" color="primary" checked={Boolean(data.angustia)}/>}
                                 label="2. Angustia "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S3" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S3" color="primary" checked={Boolean(data.problemasMemoria)}/>}
                                 label="3. Problemas de memoria "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S4" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S4" color="primary" checked={Boolean(data.insomnio)}/>}
                                 label="4. Insomnío "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S5" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S5" color="primary" checked={Boolean(data.excesoSueño)}/>}
                                 label="5. Exceso de sueño "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S6" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S6" color="primary" checked={Boolean(data.pesadillas)}/>}
                                 label="6. Pesadillas "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S7" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S7" color="primary" checked={Boolean(data.sonambulismo)}/>}
                                 label="7. Sonambulismo "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S8" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S8" color="primary" checked={Boolean(data.aburrimiento)}/>}
                                 label="8. Aburrimiento "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S9" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S9" color="primary" checked={Boolean(data.irritabilidad)}/>}
                                 label="9. Irritabilidad "
                             />
                             <FormControlLabel disabled control={<Checkbox name="S10" color="primary" checked={Boolean(data.mareos)} />}
                                 label="10. Mareos "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S11" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S11" color="primary" checked={Boolean(data.cefaleas)}/>}
                                 label="11. Cefaleas (Dolores de cabeza) "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S6" color="primary" />}
-                                label="6. Vommitos "
+                            <FormControlLabel disabled control={<Checkbox name="S6" color="primary" checked={Boolean(data.vomitos)}/>}
+                                label="6. Vomitos "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S13" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S13" color="primary" checked={Boolean(data.desmayos)}/>}
                                 label="13. Desmayos "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S14" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S14" color="primary" checked={Boolean(data.diarreas)}/>}
                                 label="14. Diarreas "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S15" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S15" color="primary" checked={Boolean(data.constipacion)}/>}
                                 label="15. Constipacion (dificultad para defecar) "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S16" color="primary" />}
-                                label="16. Vomitos "
-                            />
-                            <FormControlLabel disabled control={<Checkbox name="S17" color="primary" />}
+
+                            <FormControlLabel disabled control={<Checkbox name="S17" color="primary" checked={Boolean(data.arritmia)}/>}
                                 label="17. Arritmia "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S18" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S18" color="primary" checked={Boolean(data.transpiracionManos)}/>}
                                 label="18. Transpiracion en las manos "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S19" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S19" color="primary" checked={Boolean(data.onicofagia)}/>}
                                 label="19. Onicofagia(se come las uñas) "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S20" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S20" color="primary" checked={Boolean(data.temblorManos)}/>}
                                 label="20. Temblor en las manos "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S21" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S21" color="primary" checked={Boolean(data.bruxismo)}/>}
                                 label="21. Bruxismo (Aprieta mucho la mandibulas al dormir) "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S22" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S22" color="primary" checked={Boolean(data.comeExceso)}/>}
                                 label="22. Come en exceso "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S23" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S23" color="primary" checked={Boolean(data.inapetencia)}/>}
                                 label="23. Inapetancia "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S24" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S24" color="primary" checked={Boolean(data.sequedadBucal)}/>}
                                 label="24. Sequedad bucal "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S25" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S25" color="primary" checked={Boolean(data.ideasObsesivas)}/>}
                                 label="25. Ideas obsesivas "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S26" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S26" color="primary" checked={Boolean(data.ideasSuicidio)}/>}
                                 label="26. Ideas de suicidio "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S27" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S27" color="primary" checked={Boolean(data.sentimientosCulpa)}/>}
                                 label="27. Sentimientos de culpa "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S28" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S28" color="primary" checked={Boolean(data.tartamudez)}/>}
                                 label="28. Tartamudez "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S29" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S29" color="primary" checked={Boolean(data.alteracionesMenstruales)}/>}
                                 label="29. Alteraciones menstruales "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S30" color="primary" />}
-                                label="30. Impotencia secual "
+                            <FormControlLabel disabled control={<Checkbox name="S30" color="primary" checked={Boolean(data.impotenciaSecual)}/>}
+                                label="30. Impotencia sexual "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S31" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S31" color="primary" checked={Boolean(data.frigidez)}/>}
                                 label="31. Frigidez "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S32" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S32" color="primary" checked={Boolean(data.eyaculacionprecoz)}/>}
                                 label="32. Eyaculación precoz "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S33" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S33" color="primary" checked={Boolean(data.dolorVaginal)}/>}
                                 label="33. Dolor vaginal al tener relaciones Sexuales "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S34" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S34" color="primary" checked={Boolean(data.pocoDeseo)}/>}
                                 label="34. Poco deseo Sexual "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S35" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S35" color="primary" checked={Boolean(data.tics)}/>}
                                 label="35. Tics "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S36" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S36" color="primary" checked={Boolean(data.fatiga)}/>}
                                 label="36. Se fatiga fácilmente "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S37" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S37" color="primary" checked={Boolean(data.llanto)}/>}
                                 label="37. Llanto "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S38" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S38" color="primary" checked={Boolean(data.desanimo)}/>}
                                 label="38. Desanimo "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S39" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S39" color="primary" checked={Boolean(data.pena)}/>}
                                 label="39. Pena "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S40" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S40" color="primary" checked={Boolean(data.ingestion)}/>}
                                 label="40. Ingestión escesiva de alcohol "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S41" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S41" color="primary" checked={Boolean(data.consumos)}/>}
                                 label="41. Consumo de Drogas "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S42" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S42" color="primary" checked={Boolean(data.hipocondria)}/>}
                                 label="42. Hipocondría (tendecia excesiva a atribuirse enfermedades) "
                             />
                             <Grid >
                                 <Typography variant="h7" gutterBottom >
                                     43. Miedos desproporcionados: <br />
                                 </Typography>
-                                <FormControlLabel disabled control={<Checkbox name="S43.a" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.a" color="primary" checked={Boolean(data.alturas)}/>}
                                     label="a. Las alturas  "
                                 />
-                                <FormControlLabel disabled control={<Checkbox name="S43.b" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.b" color="primary" checked={Boolean(data.espacios)}/>}
                                     label="b. Los espacios cerrados "
                                 />
-                                <FormControlLabel disabled control={<Checkbox name="S43.c" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.c" color="primary" checked={Boolean(data.viajar)}/>}
                                     label="c. Viajar en avión "
                                 />
-                                <FormControlLabel disabled control={<Checkbox name="S43.d" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.d" color="primary" checked={Boolean(data.sangre)}/>}
                                     label="d. Ver sangre "
                                 />
-                                <FormControlLabel disabled control={<Checkbox name="S43.e" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.e" color="primary" checked={Boolean(data.espaciosAbiertos)}/>}
                                     label="e. Los espacios abiertos  "
                                     
                                 /><br />
@@ -1263,7 +1297,7 @@ export default function PutFichaPsicologoF() {
                                 fullWidth
                                 multiline
                                 rows={4}
-                                value= {data.otroMiedos}
+                                value= {data.otrosMiedos}
                                 
                             />
                         </Grid>
