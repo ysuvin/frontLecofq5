@@ -91,7 +91,7 @@ export default function Vistapaciente() {
                         <TableHead>
                             <TableRow>
                                 <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> RUT </TableCell>
-                                <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> ocupacionActual </TableCell>
+                                <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> Ocupacion Actual </TableCell>
                                 <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> Escolaridad </TableCell>
                                 <TableCell style={{ textAlign: "center", fontWeight: "bold" }}> Acciones</TableCell>
                             </TableRow>
