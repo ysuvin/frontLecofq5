@@ -389,6 +389,7 @@ export default function PutFichaPsicologoF() {
                                 <Checkbox
                                     name="checkAndar"
                                     color="primary"
+                                    checked={Boolean(data.andar)}
                                 />
                             }
                             label="Andar"
@@ -1132,7 +1133,7 @@ export default function PutFichaPsicologoF() {
                             <FormControlLabel disabled control={<Checkbox name="S9" color="primary" />}
                                 label="9. Irritabilidad "
                             />
-                            <FormControlLabel disabled control={<Checkbox name="S10" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S10" color="primary" checked={Boolean(data.mareos)} />}
                                 label="10. Mareos "
                             />
                             <FormControlLabel disabled control={<Checkbox name="S11" color="primary" />}
