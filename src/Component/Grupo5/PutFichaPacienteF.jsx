@@ -138,7 +138,8 @@ export default function PutFichaPacienteF() {
                         <Grid item xs={12} md={6}>
                         <InputLabel >Rut</InputLabel>
                             <TextField disabled id="rutPaci" //label="Rut" 
-                            fullWidth autoComplete="rut-paci" value={Number(data.rut)}
+                            fullWidth autoComplete="rut-paci" 
+                            value={Number(data.rut)}
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
