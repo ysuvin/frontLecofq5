@@ -68,6 +68,7 @@ export default function PutFichaPsicologoF() {
 
     const [values, setAge] = React.useState('');
     const [values3, setAge3] = React.useState('');
+    const [values2, setAge2] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
@@ -95,7 +96,7 @@ export default function PutFichaPsicologoF() {
         setAge(event.target.value);
     };
     const handleChange2 = (event) => {
-        setAge(event.target.value);
+        setAge2(event.target.value);
     };
     const handleChange3 = (event) => {
         setAge3(event.target.value);
@@ -150,7 +151,8 @@ export default function PutFichaPsicologoF() {
                             Identificación Paciente
                         </Typography>
                         <Grid item >
-                            <TextField required
+                            <TextField 
+                                disabled
                                 type="number"
                                 id="rutPaci"
                                 label="Rut (Ej: 6345678-9)"
@@ -161,7 +163,7 @@ export default function PutFichaPsicologoF() {
                         <Grid item  >
                             <form className={classes.container} noValidate>
                                 <TextField
-                                    required
+                                    disabled
                                     id="fecha"
                                     label="Fecha"
                                     type="date"
@@ -170,6 +172,7 @@ export default function PutFichaPsicologoF() {
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+                                    value={data.fechaAtencion}
                                 />
                             </form>
                         </Grid>
@@ -200,63 +203,73 @@ export default function PutFichaPsicologoF() {
                             </form>
                         </Grid>
                         <Grid item  >
+                        <InputLabel >Lugar de Nacimiento</InputLabel>
+
                             <TextField
-                                required
+                                disabled
                                 id="lugNac"
-                                label="Lugar de Nacimiento"
+                                //label="Lugar de Nacimiento"
                                 fullWidth
                                 autoComplete="lug-nac"
-
+                                value= {data.lugarNacimiento}
                             />
                         </Grid>
                         <Grid item  >
+                        <InputLabel >Estado Civil</InputLabel>
                             <TextField
                                 disabled
                                 id="estC"
-                                label="Estado Civil"
+                                //label="Estado Civil"
                                 fullWidth
                                 autoComplete="est-civil"
+                                value={data.estado_civil}
 
                             />
                         </Grid>
                         <Grid item  >
+                        <InputLabel >Dirección</InputLabel>
                             <TextField
                                 disabled
                                 id="direcc"
-                                label="Direccion"
+                                //label="Direccion"
                                 fullWidth
                                 autoComplete="direcc"
 
                             />
                         </Grid>
                         <Grid item  >
+                        
                             <TextField
                                 disabled
                                 id="telefCont"
                                 label="Telefono Contacto"
                                 fullWidth
                                 autoComplete="telef-cont"
+                                value={Number(data.telefono)}
                                 
                             />
                         </Grid>
                         <Grid item  >
+                        <InputLabel >Ocupacion Actual</InputLabel>
                             <TextField
-                                required
+                                disabled
                                 id="ocupAct"
-                                label="Ocupacion Actual"
+                                //label="Ocupacion Actual"
                                 fullWidth
                                 autoComplete="ocup-act"
+                                value={data.ocupacionActual}
                                 
                             />
                         </Grid>
                         <Grid item >
+                        <InputLabel >Escolaridad</InputLabel>
                             <TextField
-                                required
+                                disabled
                                 id="esc"
-                                label="Escolaridad"
+                                //label="Escolaridad"
                                 fullWidth
                                 autoComplete="esc"
-                                
+                                value={data.escolaridad}
                             />
                         </Grid>
                     </Grid>
@@ -268,35 +281,41 @@ export default function PutFichaPsicologoF() {
                     </Grid>
 
                     <Grid item  >
+                    <InputLabel >Señale brevemente las razones que le han traido a consulta</InputLabel>
                         <TextField
+                            disabled
                             id="seBrev"
-                            label="Señale brevemente las razones que le han traido a consulta"
+                           // label="Señale brevemente las razones que le han traido a consulta"
                             fullWidth
                             multiline
                             rows={4}
-                            defaultValue=""
+                            value={data.razonesConsulta}
                             
                         />
                     </Grid>
                     <Grid item  >
+                        <InputLabel >Cual cree UD., que es la o las causas que originaron el o los problemas por los que consulta</InputLabel>
                         <TextField
+                            disabled
                             id="cualCree"
-                            label="Cual cree UD., que es la o las causas que originaron el o los problemas por los que consulta"
+                           // label="Cual cree UD., que es la o las causas que originaron el o los problemas por los que consulta"
                             fullWidth
                             multiline
                             rows={4}
-                            defaultValue=""
+                            value={data.causasConsulta}
                             
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Ha consultado con anterioridad a algun psicologo, psiquiatra o neurologo. Explique cuando y porque</InputLabel>
                         <TextField
+                            disabled
                             id="haCons"
-                            label="Ha consultado con anterioridad a algun psicologo, psiquiatra o neurologo. Explique cuando y porque"
+                            //label="Ha consultado con anterioridad a algun psicologo, psiquiatra o neurologo. Explique cuando y porque"
                             fullWidth
                             multiline
                             rows={4}
-                            defaultValue=""
+                            value={data.psicologoAnteriorRazon}
                             
                         />
                     </Grid>
@@ -304,11 +323,10 @@ export default function PutFichaPsicologoF() {
                         <Typography variant="h4" gutterBottom className={classes.container1}>
                             Sistema BIO-Clinico
                         </Typography>
-                        <Typography variant="h7" gutterBottom>
-                            Antecedentes Pre-Natales (Embarazo Materno)
-                            comente:
-                        </Typography>
+                        <InputLabel >Antecedentes Pre-Natales (Embarazo Materno)</InputLabel>
+                        
                         <TextField
+                            disabled
                             className={classes.container2}
                             id="PNatals"
                             label=""
@@ -316,72 +334,57 @@ export default function PutFichaPsicologoF() {
                             multiline
                             rows={4}
                             defaultValue=""
+                            value= {data.antecedentePrenatal}
                             
                         /> <br />
-                        <Typography variant="h7" gutterBottom>
-                            Antecedentes Perinatales, comente:
-                        </Typography>
+                        
                     </Grid>
                     <Grid item  >
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-controlled-open-select-label">Cuando nacio su parto fue:    </InputLabel>
-                            <Select
+                        <InputLabel >Antecedentes Perinatales</InputLabel>
+                        <TextField
+                                disabled
+                                id="ANpERI"
+                               // label="Antecedente Perinatal"
+                                fullWidth
+                                autoComplete="ant_perinatal"
+                                value={data.antecedentePerinatal}
 
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={open2}
-                                onClose={handleClose2}
-                                onOpen={handleOpen2}
-                                value={values}
-                                onChange={handleChange2}
-                                
-                            >
-                                <MenuItem value="">
-                                    <em>(Vacio)</em>
-                                </MenuItem>
-                                <MenuItem value={"Normal"}>Normal</MenuItem>
-                                <MenuItem value={"Prematuro"}>Prematuro</MenuItem>
-                                <MenuItem value={"Tardio"}>Tardio</MenuItem>
-                                <MenuItem value={"Cesárea"}>Cesárea</MenuItem>
-                                <MenuItem value={"Espontaneo"}>Espontaneo</MenuItem>
-                                <MenuItem value={"Inducido"}>Inducido</MenuItem>
-                                <MenuItem value={"Forceps"}>Forceps</MenuItem>
-                            </Select>
-                        </FormControl>
+                            />
+                        
                     </Grid>
                     <Grid item  >
-                        <Typography variant="h7" gutterBottom>
-                            Antecedentes recien nacido, comente:
-                    </Typography> <br />
+                    <InputLabel >Antecedentes del recien nacido</InputLabel>
+                        
                         <TextField
+                            disabled
                             className={classes.container2}
                             id="PNatals"
                             label=""
                             fullWidth
                             multiline
                             rows={4}
-                            defaultValue=""
+                            value= {data.antecedenteNacido}
                             
                         />
-                        <Typography variant="h7" gutterBottom>
-                            Antecedentes del desarrollo, comente:
-                    </Typography><br />
+                        
+                    <InputLabel >Antecedentes del desarrollo</InputLabel>
                         <TextField
+                            disabled
                             className={classes.container2}
                             id="PNatals"
                             label=""
                             fullWidth
                             multiline
                             rows={4}
-                            defaultValue=""
+                            value= {data.antecedenteDesarrollo}
                             
                         />
-                        <Typography variant="h7" gutterBottom>
-                            Dificultades para aprener a:
-                    </Typography>
+                        
                     </Grid>
                     <Grid item className={classes.container3} >
+                    <InputLabel >Dificultades para aprender a:</InputLabel>
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkAndar"
@@ -391,6 +394,7 @@ export default function PutFichaPsicologoF() {
                             label="Andar"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkHablar"
@@ -400,6 +404,7 @@ export default function PutFichaPsicologoF() {
                             label="Hablar"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkLeerEscribir"
@@ -409,6 +414,7 @@ export default function PutFichaPsicologoF() {
                             label="Leer y Escribir"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkControlar"
@@ -418,6 +424,7 @@ export default function PutFichaPsicologoF() {
                             label="Controlar Esfinter"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkConductual"
@@ -427,6 +434,7 @@ export default function PutFichaPsicologoF() {
                             label="Conductual"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkOtros"
@@ -438,13 +446,15 @@ export default function PutFichaPsicologoF() {
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Enfermedades del paciente:</InputLabel>
                         <TextField
+                            disabled
                             id="enferDe"
-                            label="Enfermedades"
+                           // label="Enfermedades"
                             fullWidth
                             multiline
                             rows={4}
-                            defaultValue=""
+                            value= {data.enfermedades}
                             
                         />
                     </Grid>
@@ -454,116 +464,64 @@ export default function PutFichaPsicologoF() {
                     </Typography>
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Nivel Escolar y establecimiento</InputLabel>
                         <TextField
+                            disabled
                             className={classes.container2}
                             id="esco"
-                            label="Nivel Escolar y establecimiento"
+                            //label="Nivel Escolar y establecimiento"
                             fullWidth
                             autoComplete="esco"
+                            value={data.datosEscolar}
                             
                         />
                     </Grid>
                     <Grid item  >
-                        <Typography variant="h7" gutterBottom>
-                            A traves de su vida como estudiante, usted ha sido un alumno:
-                    </Typography>
+                    <InputLabel >A traves de su vida como estudiante, usted ha sido un alumno, comente:</InputLabel>
+                        
                     </Grid>
-                    <Grid item  >
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-controlled-open-select-label3">Evalue su calidad    </InputLabel>
-                            <Select
-                                labelId="demo-controlled-open-select-label3"
-                                id="demo-controlled-open-select3"
-                                open={open3}
-                                onClose={handleClose3}
-                                onOpen={handleOpen3}
-                                value={values3}
-                                onChange={handleChange3}
-                                
-                            >
-                                <MenuItem value="">
-                                    <em>(Vacio)</em>
-                                </MenuItem>
-                                <MenuItem value={"Excelente"}>Excelente</MenuItem>
-                                <MenuItem value={"Bueno"}>Bueno</MenuItem>
-                                <MenuItem value={"Regular"}>Regular</MenuItem>
-                                <MenuItem value={"Malo"}>Malo</MenuItem>
-                                <MenuItem value={"Muy Malo"}>Muy Malo</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    {/* <Grid item  >
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    name="checkExelente"
-                                    color="primary"
-                                />
-                            }
-                            label="Exelente"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    name="checkBueno"
-                                    color="primary"
-                                />
-                            }
-                            label="Bueno"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    name="checkRegular"
-                                    color="primary"
-                                />
-                            }
-                            label="Regular"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    name="checkMalo"
-                                    color="primary"
-                                />
-                            }
-                            label="Malo"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    name="checkMMalo"
-                                    color="primary"
-                                />
-                            }
-                            label="Muy Malo"
-                            value={conductaEscolar} onChange={(e) => { setConductaEscolar(e.target.value) }}
-                        />
-                    </Grid> */}
                     <Grid item  >
                         <TextField
+                                disabled
+                                id="ANpERI"
+                               // label="Calidad como escolar"
+                                fullWidth
+                                autoComplete="cal_escolarl"
+                                value={data.calidadAlumno}
+
+                            />
+                        
+                    </Grid>
+                    
+                    <Grid item  >
+                    <InputLabel >Tuvo problemas de conducta en el colegio, comente:</InputLabel>
+                        <TextField
+                            disabled
                             id="tuvoProb"
-                            label="Tuvo problemas de conducta en el colegio"
+                            //label="Tuvo problemas de conducta en el colegio"
                             fullWidth
                             autoComplete="tuvo-prob"
+                            value={data.conductaEscolar}
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Tuvo problemas de adaptacion en el colegio, comente:</InputLabel>
                         <TextField
+                            disabled
                             className={classes.container2}
                             id="tuvoProb2"
-                            label="Tuvo problemas de adaptacion en el colegio"
+                            //label="Tuvo problemas de adaptacion en el colegio"
                             fullWidth
                             autoComplete="tuvo-prob2"
+                            value={data.adaptacionEscolar}
                         />
                     </Grid>
                     <Grid item  >
-                        <Typography variant="h7" gutterBottom>
-                            Evaluando en terminos generales lo que ha sido su historial como estudiante Usted se encuentra:
-                    </Typography>
+                    <InputLabel >Evaluando en terminos generales lo que ha sido su historial como estudiante Usted se encuentra:</InputLabel>
                     </Grid>
                     <Grid item className={classes.container3} >
                         <FormControlLabel
+                        disabled
                             control={
                                 <Checkbox
                                     name="checkMSatisfecho"
@@ -573,6 +531,7 @@ export default function PutFichaPsicologoF() {
                             label="Muy Satisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkSatisfecho"
@@ -582,6 +541,7 @@ export default function PutFichaPsicologoF() {
                             label="Satisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkRSatisfecho"
@@ -591,6 +551,7 @@ export default function PutFichaPsicologoF() {
                             label="Relativamente Satisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkInsatisfecho"
@@ -600,6 +561,7 @@ export default function PutFichaPsicologoF() {
                             label="Insatisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkMInsatisfecho"
@@ -620,88 +582,112 @@ export default function PutFichaPsicologoF() {
                     </Grid>
 
                     <Grid item  >
+                    <InputLabel >Remuneracion</InputLabel>
                         <TextField
+                            disabled
                             type="number"
                             id="remu"
-                            label="Remuneracion"
+                           // label="Remuneracion"
                             fullWidth
                             autoComplete="remu"
+                            value= {data.remuneracion}
+
                            
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Tipo de trabajo que realiza</InputLabel>
                         <TextField
+                            disabled
                             type=""
                             id="tipTrab"
-                            label="Tipo de trabajo que realiza"
+                            //label="Tipo de trabajo que realiza"
                             fullWidth
                             autoComplete="tip-trab"
+                            value= {data.tipoTrabajo}
                             
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Calidad de trabajo</InputLabel>
                         <TextField
+                            disabled
                             type=""
                             id="calTrab"
-                            label="Calidad de trabajo"
+                            //label="Calidad de trabajo"
                             fullWidth
                             autoComplete="cal-trab"
+                            value= {data.calidadTrabajo}
                             
                         />
                     </Grid>
                     {/* </Grid>
                     <Grid container justify="space-around" spacing={1}> */}
                     <Grid item  >
+                    <InputLabel >Relacion con sus de compañeros de trabajo</InputLabel>
                         <TextField
+                            disabled
                             type=""
                             id="relComp"
-                            label="Relacion con sus compañeros de trabajo"
+                            //label="Relacion con sus compañeros de trabajo"
                             fullWidth
                             autoComplete="rel-comp"
+                            value= {data.relacionCompañeros}
                             
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Calidad de rendimiento laboral</InputLabel>
                         <TextField
+                            disabled
                             type=""
                             id="calRend"
-                            label="Calidad de su rendimiento laboral"
+                            //label="Calidad de su rendimiento laboral"
                             fullWidth
                             autoComplete="cal-rend"
+                            value= {data.calidadLaboral}
                             
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Relacion con su superior</InputLabel>
                         <TextField
+                            disabled
                             type=""
                             id="relSup"
-                            label="Relacion con su superior"
+                           // label="Relacion con su superior"
                             fullWidth
                             autoComplete="rel-sup"
+                            value= {data.relacionSuperior}
                             
                         />
                     </Grid>
                     {/* </Grid>
                         <Grid container justify="space-around" spacing={1}> */}
                     <Grid item  >
+                    <InputLabel >Estabilidad laboral</InputLabel>
                         <TextField
+                            disabled
                             type=""
                             id="estLab"
-                            label="Estabilidad laboral"
+                            //label="Estabilidad laboral"
                             fullWidth
                             autoComplete="est-lab"
+                            value= {data.estabilidaLabolar}
                             
                         />
                     </Grid>
                     <Grid item  >
+                    <InputLabel >Perspectiva de desarrollo</InputLabel>
                         <TextField
-
+                            disabled
                             type=""
                             id="perspDesa"
-                            label="Perspectiva de desarrollo"
+                            //label="Perspectiva de desarrollo"
                             fullWidth
                             autoComplete="persp-desa"
-                            
+
+                            value= {data.perspectivaDesarrollo}
                         />
                     </Grid>
 
@@ -715,6 +701,7 @@ export default function PutFichaPsicologoF() {
                     </Grid>
                     <Grid item className={classes.container3} >
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkSociable"
@@ -724,6 +711,7 @@ export default function PutFichaPsicologoF() {
                             label="Sociable"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkRSociable"
@@ -733,6 +721,7 @@ export default function PutFichaPsicologoF() {
                             label="Relativamente sociable"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkPsociable"
@@ -753,6 +742,7 @@ export default function PutFichaPsicologoF() {
                     </Grid>
                     <Grid item className={classes.container3} >
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkPSatisfecho"
@@ -762,6 +752,7 @@ export default function PutFichaPsicologoF() {
                             label="Plenamente Satisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkSatisfecho"
@@ -771,6 +762,7 @@ export default function PutFichaPsicologoF() {
                             label="Satisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkRSatisfecho"
@@ -780,6 +772,7 @@ export default function PutFichaPsicologoF() {
                             label="Relativamente Satisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkInsatisfecho"
@@ -789,6 +782,7 @@ export default function PutFichaPsicologoF() {
                             label="Insatisfecho"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkMInsatisfecho"
@@ -809,6 +803,7 @@ export default function PutFichaPsicologoF() {
                     </Grid>
                     <Grid item className={classes.container3} >
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkMEstable"
@@ -818,6 +813,7 @@ export default function PutFichaPsicologoF() {
                             label="Muy Estable"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkREstable"
@@ -827,6 +823,7 @@ export default function PutFichaPsicologoF() {
                             label="Relativamente Estable"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkVariado"
@@ -844,6 +841,7 @@ export default function PutFichaPsicologoF() {
                     </Grid>
                     <Grid item className={classes.container3} >
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkCesantia"
@@ -853,6 +851,7 @@ export default function PutFichaPsicologoF() {
                             label="Cesantia"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkSMatrimonial"
@@ -862,6 +861,7 @@ export default function PutFichaPsicologoF() {
                             label="Separacion Matrimonial"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkDLaboral"
@@ -871,6 +871,7 @@ export default function PutFichaPsicologoF() {
                             label="Despido Laboral"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkMFamiliar"
@@ -880,6 +881,7 @@ export default function PutFichaPsicologoF() {
                             label="Muerte de un Familiar Cercano"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkEnfermedad"
@@ -889,6 +891,7 @@ export default function PutFichaPsicologoF() {
                             label="Enfermedad"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkFProblemas"
@@ -898,6 +901,7 @@ export default function PutFichaPsicologoF() {
                             label="Fuertes Problemas Economicos"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkAccidente"
@@ -907,6 +911,7 @@ export default function PutFichaPsicologoF() {
                             label="Accidente"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkFAcadenico"
@@ -916,6 +921,7 @@ export default function PutFichaPsicologoF() {
                             label="Fracaso Academico"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkEHijo"
@@ -925,6 +931,7 @@ export default function PutFichaPsicologoF() {
                             label="Enfermedad de un Hijo"
                         />
                         <FormControlLabel
+                            disabled
                             control={
                                 <Checkbox
                                     name="checkCResidencia"
@@ -941,11 +948,13 @@ export default function PutFichaPsicologoF() {
                     </Typography>
                     </Grid>
                     <Grid item  >
+                        
                         <Typography variant="h7" gutterBottom>
                             En la actualidad tiene una relaion de pareja:
                     </Typography>
                         <Grid className={classes.container3}>
                             <FormControlLabel
+                                disabled
                                 control={
                                     <Checkbox
                                         name="checkSi"
@@ -955,6 +964,7 @@ export default function PutFichaPsicologoF() {
                                 label="Si"
                             />
                             <FormControlLabel
+                                disabled
                                 control={
                                     <Checkbox
                                         name="checkNo"
@@ -966,53 +976,64 @@ export default function PutFichaPsicologoF() {
                             />
                         </Grid>
                         <Grid>
+                        <InputLabel >Hace cuanto tiempo tiene pareja</InputLabel>
                             <TextField
-                                required
+                                disabled
                                 id="datePareja"
-                                label="Hace cuanto tiempo tiene pareja"
+                               // label="Hace cuanto tiempo tiene pareja"
                                 fullWidth
                                 autoComplete="tiempo-pareja"
+                                value= {data.tiempoPareja}
                                 
                             />
                         </Grid>
                         <Grid>
+                        <InputLabel >Nombre de la pareja</InputLabel>
                             <TextField
-                                required
+                                disabled
                                 id="namePareja"
-                                label="Nombre de la pareja"
+                                //label="Nombre de la pareja"
                                 fullWidth
                                 autoComplete="nombre-pareja"
+                                value= {data.nombrePareja}
                                 
                             />
                         </Grid>
                         <Grid>
+                        <InputLabel >Edad de la pareja</InputLabel>
                             <TextField
-                                required
+                                disabled
                                 id="edadPareja"
-                                label="Edad"
+                                //label="Edad"
                                 fullWidth
                                 autoComplete="edad-pareja"
+                                value= {data.edadPareja}
                                 
                             />
                         </Grid>
                         <Grid>
+                        <InputLabel >Nivel de educacion</InputLabel>
                             <TextField
-                                required
+                                disabled
                                 id="nvEdPareja"
-                                label="Nivel educacional"
+                                //label="Nivel educacional"
                                 fullWidth
                                 autoComplete="nivelEd-pareja"
+                                value= {data.nivelEducacionalPareja}
                                 
                             />
                         </Grid>
                         <Grid>
+                        <InputLabel >Ocupacion actual</InputLabel>
                             <TextField
+                                disabled
                                 className={classes.container2}
                                 required
                                 id="cupacionPareja"
-                                label="Ocupacion Actual"
+                                //label="Ocupacion Actual"
                                 fullWidth
                                 autoComplete="ocupacion-pareja"
+                                value= {data.ocupacionActualPareja}
                                 
                             />
                         </Grid>
@@ -1021,6 +1042,7 @@ export default function PutFichaPsicologoF() {
                     </Typography>
                         <Grid className={classes.container3}>
                             <FormControlLabel
+                                disabled
                                 control={
                                     <Checkbox
                                         name="checkSatisUd"
@@ -1032,6 +1054,7 @@ export default function PutFichaPsicologoF() {
                         </Grid>
                         <Grid className={classes.container3}>
                             <FormControlLabel
+                                disabled
                                 control={
                                     <Checkbox
                                         name="checkSatisAmbos"
@@ -1043,6 +1066,7 @@ export default function PutFichaPsicologoF() {
                         </Grid>
                         <Grid className={classes.container3}>
                             <FormControlLabel
+                                disabled
                                 control={
                                     <Checkbox
                                         name="checkSatisPareja"
@@ -1059,14 +1083,16 @@ export default function PutFichaPsicologoF() {
                             Sentido de Vida
                     </Typography>
                         <Grid item  >
+                        <InputLabel >Mencione tres metas en la vida</InputLabel>
                             <TextField
+                                disabled
                                 className={classes.container2}
                                 id="tresMetas"
-                                label="Mencione Tres metas en la vida"
+                               // label="Mencione Tres metas en la vida"
                                 fullWidth
                                 multiline
                                 rows={4}
-                                defaultValue=""
+                                value= {data.metasVida}
                                 
                             />
                         </Grid>
@@ -1079,149 +1105,149 @@ export default function PutFichaPsicologoF() {
                     </Grid>
                     <Grid item  className={classes.container3} >
                         <Grid item xs={2} md={6} >
-                            <FormControlLabel control={<Checkbox name="S1" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S1" color="primary" />}
                                 label="1. Problemas de concentración y atención"
                             />
-                            <FormControlLabel control={<Checkbox name="S2" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S2" color="primary" />}
                                 label="2. Angustia "
                             />
-                            <FormControlLabel control={<Checkbox name="S3" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S3" color="primary" />}
                                 label="3. Problemas de memoria "
                             />
-                            <FormControlLabel control={<Checkbox name="S4" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S4" color="primary" />}
                                 label="4. Insomnío "
                             />
-                            <FormControlLabel control={<Checkbox name="S5" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S5" color="primary" />}
                                 label="5. Exceso de sueño "
                             />
-                            <FormControlLabel control={<Checkbox name="S6" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S6" color="primary" />}
                                 label="6. Pesadillas "
                             />
-                            <FormControlLabel control={<Checkbox name="S7" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S7" color="primary" />}
                                 label="7. Sonambulismo "
                             />
-                            <FormControlLabel control={<Checkbox name="S8" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S8" color="primary" />}
                                 label="8. Aburrimiento "
                             />
-                            <FormControlLabel control={<Checkbox name="S9" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S9" color="primary" />}
                                 label="9. Irritabilidad "
                             />
-                            <FormControlLabel control={<Checkbox name="S10" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S10" color="primary" />}
                                 label="10. Mareos "
                             />
-                            <FormControlLabel control={<Checkbox name="S11" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S11" color="primary" />}
                                 label="11. Cefaleas (Dolores de cabeza) "
                             />
-                            <FormControlLabel control={<Checkbox name="S6" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S6" color="primary" />}
                                 label="6. Vommitos "
                             />
-                            <FormControlLabel control={<Checkbox name="S13" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S13" color="primary" />}
                                 label="13. Desmayos "
                             />
-                            <FormControlLabel control={<Checkbox name="S14" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S14" color="primary" />}
                                 label="14. Diarreas "
                             />
-                            <FormControlLabel control={<Checkbox name="S15" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S15" color="primary" />}
                                 label="15. Constipacion (dificultad para defecar) "
                             />
-                            <FormControlLabel control={<Checkbox name="S16" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S16" color="primary" />}
                                 label="16. Vomitos "
                             />
-                            <FormControlLabel control={<Checkbox name="S17" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S17" color="primary" />}
                                 label="17. Arritmia "
                             />
-                            <FormControlLabel control={<Checkbox name="S18" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S18" color="primary" />}
                                 label="18. Transpiracion en las manos "
                             />
-                            <FormControlLabel control={<Checkbox name="S19" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S19" color="primary" />}
                                 label="19. Onicofagia(se come las uñas) "
                             />
-                            <FormControlLabel control={<Checkbox name="S20" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S20" color="primary" />}
                                 label="20. Temblor en las manos "
                             />
-                            <FormControlLabel control={<Checkbox name="S21" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S21" color="primary" />}
                                 label="21. Bruxismo (Aprieta mucho la mandibulas al dormir) "
                             />
-                            <FormControlLabel control={<Checkbox name="S22" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S22" color="primary" />}
                                 label="22. Come en exceso "
                             />
-                            <FormControlLabel control={<Checkbox name="S23" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S23" color="primary" />}
                                 label="23. Inapetancia "
                             />
-                            <FormControlLabel control={<Checkbox name="S24" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S24" color="primary" />}
                                 label="24. Sequedad bucal "
                             />
-                            <FormControlLabel control={<Checkbox name="S25" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S25" color="primary" />}
                                 label="25. Ideas obsesivas "
                             />
-                            <FormControlLabel control={<Checkbox name="S26" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S26" color="primary" />}
                                 label="26. Ideas de suicidio "
                             />
-                            <FormControlLabel control={<Checkbox name="S27" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S27" color="primary" />}
                                 label="27. Sentimientos de culpa "
                             />
-                            <FormControlLabel control={<Checkbox name="S28" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S28" color="primary" />}
                                 label="28. Tartamudez "
                             />
-                            <FormControlLabel control={<Checkbox name="S29" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S29" color="primary" />}
                                 label="29. Alteraciones menstruales "
                             />
-                            <FormControlLabel control={<Checkbox name="S30" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S30" color="primary" />}
                                 label="30. Impotencia secual "
                             />
-                            <FormControlLabel control={<Checkbox name="S31" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S31" color="primary" />}
                                 label="31. Frigidez "
                             />
-                            <FormControlLabel control={<Checkbox name="S32" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S32" color="primary" />}
                                 label="32. Eyaculación precoz "
                             />
-                            <FormControlLabel control={<Checkbox name="S33" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S33" color="primary" />}
                                 label="33. Dolor vaginal al tener relaciones Sexuales "
                             />
-                            <FormControlLabel control={<Checkbox name="S34" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S34" color="primary" />}
                                 label="34. Poco deseo Sexual "
                             />
-                            <FormControlLabel control={<Checkbox name="S35" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S35" color="primary" />}
                                 label="35. Tics "
                             />
-                            <FormControlLabel control={<Checkbox name="S36" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S36" color="primary" />}
                                 label="36. Se fatiga fácilmente "
                             />
-                            <FormControlLabel control={<Checkbox name="S37" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S37" color="primary" />}
                                 label="37. Llanto "
                             />
-                            <FormControlLabel control={<Checkbox name="S38" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S38" color="primary" />}
                                 label="38. Desanimo "
                             />
-                            <FormControlLabel control={<Checkbox name="S39" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S39" color="primary" />}
                                 label="39. Pena "
                             />
-                            <FormControlLabel control={<Checkbox name="S40" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S40" color="primary" />}
                                 label="40. Ingestión escesiva de alcohol "
                             />
-                            <FormControlLabel control={<Checkbox name="S41" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S41" color="primary" />}
                                 label="41. Consumo de Drogas "
                             />
-                            <FormControlLabel control={<Checkbox name="S42" color="primary" />}
+                            <FormControlLabel disabled control={<Checkbox name="S42" color="primary" />}
                                 label="42. Hipocondría (tendecia excesiva a atribuirse enfermedades) "
                             />
                             <Grid >
                                 <Typography variant="h7" gutterBottom >
                                     43. Miedos desproporcionados: <br />
                                 </Typography>
-                                <FormControlLabel control={<Checkbox name="S43.a" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.a" color="primary" />}
                                     label="a. Las alturas  "
                                 />
-                                <FormControlLabel control={<Checkbox name="S43.b" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.b" color="primary" />}
                                     label="b. Los espacios cerrados "
                                 />
-                                <FormControlLabel control={<Checkbox name="S43.c" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.c" color="primary" />}
                                     label="c. Viajar en avión "
                                 />
-                                <FormControlLabel control={<Checkbox name="S43.d" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.d" color="primary" />}
                                     label="d. Ver sangre "
                                 />
-                                <FormControlLabel control={<Checkbox name="S43.e" color="primary" />}
+                                <FormControlLabel disabled control={<Checkbox name="S43.e" color="primary" />}
                                     label="e. Los espacios abiertos  "
                                     
                                 /><br />
@@ -1230,12 +1256,13 @@ export default function PutFichaPsicologoF() {
                                 44. Otros miedos: <br />
                             </Typography>
                             <TextField
+                                disabled
                                 id="tresMetas"
                                 label=""
                                 fullWidth
                                 multiline
                                 rows={4}
-                                defaultValue=""
+                                value= {data.otroMiedos}
                                 
                             />
                         </Grid>
@@ -1243,11 +1270,11 @@ export default function PutFichaPsicologoF() {
 
 
 
-                    <Grid item alignContent="flex-end" className={classes.root}>
+                    {/* <Grid item alignContent="flex-end" className={classes.root}>
                         <Button className={classes.container1} variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} >
                             Finalizar
                         </Button>
-                        {/* /*    {
+                        {
                             banderaAlerta &&
                             <div>
                                 {
@@ -1266,9 +1293,9 @@ export default function PutFichaPsicologoF() {
                                     }
                                 </div>
                             }
-                        */ }
+                        
 
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </React.Fragment>
         </div>

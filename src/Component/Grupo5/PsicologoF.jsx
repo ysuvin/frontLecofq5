@@ -14,7 +14,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Axios from 'axios';
-
+//import logo from '../logo.png';
 
 
 function Alert(props) {
@@ -68,9 +68,12 @@ export default function PsicologoF() {
 
     const [values, setAge] = React.useState('');
     const [values3, setAge3] = React.useState('');
+    const [values4, setAge4] = React.useState('');
+    const [values2, setAge2] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
+    const [open4, setOpen4] = React.useState(false);
 
     const handleClick = () => {
         setOpen(true);
@@ -89,15 +92,21 @@ export default function PsicologoF() {
     const handleClose3 = () => {
         setOpen3(false);
     };
+    const handleClose4 = () => {
+        setOpen4(false);
+    };
 
     const handleChange = (event) => {
         setAge(event.target.value);
     };
     const handleChange2 = (event) => {
-        setAge(event.target.value);
+        setAge2(event.target.value);
     };
     const handleChange3 = (event) => {
         setAge3(event.target.value);
+    };
+    const handleChange4 = (event) => {
+        setAge4(event.target.value);
     };
 
     const handleOpen = () => {
@@ -109,6 +118,9 @@ export default function PsicologoF() {
     const handleOpen3 = () => {
         setOpen3(true);
     };
+    const handleOpen4 = () => {
+        setOpen4(true);
+    };
 
 
 
@@ -117,6 +129,9 @@ export default function PsicologoF() {
 
     const [rut, setRut] = React.useState('');
     const [ocupacion, setOcupacion] = React.useState('');
+    const [fechaAtencion, setFechaAtencion] = React.useState('');
+    const [estado_civil, setEstado_civil] = React.useState('');
+    const [lugarNacimiento, setLugarNacimiento] = React.useState('');
     const [escolaridad, setEscolaridad] = React.useState('');
     const [telefono, setTelefono] = React.useState('');
     const [ocupacionActual, setOcupacionActual] = React.useState('');
@@ -132,6 +147,7 @@ export default function PsicologoF() {
     const [dificultadesAprender, setDificultadesAprender] = React.useState('');
     const [enfermedades, setEnfermedades] = React.useState('');
     const [datosEscolar, setDatosEscolar] = React.useState('');
+    const [calidadAlumno, setCalidadAlumno] = React.useState('');
     const [conductaEscolar, setConductaEscolar] = React.useState('');
     const [adaptacionEscolar, setaAdaptacionEscolar] = React.useState('');
     const [remuneracion, setRemuneracion] = React.useState('');
@@ -171,6 +187,9 @@ export default function PsicologoF() {
     const goLogin = () => {
         let data = {
             rut: rut,
+            fechaAtencion: fechaAtencion,
+            lugarNacimiento: lugarNacimiento,
+            estado_civil: estado_civil,
             ocupacion: ocupacion,
             escolaridad: escolaridad,
             telefono: telefono,
@@ -187,6 +206,7 @@ export default function PsicologoF() {
             dificultadesAprender: dificultadesAprender,
             enfermedades: enfermedades,
             datosEscolar: datosEscolar,
+            calidadAlumno: calidadAlumno,
             conductaEscolar: conductaEscolar,
             adaptacionEscolar: adaptacionEscolar,
             remuneracion: remuneracion,
@@ -235,10 +255,13 @@ export default function PsicologoF() {
             marginLeft: 100, marginRight: 100, marginBottom: 50, marginTop: 50
         }}>
             <React.Fragment>
-                <Grid xs={12} >
+                <Grid xs={6} >
                     <Typography variant="h3"  >
                         Ficha Clinica Psicológica
                     </Typography>
+                    
+                     {/* <img xs={6} src={logo} className="App-logo" alt="logo" /> */}
+
                 </Grid>
                 <Grid container 
                     direction="column"
@@ -256,7 +279,8 @@ export default function PsicologoF() {
                                 id="rutPaci"
                                 label="Rut (Ej: 6345678-9)"
                                 fullWidth
-                                autoComplete="rut-paci" />
+                                autoComplete="rut-paci"
+                                value={rut} onChange={(e) => { setRut(e.target.value) }} />
                         </Grid>
                         <Grid item  >
                             <form className={classes.container} noValidate>
@@ -270,6 +294,7 @@ export default function PsicologoF() {
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+                                    value={fechaAtencion} onChange={(e) => { setFechaAtencion(e.target.value) }} 
                                 />
                             </form>
                         </Grid>
@@ -280,7 +305,7 @@ export default function PsicologoF() {
                                 label="Nombre"
                                 fullWidth
                                 autoComplete="nombre"
-                                value={rut} onChange={(e) => { setRut(e.target.value) }}
+                                
                             />
                         </Grid>
                         <Grid item  >
@@ -306,10 +331,33 @@ export default function PsicologoF() {
                                 label="Lugar de Nacimiento"
                                 fullWidth
                                 autoComplete="lug-nac"
+                                value={lugarNacimiento} onChange={(e) => { setLugarNacimiento(e.target.value) }}
 
                             />
                         </Grid>
-                        <Grid item  >
+                        <Grid item xs={12} md={6}>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel id="demo-controlled-open-select-label">Estado Civil   </InputLabel>
+                                <Select
+                                    labelId="demo-controlled-open-select-label"
+                                    id="demo-controlled-open-select"
+                                    open={open4}
+                                    onClose={handleClose4}
+                                    onOpen={handleOpen4}
+                                    value={values4}
+                                    onChange={handleChange4}
+                                    value={estado_civil} onChange={(e) => { setEstado_civil(e.target.value) }}
+                                >
+                                    <MenuItem value="">
+                                        <em>(Vacio)</em>
+                                    </MenuItem>
+                                    <MenuItem value={"Soltero(a)"}>Soltero(a)</MenuItem>
+                                    <MenuItem value={"Casado(a)"}>Casado(a)</MenuItem>
+                                    <MenuItem value={"Viudo(a)"}>Viudo(a)</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        {/* <Grid item  >
                             <TextField
                                 disabled
                                 id="estC"
@@ -318,7 +366,7 @@ export default function PsicologoF() {
                                 autoComplete="est-civil"
 
                             />
-                        </Grid>
+                        </Grid> */}
                         <Grid item  >
                             <TextField
                                 disabled
@@ -331,7 +379,7 @@ export default function PsicologoF() {
                         </Grid>
                         <Grid item  >
                             <TextField
-                                disabled
+                                
                                 id="telefCont"
                                 label="Telefono Contacto"
                                 fullWidth
@@ -346,7 +394,7 @@ export default function PsicologoF() {
                                 label="Ocupacion Actual"
                                 fullWidth
                                 autoComplete="ocup-act"
-                                value={ocupacion} onChange={(e) => { setOcupacion(e.target.value) }}
+                                value={ocupacionActual} onChange={(e) => { setOcupacionActual(e.target.value) }}
                             />
                         </Grid>
                         <Grid item >
@@ -432,7 +480,7 @@ export default function PsicologoF() {
                                 open={open2}
                                 onClose={handleClose2}
                                 onOpen={handleOpen2}
-                                value={values}
+                                value={values2}
                                 onChange={handleChange2}
                                 value={antecedentePerinatal} onChange={(e) => { setAntecedentePerinatal(e.target.value) }}
                             >
@@ -534,7 +582,7 @@ export default function PsicologoF() {
                                 />
                             }
                             label="Otros"
-                            value={dificultadesAprender} onChange={(e) => { setDificultadesAprender(e.target.value) }}
+                            
                         />
                     </Grid>
                     <Grid item  >
@@ -579,7 +627,7 @@ export default function PsicologoF() {
                                 onOpen={handleOpen3}
                                 value={values3}
                                 onChange={handleChange3}
-                                value={adaptacionEscolar} onChange={(e) => { setConductaEscolar(e.target.value) }}
+                                value={calidadAlumno} onChange={(e) => { setCalidadAlumno(e.target.value) }}
                             >
                                 <MenuItem value="">
                                     <em>(Vacio)</em>
@@ -646,6 +694,7 @@ export default function PsicologoF() {
                             label="Tuvo problemas de conducta en el colegio"
                             fullWidth
                             autoComplete="tuvo-prob"
+                            value={conductaEscolar} onChange={(e) => { setConductaEscolar(e.target.value) }}
                         />
                     </Grid>
                     <Grid item  >
@@ -655,6 +704,7 @@ export default function PsicologoF() {
                             label="Tuvo problemas de adaptacion en el colegio"
                             fullWidth
                             autoComplete="tuvo-prob2"
+                            value={adaptacionEscolar} onChange={(e) => { setaAdaptacionEscolar(e.target.value) }}
                         />
                     </Grid>
                     <Grid item  >
@@ -896,7 +946,7 @@ export default function PsicologoF() {
                                 />
                             }
                             label="Muy Insatisfecho"
-                            value={balanceSocial} onChange={(e) => { setBalanceSocial(e.target.value) }}
+                            
                         />
                     </Grid>
                     <Grid item  >
@@ -934,7 +984,7 @@ export default function PsicologoF() {
                                 />
                             }
                             label="Varia en funcion de las experiencias"
-                            value={estadoAnimo} onChange={(e) => { setEstadoAnimo(e.target.value) }}
+                            
                         />
                     </Grid>
                     <Grid item  >
@@ -1032,7 +1082,7 @@ export default function PsicologoF() {
                                 />
                             }
                             label="Cambio de Residencia"
-                            value={situacionUltimoAño} onChange={(e) => { setSituacionUltimoAño(e.target.value) }}
+                           
                         />
                     </Grid>
                     <Grid item  >
@@ -1062,7 +1112,7 @@ export default function PsicologoF() {
                                     />
                                 }
                                 label="No"
-                                value={relacionPareja} onChange={(e) => { setRelacionPareja(e.target.value) }}
+                                
                             />
                         </Grid>
                         <Grid>
@@ -1150,7 +1200,7 @@ export default function PsicologoF() {
                                     />
                                 }
                                 label="Su pareja esta más satisfecha que usted"
-                                value={relacionPareja} onChange={(e) => { setRelacionPareja(e.target.value) }}
+                               
                             />
                         </Grid>
                     </Grid>
