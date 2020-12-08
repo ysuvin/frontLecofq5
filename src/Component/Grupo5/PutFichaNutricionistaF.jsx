@@ -331,7 +331,7 @@ export default function NutricionistaF() {
                             // label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem2"
-                            value={data.cantidadSemanaltabaco}
+                            value={data.cantidadSemanalTabaco}
                         />
                     </Grid>
 

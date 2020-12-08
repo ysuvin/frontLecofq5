@@ -46,6 +46,10 @@ const redirectPutFichaNutricionista = (id) => {
     { history.push(`/Grupo5/PutFichaNutricionista/${id}`)
     console.log(id); }
 }
+const redirectModificarNutricionista = (id) => {
+    { history.push(`/Grupo5/ModificarNutricionista/${id}`)
+    console.log(id); }
+}
 
 useEffect(() => {
 
@@ -103,6 +107,7 @@ useEffect(() => {
                                 <TableCell>{elemento.pesoIdeal}</TableCell>
                                 <TableCell style={{textAlign: "center"}}> 
                                         <Button variant="contained" color="primary" onClick={e => redirectPutFichaNutricionista(elemento._id)}> Ver </Button>
+                                        <Button variant="contained" color="primary" onClick={e => redirectModificarNutricionista(elemento._id)}> Modificar </Button>
                                         <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
