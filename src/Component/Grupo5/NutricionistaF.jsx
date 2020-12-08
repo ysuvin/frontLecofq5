@@ -337,7 +337,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkPatologia"
                                         color="primary"
-                                        value={true} onClick={(e) => { setPatologia(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setPatologia(e.target.value) }}
                                     />
                                 }
                                 label="Patologia"
@@ -347,7 +348,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDiabetes"
                                         color="primary"
-                                        value={true} onClick={(e) => { setDiabetes(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setDiabetes(e.target.value) }}
                                     />
                                 }
                                 label="Diabetes"
@@ -357,7 +359,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkObesidad"
                                         color="primary"
-                                        value={true} onClick={(e) => { setObesidad(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setObesidad(e.target.value) }}
                                     />
                                 }
                                 label="Obesidad"
