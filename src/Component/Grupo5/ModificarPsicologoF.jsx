@@ -833,7 +833,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkAndar"
                                         color="primary"
-                                        value={true} onClick={(e) => { setAndar(e.target.value) }}
+                                        checked={andar} onClick={(e) => { setAndar(!andar) }}
                                     />
                                 }
                                 label="Andar"
@@ -843,7 +843,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkHablar"
                                         color="primary"
-                                        value={true} onClick={(e) => { setHablar(e.target.value) }}
+                                        checked={hablar} onClick={(e) => { setHablar(!hablar) }}
                                     />
                                 }
                                 label="Hablar"
@@ -853,7 +853,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkLeerEscribir"
                                         color="primary"
-                                        value={true} onClick={(e) => { setLeerYEscribir(e.target.value) }}
+                                        checked={leerYEscribir} onClick={(e) => { setLeerYEscribir(!leerYEscribir) }}
 
                                     />
                                 }
@@ -864,7 +864,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkControlar"
                                         color="primary"
-                                        value={true} onClick={(e) => { setControlarEsfinter(e.target.value) }}
+                                        checked={controlarEsfinter} onClick={(e) => { setControlarEsfinter(!controlarEsfinter) }}
                                     />
                                 }
                                 label="Controlar Esfinter"
@@ -874,7 +874,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkConductual"
                                         color="primary"
-                                        value={true} onClick={(e) => { setConductual(e.target.value) }}
+                                        checked={conductual} onClick={(e) => { setConductual(!conductual) }}
                                     />
                                 }
                                 label="Conductual"
@@ -884,7 +884,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkOtros"
                                         color="primary"
-                                        value={true} onClick={(e) => { setOtros(e.target.value) }}
+                                        checked={otros} onClick={(e) => { setOtros(!otros) }}
                                     />
                                 }
                                 label="Otros"
@@ -1024,7 +1024,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkMSatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setMuySatisfecho(e.target.value) }}
+                                        checked={muySatisfecho} onClick={(e) => { setMuySatisfecho(!muySatisfecho) }}
                                     />
                                 }
                                 label="Muy Satisfecho"
@@ -1034,7 +1034,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkSatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setSatisfecho(e.target.value) }}
+                                        checked={satisfecho} onClick={(e) => { setSatisfecho(!satisfecho) }}
                                     />
                                 }
                                 label="Satisfecho"
@@ -1044,7 +1044,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkRSatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setRelativamenteSatisfecho(e.target.value) }}
+                                        checked={relativamenteSatisfecho} onClick={(e) => { setRelativamenteSatisfecho(!relativamenteSatisfecho) }}
                                     />
                                 }
                                 label="Relativamente Satisfecho"
@@ -1054,7 +1054,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkInsatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setInsatisfecho(e.target.value) }}
+                                        checked={insatisfecho} onClick={(e) => { setInsatisfecho(!insatisfecho) }}
                                     />
                                 }
                                 label="Insatisfecho"
@@ -1064,7 +1064,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkMInsatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setMuyInsatisfecho(e.target.value) }}
+                                        value={muyInsatisfecho} onClick={(e) => { setMuyInsatisfecho(!muyInsatisfecho) }}
                                     />
                                 }
                                 label="Muy Insatisfecho"
@@ -1180,7 +1180,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkSociable"
                                         color="primary"
-                                        value={true} onClick={(e) => { setSociable(e.target.value) }}
+                                        checked={sociable} onClick={(e) => { setSociable(!sociable) }}
                                     />
                                 }
                                 label="Sociable"
@@ -1190,7 +1190,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkRSociable"
                                         color="primary"
-                                        value={true} onClick={(e) => { setRelativamenteSociable(e.target.value) }}
+                                        checked={relativamenteSociable} onClick={(e) => { setRelativamenteSociable(!relativamenteSociable) }}
                                     />
                                 }
                                 label="Relativamente sociable"
@@ -1200,7 +1200,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkPsociable"
                                         color="primary"
-                                        value={true} onClick={(e) => { setPocoSociable(e.target.value) }}
+                                        checked={pocoSociable} onClick={(e) => { setPocoSociable(!pocoSociable) }}
                                     />
                                 }
                                 label="Poco Sociable"
@@ -1221,7 +1221,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkPSatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setPlenamenteSatisfecho(e.target.value) }}
+                                        checked={plenamenteSatisfecho} onClick={(e) => { setPlenamenteSatisfecho(!plenamenteSatisfecho) }}
                                     />
                                 }
                                 label="Plenamente Satisfecho"
@@ -1231,7 +1231,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkSatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setSatisfecho2(e.target.value) }}
+                                        checked={satisfecho2} onClick={(e) => { setSatisfecho2(!satisfecho2) }}
                                     />
                                 }
                                 label="Satisfecho"
@@ -1241,7 +1241,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkRSatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setRelativamenteSatisfecho2(e.target.value) }}
+                                        checked={relativamenteSatisfecho2} onClick={(e) => { setRelativamenteSatisfecho2(!relativamenteSatisfecho2) }}
                                     />
                                 }
                                 label="Relativamente Satisfecho"
@@ -1251,7 +1251,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkInsatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setInsatisfecho2(e.target.value) }}
+                                        checked={insatisfecho2} onClick={(e) => { setInsatisfecho2(!insatisfecho2) }}
                                     />
                                 }
                                 label="Insatisfecho"
@@ -1261,7 +1261,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkMInsatisfecho"
                                         color="primary"
-                                        value={true} onClick={(e) => { setMuyInsatisfecho2(e.target.value) }}
+                                        checked={muyInsatisfecho2} onClick={(e) => { setMuyInsatisfecho2(!muyInsatisfecho2) }}
                                     />
                                 }
                                 label="Muy Insatisfecho"
@@ -1282,7 +1282,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkMEstable"
                                         color="primary"
-                                        value={true} onClick={(e) => { setMuyEstable(e.target.value) }}
+                                        checked={muyEstable} onClick={(e) => { setMuyEstable(!muyEstable) }}
                                     />
                                 }
                                 label="Muy Estable"
@@ -1292,7 +1292,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkREstable"
                                         color="primary"
-                                        value={true} onClick={(e) => { setRelativamenteEstable(e.target.value) }}
+                                        checked={relativamenteEstable} onClick={(e) => { setRelativamenteEstable(!relativamenteEstable) }}
                                     />
                                 }
                                 label="Relativamente Estable"
@@ -1302,7 +1302,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkVariado"
                                         color="primary"
-                                        value={true} onClick={(e) => { setVariaEnFuncionDeLasExperiencias(e.target.value) }}
+                                        checked={variaEnFuncionDeLasExperencias} onClick={(e) => { setVariaEnFuncionDeLasExperiencias(!variaEnFuncionDeLasExperencias) }}
                                     />
                                 }
                                 label="Varia en funcion de las experiencias"
@@ -1320,7 +1320,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkCesantia"
                                         color="primary"
-                                        value={true} onClick={(e) => { setCesantia(e.target.value) }}
+                                        checked={cesantia} onClick={(e) => { setCesantia(!cesantia) }}
                                     />
                                 }
                                 label="Cesantia"
@@ -1330,7 +1330,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkSMatrimonial"
                                         color="primary"
-                                        value={true} onClick={(e) => { setSeparacionMatrimonial(e.target.value) }}
+                                        checked={separacionMatrimonial} onClick={(e) => { setSeparacionMatrimonial(!separacionMatrimonial) }}
                                     />
                                 }
                                 label="Separacion Matrimonial"
@@ -1340,7 +1340,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkDLaboral"
                                         color="primary"
-                                        value={true} onClick={(e) => { setDespidoLaboral(e.target.value) }}
+                                        checked={despidoLaboral} onClick={(e) => { setDespidoLaboral(!despidoLaboral) }}
                                     />
                                 }
                                 label="Despido Laboral"
@@ -1350,7 +1350,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkMFamiliar"
                                         color="primary"
-                                        value={true} onClick={(e) => { setMuerteDeUnFamiliarCercano(e.target.value) }}
+                                        checked={muerteDeUnFamiliarCercano} onClick={(e) => { setMuerteDeUnFamiliarCercano(!muerteDeUnFamiliarCercano) }}
                                     />
                                 }
                                 label="Muerte de un Familiar Cercano"
@@ -1360,7 +1360,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkEnfermedad"
                                         color="primary"
-                                        value={true} onClick={(e) => { setEnfermedad(e.target.value) }}
+                                        checked={enfermedad} onClick={(e) => { setEnfermedad(!enfermedad) }}
                                     />
                                 }
                                 label="Enfermedad"
@@ -1370,7 +1370,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkFProblemas"
                                         color="primary"
-                                        value={true} onClick={(e) => { setFuertesProblemasEconomicos(e.target.value) }}
+                                        checked={fuertesProblemasEconomicos} onClick={(e) => { setFuertesProblemasEconomicos(!fuertesProblemasEconomicos) }}
                                     />
                                 }
                                 label="Fuertes Problemas Economicos"
@@ -1380,7 +1380,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkAccidente"
                                         color="primary"
-                                        value={true} onClick={(e) => { setAccidente(e.target.value) }}
+                                        checked={accidente} onClick={(e) => { setAccidente(!accidente) }}
                                     />
                                 }
                                 label="Accidente"
@@ -1390,7 +1390,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkFAcadenico"
                                         color="primary"
-                                        value={true} onClick={(e) => { setFracasoAcademico(e.target.value) }}
+                                        checked={fracasoAcademico} onClick={(e) => { setFracasoAcademico(!fracasoAcademico) }}
                                     />
                                 }
                                 label="Fracaso Academico"
@@ -1400,7 +1400,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkEHijo"
                                         color="primary"
-                                        value={true} onClick={(e) => { setEnfermedadDeUnHijo(e.target.value) }}
+                                        checked={enfermedadDeUnHijo} onClick={(e) => { setEnfermedadDeUnHijo(!enfermedadDeUnHijo) }}
                                     />
                                 }
                                 label="Enfermedad de un Hijo"
@@ -1410,7 +1410,7 @@ export default function PsicologoF() {
                                     <Checkbox
                                         name="checkCResidencia"
                                         color="primary"
-                                        value={true} onClick={(e) => { setCambioDeResidencia(e.target.value) }}
+                                        checked={cambioDeResidencia} onClick={(e) => { setCambioDeResidencia(!cambioDeResidencia) }}
                                     />
                                 }
                                 label="Cambio de Residencia"
@@ -1432,7 +1432,7 @@ export default function PsicologoF() {
                                         <Checkbox
                                             name="checkSi"
                                             color="primary"
-                                            value={true} onClick={(e) => { setSi(e.target.value) }}
+                                            checked={si} onClick={(e) => { setSi(!si) }}
                                         />
                                     }
                                     label="Si"
@@ -1442,7 +1442,7 @@ export default function PsicologoF() {
                                         <Checkbox
                                             name="checkNo"
                                             color="primary"
-                                            value={true} onClick={(e) => { setNo(e.target.value) }}
+                                            checked={no} onClick={(e) => { setNo(!no) }}
                                         />
                                     }
                                     label="No"
@@ -1509,7 +1509,7 @@ export default function PsicologoF() {
                                         <Checkbox
                                             name="checkSatisUd"
                                             color="primary"
-                                            value={true} onClick={(e) => { setUstedEstaMasSatisfechoQueSuPareja(e.target.value) }}
+                                            checked={ustedEstaMasSatisfechoQueSuPareja} onClick={(e) => { setUstedEstaMasSatisfechoQueSuPareja(!ustedEstaMasSatisfechoQueSuPareja) }}
                                         />
                                     }
                                     label="Usted está más satisfecho que su pareja"
@@ -1521,7 +1521,7 @@ export default function PsicologoF() {
                                         <Checkbox
                                             name="checkSatisAmbos"
                                             color="primary"
-                                            value={true} onClick={(e) => { setAmbosEstanIgualDeSatisfechos(e.target.value) }}
+                                            checked={ambosEstanIgualDeSatisfechos} onClick={(e) => { setAmbosEstanIgualDeSatisfechos(!ambosEstanIgualDeSatisfechos) }}
                                         />
                                     }
                                     label="Ambos estan igual de satisfechos"
@@ -1533,7 +1533,7 @@ export default function PsicologoF() {
                                         <Checkbox
                                             name="checkSatisPareja"
                                             color="primary"
-                                            value={true} onClick={(e) => { setSuParejaEstaMasSatisfechaQueUsted(e.target.value) }}
+                                            checked={suParejaEstaMasSatisfechaQueUsted} onClick={(e) => { setSuParejaEstaMasSatisfechaQueUsted(!suParejaEstaMasSatisfechaQueUsted) }}
                                         />
                                     }
                                     label="Su pareja esta más satisfecha que usted"
@@ -1566,147 +1566,147 @@ export default function PsicologoF() {
                         </Grid>
                         <Grid item className={classes.container3} >
                             <Grid item xs={2} md={6} >
-                                <FormControlLabel control={<Checkbox name="S1" color="primary" value={true} onClick={(e) => { setProblemasConcentracion(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S1" color="primary" checked={problemasConcentracion} onClick={(e) => { setProblemasConcentracion(!problemasConcentracion) }} />}
                                     label="1. Problemas de concentración y atención"
                                 />
-                                <FormControlLabel control={<Checkbox name="S2" color="primary" value={true} onClick={(e) => { setAngustia(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S2" color="primary" checked={angustia} onClick={(e) => { setAngustia(!angustia) }} />}
                                     label="2. Angustia "
                                 />
-                                <FormControlLabel control={<Checkbox name="S3" color="primary" value={true} onClick={(e) => { setProblemasMemoria(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S3" color="primary" checked={problemasMemoria} onClick={(e) => { setProblemasMemoria(!problemasMemoria) }} />}
                                     label="3. Problemas de memoria "
                                 />
-                                <FormControlLabel control={<Checkbox name="S4" color="primary" value={true} onClick={(e) => { setInsomnio(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S4" color="primary" checked={insomnio} onClick={(e) => { setInsomnio(!insomnio) }} />}
                                     label="4. Insomnío "
                                 />
-                                <FormControlLabel control={<Checkbox name="S5" color="primary" value={true} onClick={(e) => { setExcesoSueño(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S5" color="primary" checked={excesoSueño} onClick={(e) => { setExcesoSueño(!excesoSueño) }} />}
                                     label="5. Exceso de sueño "
                                 />
-                                <FormControlLabel control={<Checkbox name="S6" color="primary" value={true} onClick={(e) => { setPesadillas(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S6" color="primary" checked={pesadillas} onClick={(e) => { setPesadillas(!pesadillas) }} />}
                                     label="6. Pesadillas "
                                 />
-                                <FormControlLabel control={<Checkbox name="S7" color="primary" value={true} onClick={(e) => { setSonambulismo(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S7" color="primary" checked={sonambulismo} onClick={(e) => { setSonambulismo(!sonambulismo) }} />}
                                     label="7. Sonambulismo "
                                 />
-                                <FormControlLabel control={<Checkbox name="S8" color="primary" value={true} onClick={(e) => { setAburrimiento(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S8" color="primary" checked={aburrimiento} onClick={(e) => { setAburrimiento(!aburrimiento) }} />}
                                     label="8. Aburrimiento "
                                 />
-                                <FormControlLabel control={<Checkbox name="S9" color="primary" value={true} onClick={(e) => { setIrritabilidad(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S9" color="primary" checked={irritabilidad} onClick={(e) => { setIrritabilidad(!irritabilidad) }} />}
                                     label="9. Irritabilidad "
                                 />
-                                <FormControlLabel control={<Checkbox name="S10" color="primary" value={true} onClick={(e) => { setMareos(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S10" color="primary" checked={mareos} onClick={(e) => { setMareos(!mareos) }} />}
                                     label="10. Mareos "
                                 />
-                                <FormControlLabel control={<Checkbox name="S11" color="primary" value={true} onClick={(e) => { setCefaleas(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S11" color="primary" checked={cefaleas} onClick={(e) => { setCefaleas(!cefaleas) }} />}
                                     label="11. Cefaleas (Dolores de cabeza) "
                                 />
-                                <FormControlLabel control={<Checkbox name="S6" color="primary" value={true} onClick={(e) => { setVomitos(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S6" color="primary" checked={vomitos} onClick={(e) => { setVomitos(!vomitos) }} />}
                                     label="6. Vomitos "
                                 />
-                                <FormControlLabel control={<Checkbox name="S13" color="primary" value={true} onClick={(e) => { setDesmayos(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S13" color="primary" checked={desmayos} onClick={(e) => { setDesmayos(!desmayos) }} />}
                                     label="13. Desmayos "
                                 />
-                                <FormControlLabel control={<Checkbox name="S14" color="primary" value={true} onClick={(e) => { setDiarreas(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S14" color="primary" checked={diarreas} onClick={(e) => { setDiarreas(!diarreas) }} />}
                                     label="14. Diarreas "
                                 />
-                                <FormControlLabel control={<Checkbox name="S15" color="primary" value={true} onClick={(e) => { setConstipacion(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S15" color="primary" checked={constipacion} onClick={(e) => { setConstipacion(!constipacion) }} />}
                                     label="15. Constipacion (dificultad para defecar) "
                                 />
 
-                                <FormControlLabel control={<Checkbox name="S17" color="primary" value={true} onClick={(e) => { setArritmia(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S17" color="primary" checked={arritmia} onClick={(e) => { setArritmia(!arritmia) }} />}
                                     label="17. Arritmia "
                                 />
-                                <FormControlLabel control={<Checkbox name="S18" color="primary" value={true} onClick={(e) => { setTranspiracionManos(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S18" color="primary" checked={transpiracionManos} onClick={(e) => { setTranspiracionManos(!transpiracionManos) }} />}
                                     label="18. Transpiracion en las manos "
                                 />
-                                <FormControlLabel control={<Checkbox name="S19" color="primary" value={true} onClick={(e) => { setOnicofagia(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S19" color="primary" checked={onicofagia} onClick={(e) => { setOnicofagia(!onicofagia) }} />}
                                     label="19. Onicofagia(se come las uñas) "
                                 />
-                                <FormControlLabel control={<Checkbox name="S20" color="primary" value={true} onClick={(e) => { setTemblorManos(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S20" color="primary" checked={temblorManos} onClick={(e) => { setTemblorManos(!temblorManos) }} />}
                                     label="20. Temblor en las manos "
                                 />
-                                <FormControlLabel control={<Checkbox name="S21" color="primary" value={true} onClick={(e) => { setBruxismo(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S21" color="primary" checked={bruxismo} onClick={(e) => { setBruxismo(!bruxismo) }} />}
                                     label="21. Bruxismo (Aprieta mucho la mandibulas al dormir) "
                                 />
-                                <FormControlLabel control={<Checkbox name="S22" color="primary" value={true} onClick={(e) => { setComeExceso(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S22" color="primary" checked={comeExceso} onClick={(e) => { setComeExceso(!comeExceso) }} />}
                                     label="22. Come en exceso "
                                 />
-                                <FormControlLabel control={<Checkbox name="S23" color="primary" value={true} onClick={(e) => { setInapetencia(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S23" color="primary" checked={inapetencia} onClick={(e) => { setInapetencia(!inapetencia) }} />}
                                     label="23. Inapetancia "
                                 />
-                                <FormControlLabel control={<Checkbox name="S24" color="primary" value={true} onClick={(e) => { setSequedadBucal(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S24" color="primary" checked={sequedadBucal} onClick={(e) => { setSequedadBucal(!sequedadBucal) }} />}
                                     label="24. Sequedad bucal "
                                 />
-                                <FormControlLabel control={<Checkbox name="S25" color="primary" value={true} onClick={(e) => { setIdeasObsesivas(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S25" color="primary" checked={ideasObsesivas} onClick={(e) => { setIdeasObsesivas(!ideasObsesivas) }} />}
                                     label="25. Ideas obsesivas "
                                 />
-                                <FormControlLabel control={<Checkbox name="S26" color="primary" value={true} onClick={(e) => { setIdeasSuicidio(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S26" color="primary" checked={ideasSuicidio} onClick={(e) => { setIdeasSuicidio(!ideasSuicidio) }} />}
                                     label="26. Ideas de suicidio "
                                 />
-                                <FormControlLabel control={<Checkbox name="S27" color="primary" value={true} onClick={(e) => { setSentimientosCulpa(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S27" color="primary" checked={sentimientosCulpa} onClick={(e) => { setSentimientosCulpa(!sentimientosCulpa) }} />}
                                     label="27. Sentimientos de culpa "
                                 />
-                                <FormControlLabel control={<Checkbox name="S28" color="primary" value={true} onClick={(e) => { setTartamudez(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S28" color="primary" checked={tartamudez} onClick={(e) => { setTartamudez(!tartamudez) }} />}
                                     label="28. Tartamudez "
                                 />
-                                <FormControlLabel control={<Checkbox name="S29" color="primary" value={true} onClick={(e) => { setAlteracionesMenstruales(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S29" color="primary" checked={!alteracionesMenstruales} onClick={(e) => { setAlteracionesMenstruales(!alteracionesMenstruales) }} />}
                                     label="29. Alteraciones menstruales "
                                 />
-                                <FormControlLabel control={<Checkbox name="S30" color="primary" value={true} onClick={(e) => { setImpotenciaSecual(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S30" color="primary" checked={impotenciaSecual} onClick={(e) => { setImpotenciaSecual(!impotenciaSecual) }} />}
                                     label="30. Impotencia secual "
                                 />
-                                <FormControlLabel control={<Checkbox name="S31" color="primary" value={true} onClick={(e) => { setFrigidez(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S31" color="primary" checked={frigidez} onClick={(e) => { setFrigidez(!frigidez) }} />}
                                     label="31. Frigidez "
                                 />
-                                <FormControlLabel control={<Checkbox name="S32" color="primary" value={true} onClick={(e) => { setEyaculacionprecoz(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S32" color="primary" checked={eyaculacionprecoz} onClick={(e) => { setEyaculacionprecoz(!eyaculacionprecoz) }} />}
                                     label="32. Eyaculación precoz "
                                 />
-                                <FormControlLabel control={<Checkbox name="S33" color="primary" value={true} onClick={(e) => { setDolorVaginal(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S33" color="primary" checked={dolorVaginal} onClick={(e) => { setDolorVaginal(!dolorVaginal) }} />}
                                     label="33. Dolor vaginal al tener relaciones Sexuales "
                                 />
-                                <FormControlLabel control={<Checkbox name="S34" color="primary" value={true} onClick={(e) => { setPocoDeseo(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S34" color="primary" checked={pocoDeseo} onClick={(e) => { setPocoDeseo(!pocoDeseo) }} />}
                                     label="34. Poco deseo Sexual "
                                 />
-                                <FormControlLabel control={<Checkbox name="S35" color="primary" value={true} onClick={(e) => { setTics(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S35" color="primary" checked={tics} onClick={(e) => { setTics(!tics) }} />}
                                     label="35. Tics "
                                 />
-                                <FormControlLabel control={<Checkbox name="S36" color="primary" value={true} onClick={(e) => { setFatiga(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S36" color="primary" checked={fatiga} onClick={(e) => { setFatiga(!fatiga) }} />}
                                     label="36. Se fatiga fácilmente "
                                 />
-                                <FormControlLabel control={<Checkbox name="S37" color="primary" value={true} onClick={(e) => { setLlanto(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S37" color="primary" checked={llanto} onClick={(e) => { setLlanto(!llanto) }} />}
                                     label="37. Llanto "
                                 />
-                                <FormControlLabel control={<Checkbox name="S38" color="primary" value={true} onClick={(e) => { setDesanimo(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S38" color="primary" checked={desanimo} onClick={(e) => { setDesanimo(!desanimo) }} />}
                                     label="38. Desanimo "
                                 />
-                                <FormControlLabel control={<Checkbox name="S39" color="primary" value={true} onClick={(e) => { setPena(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S39" color="primary" checked={pena} onClick={(e) => { setPena(!pena) }} />}
                                     label="39. Pena "
                                 />
-                                <FormControlLabel control={<Checkbox name="S40" color="primary" value={true} onClick={(e) => { setIngestion(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S40" color="primary" checked={ingestion} onClick={(e) => { setIngestion(!ingestion) }} />}
                                     label="40. Ingestión escesiva de alcohol "
                                 />
-                                <FormControlLabel control={<Checkbox name="S41" color="primary" value={true} onClick={(e) => { setConsumos(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S41" color="primary" checked={consumos} onClick={(e) => { setConsumos(!consumos) }} />}
                                     label="41. Consumo de Drogas "
                                 />
-                                <FormControlLabel control={<Checkbox name="S42" color="primary" value={true} onClick={(e) => { setHipocondria(e.target.value) }} />}
+                                <FormControlLabel control={<Checkbox name="S42" color="primary" checked={hipocondria} onClick={(e) => { setHipocondria(!hipocondria) }} />}
                                     label="42. Hipocondría (tendecia excesiva a atribuirse enfermedades) "
                                 />
                                 <Grid >
                                     <Typography variant="h7" gutterBottom >
                                         43. Miedos desproporcionados: <br />
                                     </Typography>
-                                    <FormControlLabel control={<Checkbox name="S43.a" color="primary" value={true} onClick={(e) => { setAlturas(e.target.value) }} />}
+                                    <FormControlLabel control={<Checkbox name="S43.a" color="primary" checked={alturas} onClick={(e) => { setAlturas(!alturas) }} />}
                                         label="a. Las alturas  "
                                     />
-                                    <FormControlLabel control={<Checkbox name="S43.b" color="primary" value={true} onClick={(e) => { setEspacios(e.target.value) }} />}
+                                    <FormControlLabel control={<Checkbox name="S43.b" color="primary" checked={espacios} onClick={(e) => { setEspacios(!espacios) }} />}
                                         label="b. Los espacios cerrados "
                                     />
-                                    <FormControlLabel control={<Checkbox name="S43.c" color="primary" value={true} onClick={(e) => { setViajar(e.target.value) }} />}
+                                    <FormControlLabel control={<Checkbox name="S43.c" color="primary" checked={viajar} onClick={(e) => { setViajar(!viajar) }} />}
                                         label="c. Viajar en avión "
                                     />
-                                    <FormControlLabel control={<Checkbox name="S43.d" color="primary" value={true} onClick={(e) => { setSangre(e.target.value) }} />}
+                                    <FormControlLabel control={<Checkbox name="S43.d" color="primary" checked={sangre} onClick={(e) => { setSangre(!sangre) }} />}
                                         label="d. Ver sangre "
                                     />
-                                    <FormControlLabel control={<Checkbox name="S43.e" color="primary" value={true} onClick={(e) => { setEspaciosAbiertos(e.target.value) }} />}
+                                    <FormControlLabel control={<Checkbox name="S43.e" color="primary" checked={espaciosAbiertos} onClick={(e) => { setEspaciosAbiertos(!espaciosAbiertos) }} />}
                                         label="e. Los espacios abiertos  "
 
                                     /><br />
