@@ -206,7 +206,6 @@ export default function KsAsigEjTabla() {
         <DialogContent>
         <DialogContentText>
           <p>Nombre: {nombre}</p>
-          <p>Número de repeticiones: {repeticiones}</p>
           <p>Descripción: {desc}</p>
           <p>Video del Ejercicio: {vidLink}</p>
           <div className='player-wrapper'>

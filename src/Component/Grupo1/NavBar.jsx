@@ -8,11 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import SSADrawer from './SSADrawer'
 import history from '../../history';
 
-const redirectLogin = () => 
-  {
-    history.push('/Grupo1/Login');
-  }
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +34,6 @@ export default function NavBar() {
           <Typography variant="h5" className={classes.title}>
             Seguimiento de actividades en casa
           </Typography>
-          <Button onClick={redirectLogin} color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </div>

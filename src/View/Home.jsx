@@ -12,10 +12,9 @@ function Home() {
   {
     history.push('/Grupo1')
   }
-  const redirectGrupo2 = () =>
-  {
-    {/*history.push('/Grupo2')*/}
-  }
+  const redirectGrupo2 = () => {
+    history.push("/Grupo2");
+  };
   const redirectGrupo3 = () =>
   {
     history.push('/Grupo3/VistaPrincipal')
@@ -49,7 +48,7 @@ function Home() {
           <StyledButton onClick={redirectGrupo1} variant="contained" >Sistema de Seguimiento de Actividades en Casa</StyledButton>
           </Grid>
           <Grid item xs={12}>
-          <StyledButton onClick={redirectGrupo2} variant="contained">Grupo2</StyledButton>
+          <StyledButton onClick={redirectGrupo2} variant="contained">Inscripcion al sistema</StyledButton>
           </Grid>
           <Grid item xs={12}>
           <StyledButton onClick={redirectGrupo3} variant="contained">Inscripción talleres</StyledButton>

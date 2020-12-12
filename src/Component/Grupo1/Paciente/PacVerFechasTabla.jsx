@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
 
@@ -17,10 +17,12 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Fechas from '../../../Model/Grupo1/Fechas';
+import {GetRutinas} from '../../../Model/Grupo1/RutinasController';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-
 import history from '../../../history.jsx';
+import { PacienteContext } from '../../../Model/Grupo1/PacienteContext';
+import { RutinaContext } from '../../../Model/Grupo1/RutinaContext';
+import { PacViewContext } from '../../../Model/Grupo1/PacViewContext';
 
 
 
@@ -48,23 +50,66 @@ export default function PacVerFechasTabla() {
 
   const redirectPacVerEjercicios = () =>
   {
-    history.push('/Grupo1/PacVerFechas/PacVerEjercicios');
+    setPacViewC(2);
   }
 
-  
-  const state = Fechas;
+  const [state, setState] = React.useState(null);
+  const [isLoading,setIsLoading] = React.useState(true);
+  const [pacienteC, setPacienteC] = React.useContext(PacienteContext);
+  const [rutinaC, setRutinaC] = React.useContext(RutinaContext);
+  const [pacViewC,setPacViewC] = React.useContext(PacViewContext);
+
+  const fetchData = async () => {
+    const query = await GetRutinas().then((res) => {
+      var response = []
+      for(var i = 0; i < res.length; i++)
+      {
+
+        if(res[i].rut == pacienteC.rut)
+        {
+          response.push(res[i]);
+        }
+      }
+    return response;
+    });
+    return query;
+    
+  }
+
+  useEffect(() => {
+    fetchData().then((query) =>{
+      setState(query);
+      console.log(query);
+      setIsLoading(false);
+    });
+  }, []);
+
+  const columns = [
+    { title: 'Fecha', field: 'fecha', type:'date',
+    },
+    { title: 'Link de Google Meet', field: 'Link', type:'string',
+    },
+  ]; 
 
   return (
-    <MaterialTable
-      title=""
+    <div>
+      {isLoading ? 
+      (
+        <div>Cargando...</div>
+      ) : 
+      (
+      <MaterialTable
+      title="Rutinas Agendadas"
       icons={tableIcons}
-      columns={state.columns}
-      data={state.data}
+      columns={columns}
+      data={state}
       actions={[
         {
           icon: () => <NavigateNextIcon/>,
           tooltip: 'Ver ejercicios asignados',
           onClick: (event, rowData) => {
+            setRutinaC({_id: rowData._id,});
+            console.log(rowData._id);
             redirectPacVerEjercicios()
           }
         }
@@ -121,5 +166,8 @@ export default function PacVerFechasTabla() {
       }}
 
     />
+    )}
+    </div>
+    
   );
 }
