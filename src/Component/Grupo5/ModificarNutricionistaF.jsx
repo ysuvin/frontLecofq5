@@ -15,6 +15,9 @@ import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import Axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { Imput } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -47,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NutricionistaF() {
     const classes = useStyles();
-
     const [open, setOpen] = React.useState(false);
-
+    const {id} = useParams();
+    const [banderaAlerta, setBanderaAlerta] = useState(false);
     const handleClick = () => {
         setOpen(true);
     };
@@ -64,6 +67,8 @@ export default function NutricionistaF() {
 
     // const [cont, setCont] = useState(1);
     // const [matriz, setMatriz] = useState([])
+
+    
 
     // useEffect(() => {
     //     iterar()
@@ -88,10 +93,6 @@ export default function NutricionistaF() {
     //     }
     //     setMatriz(matriztemp)
     // }
-
-
-
-
 
 
     const[rut,setRut] = React.useState('');
@@ -124,8 +125,12 @@ export default function NutricionistaF() {
     const[otrasPatologias,setOtrasPatologias] = React.useState('');
     const[tiemposComida,setTiemposComida] = React.useState('');
     const[alimentosPorciones,setAlimentosPorciones] = React.useState('');
-    const [banderaAlerta, setBanderaAlerta] = useState(false);
-    const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
+
+    // const [banderaAlerta, setBanderaAlerta] = useState(false);
+    // const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
+
+    // const [rut,setRut] = useState()
+
 
     const Listo = () => {
         Axios.get(`http://localhost:8080/fichaNutricionista/`)
@@ -166,30 +171,65 @@ export default function NutricionistaF() {
             gmb: gmb,
             pesoIdeal: pesoIdeal,
             tiemposComida: tiemposComida,
-            alimentosPorciones: alimentosPorciones
+            alimentosPorciones: alimentosPorciones,
         }
-        Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
-        .then((response) => {
-        if (response.data.state) {
-            setOpen(true);
-            setBanderaAlerta(true);
-            setBanderaAlertaOpcion(true)
-        }else{
-            setOpen(true);
-            setBanderaAlerta(true);
-            setBanderaAlertaOpcion(false)
-        }
-        console.log(response)
-    
-    }).finally(() => { console.log("termina") }).catch((e) => { console.log(e);
-        setOpen(true);
-        setBanderaAlerta(true);
-        setBanderaAlertaOpcion(false)
-    });
+        Axios.put(`http://localhost:8080/fichaNutricionista/${id}`, data)
     }
 
+    const check = (data) => {
+        if (data == true) {
+            return;
+        }
+
+        setOpen(false);
+    };
 
 
+    useEffect(() => {
+        peticionGet(id)
+    }, []);
+
+    const [data, setData] = useState([]);
+    
+    const peticionGet = (id) => {
+        Axios.get(`http://localhost:8080/fichaNutricionista/${id}`).then(response => {
+            setData(response.data.data);
+            setRut(response.data.data.rut);
+            setActividadLaboral(response.data.data.actividadLaboral);
+            setActividadFisica(response.data.data.actividadFisica);
+            setHorasSemanales(response.data.data.horasSemanales);
+            setConsumoAlcohol(response.data.data.consumoAlcohol);
+            setCantidadSemanalAlcohol(response.data.data.cantidadSemanalAlcohol);
+            setHabitoTabaquico(response.data.data.habitoTabaquico);
+            setCantidadSemanalTabaco(response.data.data.cantidadSemanalTabaco);
+            setPeso(response.data.data.peso);
+            setTalla(response.data.data.talla);
+            setImc(response.data.data.imc);
+            setCCintura(response.data.data.cCintura);
+            setCCadera(response.data.data.cCadera);
+            setIcc(response.data.data.icc);
+            setPitri(response.data.data.icc);
+            setPibi(response.data.data.pibi);
+            setPisb(response.data.data.pisb);
+            setPisc(response.data.data.pisc);
+            setGrasa(response.data.data.grasa);
+            setGmb(response.data.data.gmb);
+            setPesoIdeal(response.data.data.pesoIdeal);
+            setPatologia(response.data.data.patologia);
+            setDiabetes(response.data.data.diabetes);
+            setObesidad(response.data.data.obesidad);
+            setDislipidemia(response.data.data.dislipidemia);
+            setCancer(response.data.data.cancer);
+            setHta(response.data.data.hta);
+            setOtrasPatologias(response.data.data.otrasPatologias);
+            setTiemposComida(response.data.data.tiemposComida);
+            setAlimentosPorciones(response.data.data.alimentosPorciones);
+            console.log("console: ", response.data.data);
+    })
+        // }).catch.(error => {
+        //     console.log(error.message);
+        // })
+    }
 
 
 
@@ -204,12 +244,14 @@ export default function NutricionistaF() {
                 </Typography>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
-                        <TextField 
-                            required id="rutPaci" 
-                            label="Rut del Paciente" 
-                            fullWidth autoComplete="rut-paci"
-                            value={rut}
-                            onChange={(e) => { setRut(e.target.value) }} 
+                    <InputLabel >Rut del Paciente</InputLabel>
+                        <TextField
+                            required
+                            id="rutPaci"
+                            fullWidth 
+                            autoComplete="rut-paci"
+                            value = {rut}
+                            onChange={e => setRut(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -221,7 +263,6 @@ export default function NutricionistaF() {
                             autoComplete="paci-number"
                         />
                     </Grid>
-
                     <Grid item xs={15} md={6}>
                         <form className={classes.container} noValidate>
                             <TextField
@@ -237,93 +278,94 @@ export default function NutricionistaF() {
                             />
                         </form>
                     </Grid>
-
                     <Grid item xs={12} md={6}>
                         <TextField
                             disabled
                             id="estC"
-                            label="Estado Civil"
+                            label="Estadi Civil"
                             fullWidth
                             autoComplete="est-civil"
                         />
                     </Grid>
-
                     <Grid item xs={6} md={12}>
+                    <InputLabel >Actividad Laboral</InputLabel>
                         <TextField
                             id="actL"
-                            label="Actividad Laboral"
                             fullWidth
                             autoComplete="act-lab"
                             value={actividadLaboral}
-                            onChange={(e) => { setActividadLaboral(e.target.value) }}
+                            onChange={e => setActividadLaboral(e.target.value)}
                         />
                     </Grid>
-
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Actividad Fisica</InputLabel>
                         <TextField
                             id="actF"
-                            label="Actividad Fisica"
+                            // label="Actividad Fisica"
                             fullWidth
                             autoComplete="act-fis"
                             value={actividadFisica}
-                            onChange={(e) => { setActividadFisica(e.target.value) }}
+                            onChange={e => setActividadFisica(e.target.value)}
                         />
                     </Grid>
-
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Hrs Por Semanas</InputLabel>
                         <TextField
                             type="number"
                             id="hSem"
-                            label="Hrs Por Semanas"
+                            // label="Hrs Por Semanas"
                             fullWidth
                             autoComplete="h-sem"
                             value={horasSemanales}
-                            onChange={(e) => { setHorasSemanales(e.target.value) }}
+                            onChange={e => setHorasSemanales(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Consumo de Alcohol</InputLabel>
                         <TextField
                             id="conAl"
-                            label="Consumo de Alcohol"
+                            // label="Consumo de Alcohol"
                             fullWidth
                             autoComplete="con-Al"
                             value={consumoAlcohol}
-                            onChange={(e) => { setConsumoAlcohol(e.target.value) }}
+                            onChange={e => setConsumoAlcohol(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Cantidad por Semana</InputLabel>
                         <TextField
                             type="number"
                             id="cantSem1"
-                            label="Cantidad por Semana"
+                            // label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem1"
                             value={cantidadSemanalAlcohol}
-                            onChange={(e) => { setCantidadSemanalAlcohol(e.target.value) }}
+                            onChange={e => setCantidadSemanalAlcohol(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Hábito tabáquico</InputLabel>
                         <TextField
                             id="habTaba"
-                            label="Hábito tabáquico"
+                            // label="Hábito tabáquico"
                             fullWidth
                             autoComplete="hab-taba"
                             value={habitoTabaquico}
-                            onChange={(e) => {setHabitoTabaquico(e.target.value) }}
+                            onChange={e => setHabitoTabaquico(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={6} md={6}>
+                    <InputLabel >Cantidad por Semana</InputLabel>
                         <TextField
                             type="number"
                             id="cantSem2"
-                            label="Cantidad por Semana"
+                            // label="Cantidad por Semana"
                             fullWidth
                             autoComplete="cant-sem2"
                             value={cantidadSemanalTabaco}
-                            onChange={(e) => { setCantidadSemanalTabaco(e.target.value) }}
+                            onChange={e => setCantidadSemanalTabaco(e.target.value)}
                         />
                     </Grid>
-
                     <div>
                         <Grid item xs={12} md={6}>
                             <Typography variant="h6" gutterBottom>
@@ -332,24 +374,27 @@ export default function NutricionistaF() {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        name="checkPatologia"
-                                        color="primary"
-                                        value={true} 
-                                        onClick={(e) => { setPatologia(e.target.value) }}
-                                    />
-                                }
-                                label="Patologia"
-                            />
+                        <FormControlLabel
+                            
+                             control={
+                                <Checkbox                                          
+                                    color="primary"
+                                    checked={patologia}
+                                    // value={patologia}
+                                    onClick={(e) => { setPatologia(!patologia) }}
+
+                                />
+                            }
+                            label="Patologia"
+                        />
                             <FormControlLabel
                                 control={
                                     <Checkbox
                                         name="checkDiabetes"
                                         color="primary"
-                                        value={true} 
-                                        onClick={(e) => { setDiabetes(e.target.value) }}
+                                        checked={diabetes}
+                                        // value={diabetes} 
+                                        onClick={(e) => { setDiabetes(!diabetes) }}
                                     />
                                 }
                                 label="Diabetes"
@@ -359,8 +404,9 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkObesidad"
                                         color="primary"
-                                        value={true} 
-                                        onClick={(e) => { setObesidad(e.target.value) }}
+                                        checked={obesidad}
+                                        // value={obesidad}
+                                        onClick={(e) => { setObesidad(!obesidad) }}
                                     />
                                 }
                                 label="Obesidad"
@@ -370,7 +416,9 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDislipidemia"
                                         color="primary"
-                                        value={true} onClick={(e) => { setDislipidemia(e.target.value) }}
+                                        checked={dislipidemia}
+                                        // value={dislipidemia} 
+                                        onClick={(e) => { setDislipidemia(!dislipidemia)}}
                                     />
                                 }
                                 label="Dislipidemia"
@@ -380,7 +428,9 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkCancer"
                                         color="primary"
-                                        value={true} onClick={(e) => { setCancer(e.target.value) }}
+                                        checked={cancer}
+                                        // value={cancer}
+                                        onClick={(e) => { setCancer(!cancer)}}
                                     />
                                 }
                                 label="Cancer"
@@ -390,30 +440,30 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkHTA"
                                         color="primary"
-                                        value={true} onClick={(e) => { setHta(e.target.value) }}
+                                        checked={hta}
+                                        // value={hta} 
+                                        onClick={(e) => { setHta(!hta) }}
                                     />
                                 }
                                 label="HTA"
                             />
                         </Grid>
-
                         <Grid item xs={12}>
+                        <InputLabel >Otras Patologias</InputLabel>
                             <TextField
                                 id="otrasPat"
-                                label="Otras Patologias"
+                                // label="Otras Patologias"
                                 fullWidth
                                 multiline
                                 rows={3}
-                                defaultValue=""
                                 value={otrasPatologias}
-                                onChange={(e) => { setOtrasPatologias(e.target.value) }}
+                                onChange={e => setOtrasPatologias(e.target.value)}
+                                
                             />
                         </Grid>
                     </div>
-
-
                     <Grid item xs={12} md={12}>
-                    <Typography variant="h6" gutterBottom>
+                        <Typography variant="h6" gutterBottom>
                             Antropometría
                     </Typography>
                     </Grid>
@@ -426,7 +476,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="peso-kg"
                                 value={peso}
-                                onChange={(e) => { setPeso(e.target.value) }}
+                                onChange={e => setPeso(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -437,7 +487,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="talla-cm"
                                 value={talla}
-                                onChange={(e) => { setTalla(e.target.value) }}
+                                onChange={e => setTalla(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -448,7 +498,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="imc"
                                 value={imc}
-                                onChange={(e) => { setImc(e.target.value) }}
+                                onChange={e => setImc(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -459,7 +509,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="c-cint"
                                 value={cCintura}
-                                onChange={(e) => { setCCintura(e.target.value) }}
+                                onChange={e => setCCintura(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -470,7 +520,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="c-cad"
                                 value={cCadera}
-                                onChange={(e) => { setCCadera(e.target.value) }}
+                                onChange={e => setCCadera(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -481,7 +531,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="icc"
                                 value={icc}
-                                onChange={(e) => { setIcc(e.target.value) }}
+                                onChange={e => setIcc(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -492,7 +542,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="pitri"
                                 value={pitri}
-                                onChange={(e) => { setPitri(e.target.value) }}
+                                onChange={e => setPitri(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -503,7 +553,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="pibi"
                                 value={pibi}
-                                onChange={(e) => { setPibi(e.target.value) }}
+                                onChange={e => setPibi(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -514,7 +564,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="pisb"
                                 value={pisb}
-                                onChange={(e) => { setPisb(e.target.value) }}
+                                onChange={e => setPisb(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -525,7 +575,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="pisc"
                                 value={pisc}
-                                onChange={(e) => { setPisc(e.target.value) }}
+                                onChange={e => setPisc(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -536,7 +586,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="porcent-g"
                                 value={grasa}
-                                onChange={(e) => { setGrasa(e.target.value) }}
+                                onChange={e => setGrasa(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2}>
@@ -547,7 +597,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="gmb"
                                 value={gmb}
-                                onChange={(e) => { setGmb(e.target.value) }}
+                                onChange={e => setGmb(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={2} md={2} >
@@ -558,7 +608,7 @@ export default function NutricionistaF() {
                                 fullWidth
                                 autoComplete="peso-ideal"
                                 value={pesoIdeal}
-                                onChange={(e) => { setPesoIdeal(e.target.value) }}
+                                onChange={e => setPesoIdeal(e.target.value)}
                             />
                         </Grid>
                     </Grid>
@@ -569,36 +619,31 @@ export default function NutricionistaF() {
                     </Grid>
                     <Grid container spacing={3}>
                         <Grid item xs={3} md={3}>
+                        <InputLabel >Tiempos de Comida</InputLabel>
                             <TextField
                                 id="tiempcomida"
-                                label="Tiempos de Comida"
+                                // label="Tiempos de Comida"
                                 fullWidth
                                 autoComplete="tiempo-comida"
                                 multiline
                                 rows={15}
                                 value={tiemposComida}
-                                onChange={(e) => { setTiemposComida(e.target.value) }}
+                                onChange={e => setTiemposComida(e.target.value)}
                             />
                         </Grid>
                         <Grid item xs={9} md={9}>
+                        <InputLabel >Alimentos y Porciiones</InputLabel>
                             <TextField
                                 id="alimPorc"
-                                label="Alimentos y Porciones"
+                                // label="Alimentos y Porciiones"
                                 fullWidth
                                 autoComplete="alimentos-porciones"
                                 multiline
                                 rows={15}
                                 value={alimentosPorciones}
-                                onChange={(e) => { setAlimentosPorciones(e.target.value) }}
+                                onChange={e => setAlimentosPorciones(e.target.value)}
                             />
                         </Grid>
-
-
-
-
-
-
-
                         {/* <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -615,30 +660,11 @@ export default function NutricionistaF() {
 
                             </TableBody>
                         </Table> */}
-                    </Grid>
-                    <Grid item xs={12} md={6} alignContent="flex-end" className={classes.root}>
+
+
                         <Button variant="outlined" color="primary" href="#contained-buttons" startIcon={<CheckIcon />} onClick={e => { goLogin(); Listo() }} >
                             Finalizar
                         </Button>
-                        {     
-                            banderaAlerta &&
-                            <div>
-                                {
-                                    banderaAlertaOpcion ?
-                                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                                            <Alert onClose={handleClose} severity="success">
-                                                La ficha se ha creado con exito!
-                            </Alert>
-                                        </Snackbar>
-                                        :
-                                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                                            <Alert onClose={handleClose} severity="error">
-                                                Los datos no se han subido correctamente!
-                            </Alert>
-                                            </Snackbar>
-                                    }
-                                </div>
-                            }
                     </Grid>
                 </Grid>
             </React.Fragment>

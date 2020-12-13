@@ -14,6 +14,9 @@ import VerFichasNutricionista from './PlantillaNutricionista/VerFichasNutricioni
 import PutFichaNutricionista from './PlantillaNutricionista/PutFichaPaciente';
 import VerFichasPsicologo from './PlantillaPsicologo/VerFichasPsicologo';
 import PutFichaPsicologo from './PlantillaPsicologo/PutFichaPaciente';
+import ModificarNutricionista from './PlantillaNutricionista/ModificarNutricionista';
+import ModificarPaciente from './Plantillapaciente/ModificarPaciente';
+import ModificarPsicologo from './PlantillaPsicologo/ModificarPsicologo';
 
 function G5Landing() {
     
@@ -36,6 +39,9 @@ function G5Landing() {
                 <Route exact path="/Grupo5/PutFichaNutricionista/:id" component={PutFichaNutricionista} />
                 <Route exact path="/Grupo5/VerFichasPsicologos/" component={VerFichasPsicologo} />
                 <Route exact path="/Grupo5/PutFichaPsicologo/:id" component={PutFichaPsicologo} />
+                <Route exact path="/Grupo5/ModificarNutricionista/:id" component={ModificarNutricionista} />
+                <Route exact path="/Grupo5/ModificarPaciente/:id" component={ModificarPaciente} />
+                <Route exact path="/Grupo5/ModificarPsicologo/:id" component={ModificarPsicologo} />
                 {/* <Route exact path="/Grupo5/PlantillaMedico/" component={Medico} /> */}
                 {/* Fin Routing Grupo 5*/}
             </Switch>

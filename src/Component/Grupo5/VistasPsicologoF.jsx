@@ -48,7 +48,12 @@ export default function Vistapaciente() {
             console.log(id);
         }
     }
-
+    const redirectModificarPsicologo = (id) => {
+        {
+            history.push(`/Grupo5/ModificarPsicologo/${id}`)
+            console.log(id);
+        }
+    }
     useEffect(() => {
 
         peticionGet()
@@ -58,8 +63,8 @@ export default function Vistapaciente() {
 
     const peticionGet = () => {
         axios.get(`http://localhost:8080/fichaPsicologo/`).then(response => {
-        setData(response.data.data);
-        //console.log(response.data);
+            setData(response.data.data);
+            //console.log(response.data);
         }).catch(error => {
             console.log(error.message);
         })
@@ -105,6 +110,7 @@ export default function Vistapaciente() {
                                         <TableCell>{elemento.escolaridad}</TableCell>
                                         <TableCell style={{ textAlign: "center" }}>
                                             <Button variant="contained" color="primary" onClick={e => redirectPutFichaPsicologo(elemento._id)}> Ver </Button>
+                                            <Button variant="contained" color="primary" onClick={e => redirectModificarPsicologo(elemento._id)}> Modificar </Button>
                                             <Button variant="contained" color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                         </TableCell>
                                     </TableRow>
