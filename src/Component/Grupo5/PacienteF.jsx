@@ -12,6 +12,8 @@ import CheckIcon from '@material-ui/icons/Check';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
+import logo from '../../logo.png';
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -150,6 +152,7 @@ export default function PacienteF() {
             marginLeft:30, marginRight:30, marginBottom:30, marginTop:30
         }}>
             <React.Fragment>
+                <img src={logo} className="App-logo" alt="logo"/>
                 <Typography variant="h4" gutterBottom>
                     Creacion ficha clinica paciente
                 </Typography>

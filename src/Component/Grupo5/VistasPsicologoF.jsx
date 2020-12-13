@@ -14,6 +14,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import history from '../../history';
 import Typography from '@material-ui/core/Typography';
+import logo from '../../logo.png';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -87,8 +88,9 @@ export default function Vistapaciente() {
             marginLeft: 30, marginRight: 30, marginBottom: 30, marginTop: 30
         }}>
             <React.Fragment>
-                <Typography variant="h4" gutterBottom>
-                    Fichas Clinicas Psicologo
+            <img src={logo} className="App-logo" alt="logo"/>
+            <Typography variant="h4" gutterBottom>
+                Fichas Clinicas Psicologo
             </Typography>
                 <Grid item xs={12}>
 

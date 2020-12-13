@@ -15,6 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import Axios from 'axios';
+import logo from '../../logo.png';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -199,6 +200,7 @@ export default function NutricionistaF() {
             marginLeft: 30, marginRight: 30, marginBottom: 30, marginTop: 30
         }}>
             <React.Fragment>
+                <img src={logo} className="App-logo" alt="logo"/>
                 <Typography variant="h6" gutterBottom>
                     Antecedentes Personales
                 </Typography>
@@ -370,7 +372,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDislipidemia"
                                         color="primary"
-                                        value={true} onClick={(e) => { setDislipidemia(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setDislipidemia(e.target.value) }}
                                     />
                                 }
                                 label="Dislipidemia"
@@ -380,7 +383,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkCancer"
                                         color="primary"
-                                        value={true} onClick={(e) => { setCancer(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setCancer(e.target.value) }}
                                     />
                                 }
                                 label="Cancer"
@@ -390,7 +394,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkHTA"
                                         color="primary"
-                                        value={true} onClick={(e) => { setHta(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setHta(e.target.value) }}
                                     />
                                 }
                                 label="HTA"
