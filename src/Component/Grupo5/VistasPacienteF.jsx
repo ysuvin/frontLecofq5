@@ -50,7 +50,10 @@ const redirectPutFichaPaciente = (id) => {
     { history.push(`/Grupo5/PutFichaPaciente/${id}`)
     console.log(id); }
 }
-
+const redirectModificarPaciente = (id) => {
+    { history.push(`/Grupo5/ModificarPaciente/${id}`)
+    console.log(id); }
+}
 useEffect(() => {
 
     peticionGet()
@@ -107,6 +110,7 @@ useEffect(() => {
                                 <TableCell>{elemento.fecha_ingreso}</TableCell>
                                 <TableCell style={{textAlign: "center"}}> 
                                         <Button variant="contained" color="primary" onClick={e => redirectPutFichaPaciente(elemento._id)}> Ver </Button>
+                                        <Button variant="contained" color="primary" onClick={e => redirectModificarPaciente(elemento._id)}> Modificar </Button>
                                         <Button variant="contained"color="secondary" onClick={e => borrarElemento(elemento._id)} className={classes.button} startIcon={<DeleteIcon />}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
