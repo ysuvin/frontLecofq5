@@ -370,7 +370,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkDislipidemia"
                                         color="primary"
-                                        value={true} onClick={(e) => { setDislipidemia(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setDislipidemia(e.target.value) }}
                                     />
                                 }
                                 label="Dislipidemia"
@@ -380,7 +381,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkCancer"
                                         color="primary"
-                                        value={true} onClick={(e) => { setCancer(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setCancer(e.target.value) }}
                                     />
                                 }
                                 label="Cancer"
@@ -390,7 +392,8 @@ export default function NutricionistaF() {
                                     <Checkbox
                                         name="checkHTA"
                                         color="primary"
-                                        value={true} onClick={(e) => { setHta(e.target.value) }}
+                                        value={true} 
+                                        onClick={(e) => { setHta(e.target.value) }}
                                     />
                                 }
                                 label="HTA"
