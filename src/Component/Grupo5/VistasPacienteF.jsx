@@ -19,6 +19,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import history from '../../history';
 import Typography from '@material-ui/core/Typography';
+import logo from '../../logo.png';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -87,6 +88,7 @@ useEffect(() => {
             marginLeft:30, marginRight:30, marginBottom:30, marginTop:30
         }}>
         <React.Fragment>
+            <img src={logo} className="App-logo" alt="logo"/>
             <Typography variant="h4" gutterBottom>
                 Fichas Clinicas Pacientes
             </Typography>

@@ -14,7 +14,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Axios from 'axios';
-//import logo from '../logo.png';
+import logo from '../../logo.png';
 
 
 function Alert(props) {
@@ -428,6 +428,7 @@ export default function PsicologoF() {
             marginLeft: 100, marginRight: 100, marginBottom: 50, marginTop: 50
         }}>
             <React.Fragment>
+                <img src={logo} className="App-logo" alt="logo"/>
                 <Grid xs={6} >
                     <Typography variant="h3"  >
                         Ficha Clinica Psicológica

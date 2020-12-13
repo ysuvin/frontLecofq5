@@ -15,6 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import Axios from 'axios';
+import logo from '../../logo.png';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -199,6 +200,7 @@ export default function NutricionistaF() {
             marginLeft: 30, marginRight: 30, marginBottom: 30, marginTop: 30
         }}>
             <React.Fragment>
+                <img src={logo} className="App-logo" alt="logo"/>
                 <Typography variant="h6" gutterBottom>
                     Antecedentes Personales
                 </Typography>
