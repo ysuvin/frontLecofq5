@@ -7,5 +7,5 @@ build:
     - the
     - tester
     script:
-    - echo "Installing dependencies"
-    - npm install
+    - echo "Repositorio descargado"
+     - npm install
