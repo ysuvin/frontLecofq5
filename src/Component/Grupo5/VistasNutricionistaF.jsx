@@ -60,7 +60,7 @@ useEffect(() => {
 
 
   const peticionGet=()=>{
-    axios.get(`http://localhost:8080/fichaNutricionista/`).then(response=>{
+    axios.get(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/`).then(response=>{
         setData(response.data.data);
 
     }).catch(error=>{
@@ -69,7 +69,7 @@ useEffect(() => {
     }
 
     const borrarElemento = (id) => {
-        axios.delete(`http://localhost:8080/fichaNutricionista/${id}`).then(()=>{
+        axios.delete(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/${id}`).then(()=>{
             peticionGet()
         })
         console.log(id)

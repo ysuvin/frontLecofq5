@@ -103,7 +103,7 @@ export default function PutFichaPacienteF() {
 
 
     // const Listeilor = () => {
-    //     axios.get(`http://localhost:8080/fichaPaciente/`)
+    //     axios.get(`http://api.lecofq.informatica.uv.cl//fichaPaciente/`)
     //         .then(res => {
     //             console.log("console: ", res)
     //         })
@@ -117,7 +117,7 @@ export default function PutFichaPacienteF() {
     const [data, setData] = useState([]);
 
     const peticionGet = (id) => {
-        axios.get(`http://localhost:8080/fichaPaciente/${id}`).then(response => {
+        axios.get(`http://api.lecofq.informatica.uv.cl//fichaPaciente/${id}`).then(response => {
             setData(response.data.data);
             console.log("console: ", response.data.data);
 

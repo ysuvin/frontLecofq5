@@ -122,7 +122,7 @@ export default function PutFichaPsicologoF() {
     const [data, setData] = useState([]);
 
     const peticionGet = (id) => {
-        Axios.get(`http://localhost:8080/fichaPsicologo/${id}`).then(response => {
+        Axios.get(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/${id}`).then(response => {
             setData(response.data.data);
             console.log("console: ", response.data.data);
         }).catch(error => {

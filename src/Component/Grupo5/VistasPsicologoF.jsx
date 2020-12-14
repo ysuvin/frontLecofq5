@@ -63,7 +63,7 @@ export default function Vistapaciente() {
 
 
     const peticionGet = () => {
-        axios.get(`http://localhost:8080/fichaPsicologo/`).then(response => {
+        axios.get(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/`).then(response => {
             setData(response.data.data);
             //console.log(response.data);
         }).catch(error => {
@@ -72,7 +72,7 @@ export default function Vistapaciente() {
     }
 
     const borrarElemento = (id) => {
-        axios.delete(`http://localhost:8080/fichaPsicologo/${id}`).then(() => {
+        axios.delete(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/${id}`).then(() => {
             peticionGet()
         })
         console.log(id)

@@ -113,7 +113,7 @@ export default function ModificarPacienteF() {
     const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
 
     const Listeilor = (id) => {
-        axios.get(`http://localhost:8080/fichaPaciente/${id}`)
+        axios.get(`http://api.lecofq.informatica.uv.cl//fichaPaciente/${id}`)
             .then(res => {
                 console.log("console: ", res)
             })
@@ -132,7 +132,7 @@ export default function ModificarPacienteF() {
             fecha_ingreso: fecha_ingreso
 
         }
-        Axios.put(`http://localhost:8080/fichaPaciente/${id}`, data)
+        Axios.put(`http://api.lecofq.informatica.uv.cl//fichaPaciente/${id}`, data)
     }
 
     useEffect(() => {
@@ -142,7 +142,7 @@ export default function ModificarPacienteF() {
     const [data, setData] = useState([]);
 
     const peticionGet = (id) => {
-        Axios.get(`http://localhost:8080/fichaPaciente/${id}`).then(response => {
+        Axios.get(`http://api.lecofq.informatica.uv.cl//fichaPaciente/${id}`).then(response => {
             setData(response.data.data);
             setRut(response.data.data.rut);
             setDomicilio(response.data.data.domicilio);

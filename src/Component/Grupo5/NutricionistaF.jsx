@@ -129,7 +129,7 @@ export default function NutricionistaF() {
     const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
 
     const Listo = () => {
-        Axios.get(`http://localhost:8080/fichaNutricionista/`)
+        Axios.get(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/`)
         .then(res => {
             console.log("console: ",res)
         })
@@ -169,7 +169,7 @@ export default function NutricionistaF() {
             tiemposComida: tiemposComida,
             alimentosPorciones: alimentosPorciones
         }
-        Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
+        Axios.post(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/`, data)
         .then((response) => {
         if (response.data.state) {
             setOpen(true);

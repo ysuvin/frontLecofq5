@@ -261,7 +261,7 @@ export default function PsicologoF() {
 
 
     const Listo = (id) => {
-        Axios.get(`http://localhost:8080/fichaPsicologo/${id}`)
+        Axios.get(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/${id}`)
             .then(res => {
                 console.log("console: ", res)
             })
@@ -405,7 +405,7 @@ export default function PsicologoF() {
 
 
         }
-        Axios.post(`http://localhost:8080/fichaPsicologo/`, data)
+        Axios.post(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/`, data)
             .then((response) => {
                 if (response.data.state) {
                     setOpen(true);

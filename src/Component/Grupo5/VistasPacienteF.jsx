@@ -63,7 +63,7 @@ useEffect(() => {
 
 
   const peticionGet=()=>{
-    axios.get(`http://localhost:8080/fichaPaciente/`).then(response=>{
+    axios.get(`http://api.lecofq.informatica.uv.cl//fichaPaciente/`).then(response=>{
         setData(response.data.data);
 
     }).catch(error=>{
@@ -72,7 +72,7 @@ useEffect(() => {
     }
 
     const borrarElemento = (id) => {
-        axios.delete(`http://localhost:8080/fichaPaciente/${id}`).then(()=>{
+        axios.delete(`http://api.lecofq.informatica.uv.cl//fichaPaciente/${id}`).then(()=>{
             peticionGet()
         })
         console.log(id)

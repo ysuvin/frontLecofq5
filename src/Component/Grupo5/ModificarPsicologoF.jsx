@@ -263,7 +263,7 @@ export default function PsicologoF() {
 
 
     const Listo = (id) => {
-        Axios.get(`http://localhost:8080/fichaPsicologo/${id}`)
+        Axios.get(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/${id}`)
             .then(res => {
                 console.log("console: ", res)
             })
@@ -403,7 +403,7 @@ export default function PsicologoF() {
             espaciosAbiertos: espaciosAbiertos
 
         }
-        Axios.put(`http://localhost:8080/fichaPsicologo/${id}`, data)
+        Axios.put(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/${id}`, data)
 
     }
     useEffect(() => {
@@ -414,7 +414,7 @@ export default function PsicologoF() {
 
     const peticionGet = (id) => {
         
-            Axios.get(`http://localhost:8080/fichaPsicologo/${id}`).then(response => {
+            Axios.get(`http://api.lecofq.informatica.uv.cl//fichaPsicologo/${id}`).then(response => {
                 setData(response.data.data);
                 setRut(response.data.data.rut);
                 setOcupacion(response.data.data.ocupacion);

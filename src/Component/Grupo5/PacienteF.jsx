@@ -108,7 +108,7 @@ export default function PacienteF() {
     const [banderaAlertaOpcion, setBanderaAlertaOpcion] = useState(false);
 
     const Listeilor = (id) => {
-        axios.get(`http://localhost:8080/fichaPaciente/${id}`)
+        axios.get(`http://api.lecofq.informatica.uv.cl//fichaPaciente/${id}`)
             .then(res => {
                 console.log("console: ", res)
             })
@@ -127,7 +127,7 @@ export default function PacienteF() {
             fecha_ingreso: fecha_ingreso
 
         }
-        axios.post(`http://localhost:8080/fichaPaciente/`, data) // callback( [] , false)
+        axios.post(`http://api.lecofq.informatica.uv.cl//fichaPaciente/`, data) // callback( [] , false)
             .then((response) => {
                 if (response.data.state) {
                     setOpen(true);

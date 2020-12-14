@@ -126,7 +126,7 @@ export default function NutricionistaF() {
 
 
     // const Listo = () => {
-    //     Axios.get(`http://localhost:8080/fichaNutricionista/`)
+    //     Axios.get(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/`)
     //     .then(res => {
     //         console.log("console: ",res)
     //     })
@@ -164,7 +164,7 @@ export default function NutricionistaF() {
     //         gmb: gmb,
     //         pesoIdeal: pesoIdeal
     //     }
-    //     Axios.post(`http://localhost:8080/fichaNutricionista/`, data)
+    //     Axios.post(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/`, data)
     // }
 
     const check = (data) => {
@@ -183,7 +183,7 @@ export default function NutricionistaF() {
     const [data, setData] = useState([]);
     
     const peticionGet = (id) => {
-        Axios.get(`http://localhost:8080/fichaNutricionista/${id}`).then(response => {
+        Axios.get(`http://api.lecofq.informatica.uv.cl//fichaNutricionista/${id}`).then(response => {
             setData(response.data.data);
             console.log("console: ", response.data.data);
     })
