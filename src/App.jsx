@@ -2,6 +2,8 @@ import React from 'react';
 import Home from './View/Home';
 import G1Landing from './View/Grupo1/G1Landing';
 import G5Landing from './View/Grupo5/G5Landing';
+import G2Landing from "./View/Grupo2/G2Landing";
+
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ContainerHoras from './View/Grupo4/ContainerHoras';
 import ContainerSecretario from './View/Grupo4/ContainerSecretario';
@@ -20,6 +22,10 @@ function App() {
 				<Route exact path="/Grupo1/" component={G1Landing} />
 				<Route exact path="/Grupo1/*" component={G1Landing} />
 				{/* Fin Routing Grupo 1*/}
+				{/* Routing Grupo 2 */}
+				<Route exact path="/Grupo2/" component={G2Landing} />
+				<Route exact path="/Grupo2/*" component={G2Landing} />
+				{/* Fin Routing Grupo 2 */}
 				{/* Routing Grupo 3	*/}
 				<Route exact path="/Grupo3/" component={G3Landing} />
 				<Route exact path="/Grupo3/*" component={G3Landing} />
